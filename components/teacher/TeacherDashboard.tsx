@@ -5,7 +5,7 @@ import { useAuth } from '../auth/AuthProvider';
 import { supabase, Child, Class } from '@/lib/supabase';
 import { CurriculumExecution } from './CurriculumExecution';
 import { ActivityLogForm } from '../forms/ActivityLogForm';
-import { LogOut, Users, Plus, UserCheck, Camera, FileText, Clock, Calendar, BookOpen, CheckCircle, Circle, AlertCircle } from 'lucide-react-native';
+import { LogOut, Users, Plus, UserCheck, Camera, FileText, Clock, Calendar, BookOpen, CircleCheck as CheckCircle, Circle, CircleAlert as AlertCircle } from 'lucide-react-native';
 
 interface TeacherClass extends Class {
   children: Child[];
