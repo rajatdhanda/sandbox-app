@@ -345,7 +345,11 @@ export const CurriculumManagement: React.FC = () => {
     }
 
     try {
-      console.log('🎯 Assigning curriculum to classes:', assignForm);
+      console.log('🎯 Assigning curriculum to classes:', {
+        curriculumId: selectedCurriculum.id,
+        classIds: assignForm.class_ids,
+        startDate: assignForm.start_date
+      });
       
       const { data: userData } = await supabase.auth.getUser();
       
@@ -356,10 +360,13 @@ export const CurriculumManagement: React.FC = () => {
         assigned_by: userData.user?.id
       }));
 
+      console.log('📋 Assignment data to insert:', assignments);
+
       const { error } = await supabase
         .from('curriculum_assignments')
         .insert(assignments);
 
+      console.log('✅ Assignment result:', error);
       if (error) throw error;
       
       console.log('✅ Assignments created successfully');
@@ -369,10 +376,39 @@ export const CurriculumManagement: React.FC = () => {
       fetchAssignments(selectedCurriculum.id);
     } catch (error: any) {
       console.error('💥 Error assigning curriculum:', error);
+      console.error('💥 Full error details:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
       Alert.alert('Error', error.message || 'Failed to assign curriculum');
     }
   };
 
+  const downloadTemplate = () => {
+    const csvContent = `Week,Day,Time Slot,Subject,Sub-Section,Activity Title,Description,Materials,Learning Goals,Duration (minutes),Skills Developed
+1,1,Morning Circle,Mathematics,Building Blocks,Counting with Blocks,"Children will count colorful blocks from 1 to 10","Wooden blocks, counting mat","Count from 1-10, Recognize numbers",30,"Number recognition, Fine motor skills"
+1,1,Learning Activities,Mathematics,Building Blocks,Shape Sorting,"Sort blocks by shapes and colors","Shape blocks, sorting trays","Identify basic shapes, Sort by attributes",45,"Shape recognition, Classification"
+1,1,Creative Time,Language Arts,Story Time,Reading Corner,"Interactive story reading with picture books","Picture books, cushions","Listen actively, Vocabulary building",20,"Listening skills, Language development"
+1,2,Morning Circle,Science,Nature Exploration,Weather Talk,"Discuss today's weather and seasons","Weather chart, pictures","Observe weather patterns, Seasonal awareness",25,"Observation skills, Scientific thinking"
+1,2,Learning Activities,Mathematics,Jodo Gyan,Pattern Making,"Create patterns using colorful manipulatives","Jodo Gyan blocks, pattern cards","Recognize patterns, Create sequences",40,"Pattern recognition, Logical thinking"
+1,2,Outdoor Play,Physical Development,Gross Motor,Playground Fun,"Running, jumping, and climbing activities","Playground equipment","Develop gross motor skills, Physical coordination",60,"Gross motor skills, Physical fitness"
+2,1,Morning Circle,Social Studies,Community Helpers,Helper of the Day,"Learn about different community helpers","Helper pictures, role-play props","Identify community helpers, Understand their roles",30,"Social awareness, Vocabulary"
+2,1,Learning Activities,Language Arts,Phonics,Letter Sounds,"Introduction to letter sounds A-E","Letter cards, sound games","Recognize letter sounds, Phonemic awareness",35,"Phonics, Pre-reading skills"
+2,2,Creative Time,Art,Drawing,Free Drawing,"Express creativity through drawing","Crayons, paper, markers","Creative expression, Fine motor development",45,"Creativity, Fine motor skills"
+2,3,Learning Activities,Mathematics,Building Blocks,Tower Building,"Build towers and compare heights","Various blocks, measuring tape","Understand height concepts, Spatial reasoning",40,"Spatial skills, Measurement concepts"`;
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'curriculum_template.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
   const resetTemplateForm = () => {
     setTemplateForm({
       name: '',
@@ -477,7 +513,9 @@ export const CurriculumManagement: React.FC = () => {
                   
                   return (
                     <View key={dayIndex} style={styles.dayContainer}>
-                      <Text style={styles.dayTitle}>Day {dayIndex + 1}</Text>
+                      <Text style={styles.dayTitle}>
+                        Day {dayIndex + 1} ({['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][dayIndex]})
+                      </Text>
                       
                       {dayItems.length === 0 ? (
                         <Text style={styles.emptyDay}>No activities planned</Text>
@@ -495,9 +533,22 @@ export const CurriculumManagement: React.FC = () => {
                                 </View>
                               )}
                             </View>
-                            <Text style={styles.activityType}>{item.activity_type}</Text>
+                            <View style={styles.activityTypeContainer}>
+                              <Text style={styles.activityType}>{item.activity_type}</Text>
+                              <Text style={styles.activitySubject}>
+                                {selectedCurriculum.subject_area}
+                              </Text>
+                            </View>
                             {item.description && (
                               <Text style={styles.activityDescription}>{item.description}</Text>
+                            )}
+                            {item.materials_needed && item.materials_needed.length > 0 && (
+                              <View style={styles.materialsContainer}>
+                                <Text style={styles.materialsLabel}>Materials:</Text>
+                                <Text style={styles.materialsText}>
+                                  {item.materials_needed.join(', ')}
+                                </Text>
+                              </View>
                             )}
                             <View style={styles.activityMeta}>
                               <Text style={styles.activityDuration}>{item.estimated_duration} min</Text>
@@ -593,7 +644,7 @@ export const CurriculumManagement: React.FC = () => {
             <Text style={styles.importOptionDesc}>Upload CSV file</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={styles.importOption}>
+          <TouchableOpacity style={styles.importOption} onPress={downloadTemplate}>
             <Download size={24} color="#F97316" />
             <Text style={styles.importOptionTitle}>Template</Text>
             <Text style={styles.importOptionDesc}>Download template file</Text>
@@ -1163,6 +1214,38 @@ const styles = StyleSheet.create({
     color: '#EC4899',
     fontWeight: '500',
     marginBottom: 4,
+  },
+  activityTypeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  activitySubject: {
+    fontSize: 10,
+    color: '#8B5CF6',
+    fontWeight: '600',
+    backgroundColor: '#F3F4F6',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+  },
+  materialsContainer: {
+    backgroundColor: '#F9FAFB',
+    padding: 8,
+    borderRadius: 6,
+    marginBottom: 8,
+  },
+  materialsLabel: {
+    fontSize: 11,
+    fontWeight: '600',
+    color: '#374151',
+    marginBottom: 2,
+  },
+  materialsText: {
+    fontSize: 11,
+    color: '#6B7280',
+    lineHeight: 14,
   },
   activityDescription: {
     fontSize: 14,
