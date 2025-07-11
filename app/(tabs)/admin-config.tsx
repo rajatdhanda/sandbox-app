@@ -121,7 +121,7 @@ export default function AdminConfigScreen() {
             try {
               const { error } = await supabase
                 .from('config_fields')
-                .update({ is_active: false })
+                .delete()
                 .eq('id', fieldId);
 
               if (error) throw error;

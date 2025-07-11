@@ -94,6 +94,8 @@ export const ChildrenManagement: React.FC = () => {
     }
 
     try {
+      console.log('Creating child with data:', formData);
+      
       // Create child
       const { data: childData, error: childError } = await supabase
         .from('children')
@@ -111,10 +113,12 @@ export const ChildrenManagement: React.FC = () => {
         .select()
         .single();
 
+      console.log('Child creation result:', { childData, childError });
       if (childError) throw childError;
 
       // Create parent-child relationships
       if (selectedParents.length > 0) {
+        console.log('Creating parent relationships for:', selectedParents);
         const relationships = selectedParents.map((parentId, index) => ({
           parent_id: parentId,
           child_id: childData.id,
@@ -125,6 +129,7 @@ export const ChildrenManagement: React.FC = () => {
           .from('parent_child_relationships')
           .insert(relationships);
 
+        console.log('Relationship result:', relationshipError);
         if (relationshipError) throw relationshipError;
       }
 
@@ -205,9 +210,16 @@ export const ChildrenManagement: React.FC = () => {
           style: 'destructive',
           onPress: async () => {
             try {
+              // First delete parent-child relationships
+              await supabase
+                .from('parent_child_relationships')
+                .delete()
+                .eq('child_id', childId);
+
+              // Then delete the child
               const { error } = await supabase
                 .from('children')
-                .update({ is_active: false })
+                .delete()
                 .eq('id', childId);
 
               if (error) throw error;

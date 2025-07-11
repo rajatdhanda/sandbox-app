@@ -33,6 +33,15 @@ export const ActivityLogForm: React.FC<ActivityLogFormProps> = ({
 
     try {
       setSaving(true);
+      console.log('Saving activity log:', {
+        child_id: childId,
+        teacher_id: teacherId,
+        activity_type: activityType,
+        mood,
+        description,
+        skill_tags: skillTags,
+        duration_minutes: durationMinutes
+      });
       
       const { error } = await supabase
         .from('daily_logs')
@@ -48,6 +57,7 @@ export const ActivityLogForm: React.FC<ActivityLogFormProps> = ({
           log_date: new Date().toISOString().split('T')[0]
         });
 
+      console.log('Activity log save result:', error);
       if (error) throw error;
 
       Alert.alert('Success', 'Activity log saved successfully');

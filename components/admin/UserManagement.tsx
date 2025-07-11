@@ -125,14 +125,26 @@ export const UserManagement: React.FC = () => {
           style: 'destructive',
           onPress: async () => {
             try {
+              // First delete related records
+              await supabase
+                .from('parent_child_relationships')
+                .delete()
+                .eq('parent_id', userId);
+
+              await supabase
+                .from('class_assignments')
+                .delete()
+                .eq('teacher_id', userId);
+
+              // Then delete the user
               const { error } = await supabase
                 .from('users')
-                .update({ is_active: false })
+                .delete()
                 .eq('id', userId);
 
               if (error) throw error;
 
-              Alert.alert('Success', 'User deactivated successfully');
+              Alert.alert('Success', 'User deleted successfully');
               fetchUsers();
             } catch (error: any) {
               console.error('Error deleting user:', error);

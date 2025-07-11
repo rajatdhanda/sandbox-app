@@ -84,6 +84,8 @@ export const ClassManagement: React.FC = () => {
     }
 
     try {
+      console.log('Creating class with data:', formData);
+      
       // Create class
       const { data: classData, error: classError } = await supabase
         .from('classes')
@@ -99,10 +101,12 @@ export const ClassManagement: React.FC = () => {
         .select()
         .single();
 
+      console.log('Class creation result:', { classData, classError });
       if (classError) throw classError;
 
       // Create teacher assignments
       if (selectedTeachers.length > 0) {
+        console.log('Creating teacher assignments for:', selectedTeachers);
         const assignments = selectedTeachers.map((teacherId, index) => ({
           teacher_id: teacherId,
           class_id: classData.id,
@@ -113,6 +117,7 @@ export const ClassManagement: React.FC = () => {
           .from('class_assignments')
           .insert(assignments);
 
+        console.log('Assignment result:', assignmentError);
         if (assignmentError) throw assignmentError;
       }
 
@@ -191,9 +196,16 @@ export const ClassManagement: React.FC = () => {
           style: 'destructive',
           onPress: async () => {
             try {
+              // First delete class assignments
+              await supabase
+                .from('class_assignments')
+                .delete()
+                .eq('class_id', classId);
+
+              // Then delete the class
               const { error } = await supabase
                 .from('classes')
-                .update({ is_active: false })
+                .delete()
                 .eq('id', classId);
 
               if (error) throw error;
