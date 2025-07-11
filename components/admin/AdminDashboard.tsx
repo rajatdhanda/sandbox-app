@@ -264,7 +264,7 @@ export const AdminDashboard: React.FC = () => {
               <FileText size={32} color="#059669" />
               <Text style={styles.moduleTitle}>Curriculum Management</Text>
               <Text style={styles.moduleDescription}>
-                Create and manage daily/weekly lesson plans
+                Create, schedule, and assign comprehensive learning plans
               </Text>
             </TouchableOpacity>
 
