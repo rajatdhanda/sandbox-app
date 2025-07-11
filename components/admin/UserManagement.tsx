@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
 import { supabase, User } from '@/lib/supabase';
-import { Plus, Edit3, Trash2, Search, Filter, Mail, Phone, X, Save } from 'lucide-react-native';
+import { Plus, CreditCard as Edit3, Trash2, Search, Filter, Mail, Phone, X, Save } from 'lucide-react-native';
 
 interface UserFormData {
   email: string;
