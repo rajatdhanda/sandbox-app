@@ -70,7 +70,7 @@ export default function AdminConfigScreen() {
       setNewValue('');
       setNewDescription('');
       setShowAddForm(false);
-      refetch();
+      fetchFields();
       Alert.alert('Success', 'Field added successfully');
     } catch (error) {
       console.error('Error adding field:', error);
@@ -100,7 +100,7 @@ export default function AdminConfigScreen() {
       setNewLabel('');
       setNewValue('');
       setNewDescription('');
-      refetch();
+      fetchFields();
       Alert.alert('Success', 'Field updated successfully');
     } catch (error) {
       console.error('Error updating field:', error);
@@ -126,7 +126,7 @@ export default function AdminConfigScreen() {
 
               if (error) throw error;
 
-              refetch();
+              fetchFields();
               Alert.alert('Success', 'Field deleted successfully');
             } catch (error) {
               console.error('Error deleting field:', error);
