@@ -7,6 +7,8 @@ import { UserManagement } from './UserManagement';
 import { ChildrenManagement } from './ChildrenManagement';
 import { ClassManagement } from './ClassManagement';
 import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText, X } from 'lucide-react-native';
+import { ConfigManagement } from './ConfigManagement';
+import { ReportsModule } from './ReportsModule';
 
 interface AdminStats {
   totalUsers: number;
@@ -107,6 +109,12 @@ export const AdminDashboard: React.FC = () => {
         return <ChildrenManagement />;
       case 'classes':
         return <ClassManagement />;
+      case 'config':
+        return <ConfigManagement />;
+      case 'reports':
+        return <ReportsModule />;
+      case 'logs':
+        return <SystemLogs />;
       default:
         return null;
     }
@@ -207,7 +215,10 @@ export const AdminDashboard: React.FC = () => {
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.moduleCard}>
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('config')}
+            >
               <Database size={32} color="#10B981" />
               <Text style={styles.moduleTitle}>Configuration</Text>
               <Text style={styles.moduleDescription}>
@@ -215,7 +226,10 @@ export const AdminDashboard: React.FC = () => {
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.moduleCard}>
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('reports')}
+            >
               <BarChart3 size={32} color="#6366F1" />
               <Text style={styles.moduleTitle}>Reports & Analytics</Text>
               <Text style={styles.moduleDescription}>
@@ -223,7 +237,10 @@ export const AdminDashboard: React.FC = () => {
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.moduleCard}>
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('logs')}
+            >
               <FileText size={32} color="#059669" />
               <Text style={styles.moduleTitle}>System Logs</Text>
               <Text style={styles.moduleDescription}>
@@ -309,6 +326,9 @@ export const AdminDashboard: React.FC = () => {
               {activeModule === 'users' && 'User Management'}
               {activeModule === 'children' && 'Children Management'}
               {activeModule === 'classes' && 'Class Management'}
+              {activeModule === 'config' && 'Configuration Management'}
+              {activeModule === 'reports' && 'Reports & Analytics'}
+              {activeModule === 'logs' && 'System Logs'}
             </Text>
             <TouchableOpacity onPress={closeModule}>
               <X size={24} color="#6B7280" />

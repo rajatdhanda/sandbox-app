@@ -58,20 +58,10 @@ export const UserManagement: React.FC = () => {
     }
 
     try {
-      // Create auth user first
-      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-        email: formData.email,
-        password: 'TempPassword123!', // Temporary password
-        email_confirm: true
-      });
-
-      if (authError) throw authError;
-
       // Create user profile
       const { error: profileError } = await supabase
         .from('users')
         .insert({
-          id: authData.user.id,
           email: formData.email,
           full_name: formData.full_name,
           role: formData.role,
@@ -83,7 +73,7 @@ export const UserManagement: React.FC = () => {
 
       if (profileError) throw profileError;
 
-      Alert.alert('Success', 'User created successfully. Temporary password: TempPassword123!');
+      Alert.alert('Success', 'User created successfully');
       resetForm();
       fetchUsers();
     } catch (error: any) {

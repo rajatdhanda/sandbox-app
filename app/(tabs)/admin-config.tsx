@@ -5,6 +5,8 @@ import { useConfigFields } from '@/hooks/useConfigFields';
 import { supabase } from '@/lib/supabase';
 import { Plus, CreditCard as Edit3, Trash2, Save, X } from 'lucide-react-native';
 
+import { supabase } from '@/lib/supabase';
+
 export default function AdminConfigScreen() {
   const [selectedCategory, setSelectedCategory] = useState('mood');
   const [showAddForm, setShowAddForm] = useState(false);
@@ -13,7 +15,32 @@ export default function AdminConfigScreen() {
   const [newValue, setNewValue] = useState('');
   const [newDescription, setNewDescription] = useState('');
 
-  const { fields, loading, error, refetch } = useConfigFields(selectedCategory);
+  const [fields, setFields] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchFields = async () => {
+    try {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('config_fields')
+        .select('*')
+        .eq('category', selectedCategory)
+        .eq('is_active', true)
+        .order('sort_order');
+
+      if (error) throw error;
+      setFields(data || []);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchFields();
+  }, [selectedCategory]);
 
   const categories = [
     { key: 'mood', label: 'Moods' },

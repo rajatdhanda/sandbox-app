@@ -300,6 +300,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 8,
   },
+  chartContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-around',
+    height: 120,
+    paddingHorizontal: 20,
+  },
+  chartBar: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  bar: {
+    width: 30,
+    borderRadius: 4,
+    marginBottom: 8,
+  },
+  barLabel: {
+    fontSize: 12,
+    color: '#6B7280',
+    fontWeight: '500',
+  },
   reportsContainer: {
     padding: 20,
     backgroundColor: '#FFFFFF',
