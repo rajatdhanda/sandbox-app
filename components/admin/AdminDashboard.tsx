@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
 import { supabase } from '@/lib/supabase';
-import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText } from 'lucide-react-native';
+import { UserManagement } from './UserManagement';
+import { ChildrenManagement } from './ChildrenManagement';
+import { ClassManagement } from './ClassManagement';
+import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText, X } from 'lucide-react-native';
 
 interface AdminStats {
   totalUsers: number;
@@ -16,6 +19,8 @@ interface AdminStats {
 
 export const AdminDashboard: React.FC = () => {
   const { user, signOut } = useAuth();
+  const [activeModule, setActiveModule] = useState<string | null>(null);
+  const [showModule, setShowModule] = useState(false);
   const [stats, setStats] = useState<AdminStats>({
     totalUsers: 0,
     totalChildren: 0,
@@ -84,6 +89,29 @@ export const AdminDashboard: React.FC = () => {
     }
   };
 
+  const openModule = (module: string) => {
+    setActiveModule(module);
+    setShowModule(true);
+  };
+
+  const closeModule = () => {
+    setActiveModule(null);
+    setShowModule(false);
+  };
+
+  const renderModule = () => {
+    switch (activeModule) {
+      case 'users':
+        return <UserManagement />;
+      case 'children':
+        return <ChildrenManagement />;
+      case 'classes':
+        return <ClassManagement />;
+      default:
+        return null;
+    }
+  };
+
   if (loading) {
     return (
       <SafeAreaView style={styles.container}>
@@ -146,7 +174,10 @@ export const AdminDashboard: React.FC = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Management Modules</Text>
           <View style={styles.moduleGrid}>
-            <TouchableOpacity style={styles.moduleCard}>
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('users')}
+            >
               <Users size={32} color="#8B5CF6" />
               <Text style={styles.moduleTitle}>User Management</Text>
               <Text style={styles.moduleDescription}>
@@ -154,7 +185,10 @@ export const AdminDashboard: React.FC = () => {
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.moduleCard}>
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('children')}
+            >
               <Baby size={32} color="#EC4899" />
               <Text style={styles.moduleTitle}>Student Management</Text>
               <Text style={styles.moduleDescription}>
@@ -162,7 +196,10 @@ export const AdminDashboard: React.FC = () => {
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.moduleCard}>
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('classes')}
+            >
               <Settings size={32} color="#F97316" />
               <Text style={styles.moduleTitle}>Class Management</Text>
               <Text style={styles.moduleDescription}>
@@ -259,6 +296,27 @@ export const AdminDashboard: React.FC = () => {
           </View>
         </View>
       </ScrollView>
+
+      {/* Module Modal */}
+      <Modal
+        visible={showModule}
+        animationType="slide"
+        presentationStyle="fullScreen"
+      >
+        <View style={styles.moduleContainer}>
+          <View style={styles.moduleHeader}>
+            <Text style={styles.moduleHeaderTitle}>
+              {activeModule === 'users' && 'User Management'}
+              {activeModule === 'children' && 'Children Management'}
+              {activeModule === 'classes' && 'Class Management'}
+            </Text>
+            <TouchableOpacity onPress={closeModule}>
+              <X size={24} color="#6B7280" />
+            </TouchableOpacity>
+          </View>
+          {renderModule()}
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -447,5 +505,23 @@ const styles = StyleSheet.create({
     color: '#6B7280',
     textAlign: 'center',
     marginTop: 50,
+  },
+  moduleContainer: {
+    flex: 1,
+    backgroundColor: '#F9FAFB',
+  },
+  moduleHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
+  },
+  moduleHeaderTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#1F2937',
   },
 });
