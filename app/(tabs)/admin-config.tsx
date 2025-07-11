@@ -109,6 +109,8 @@ export default function AdminConfigScreen() {
   };
 
   const handleDeleteField = async (fieldId: string) => {
+    console.log('🗑️ Attempting to delete field:', fieldId);
+    
     Alert.alert(
       'Confirm Delete',
       'Are you sure you want to delete this field?',
@@ -119,20 +121,28 @@ export default function AdminConfigScreen() {
           style: 'destructive',
           onPress: async () => {
             try {
-              console.log('Deleting field with ID:', fieldId);
+              console.log('🔄 Executing delete for field ID:', fieldId);
+              
               const { error } = await supabase
                 .from('config_fields')
                 .delete()
                 .eq('id', fieldId);
 
-              console.log('Delete result:', error);
+              console.log('✅ Delete result:', error);
+              
               if (error) throw error;
 
+              console.log('🎉 Field deleted successfully!');
               fetchFields();
               Alert.alert('Success', 'Field deleted successfully');
             } catch (error) {
-              console.error('Error deleting field:', error);
-              Alert.alert('Error', `Failed to delete field: ${error.message}`);
+              console.error('💥 Error deleting field:', error);
+              console.error('💥 Error details:', {
+                message: error.message,
+                code: error.code,
+                details: error.details
+              });
+              Alert.alert('Error', `Failed to delete field: ${error.message || 'Unknown error'}`);
             }
           }
         }

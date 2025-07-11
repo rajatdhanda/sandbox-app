@@ -78,13 +78,18 @@ export const ClassManagement: React.FC = () => {
   };
 
   const handleCreateClass = async () => {
+    console.log('🚀 Starting class creation...');
+    console.log('📝 Form data:', formData);
+    console.log('👥 Selected teachers:', selectedTeachers);
+    
     if (!formData.name || !formData.age_group) {
+      console.log('❌ Validation failed: missing required fields');
       Alert.alert('Error', 'Class name and age group are required');
       return;
     }
 
     try {
-      console.log('Creating class with data:', formData);
+      console.log('🔄 Attempting to insert class into database...');
       
       // Create class
       const { data: classData, error: classError } = await supabase
@@ -101,32 +106,42 @@ export const ClassManagement: React.FC = () => {
         .select()
         .single();
 
-      console.log('Class creation result:', { classData, classError });
+      console.log('✅ Class creation result:', { classData, classError });
+      
       if (classError) throw classError;
 
       // Create teacher assignments
       if (selectedTeachers.length > 0) {
-        console.log('Creating teacher assignments for:', selectedTeachers);
+        console.log('🔄 Creating teacher assignments for:', selectedTeachers);
         const assignments = selectedTeachers.map((teacherId, index) => ({
           teacher_id: teacherId,
           class_id: classData.id,
           is_primary: index === 0
         }));
 
+        console.log('📋 Assignment data:', assignments);
+        
         const { error: assignmentError } = await supabase
           .from('class_assignments')
           .insert(assignments);
 
-        console.log('Assignment result:', assignmentError);
+        console.log('✅ Assignment result:', assignmentError);
         if (assignmentError) throw assignmentError;
       }
 
+      console.log('🎉 Class created successfully!');
       Alert.alert('Success', 'Class created successfully');
       resetForm();
       fetchData();
     } catch (error: any) {
-      console.error('Error creating class:', error);
-      Alert.alert('Error', `Failed to create class: ${error.message}`);
+      console.error('💥 Error creating class:', error);
+      console.error('💥 Error details:', {
+        message: error.message,
+        code: error.code,
+        details: error.details,
+        hint: error.hint
+      });
+      Alert.alert('Error', `Failed to create class: ${error.message || 'Unknown error'}`);
     }
   };
 

@@ -13,6 +13,9 @@ export const TeacherDashboard: React.FC = () => {
   const [students, setStudents] = useState<Child[]>([]);
   const [showActivityForm, setShowActivityForm] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Child | null>(null);
+  const [todaysAttendance, setTodaysAttendance] = useState<any[]>([]);
+  const [recentActivities, setRecentActivities] = useState<any[]>([]);
+  const [notifications, setNotifications] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,8 +27,16 @@ export const TeacherDashboard: React.FC = () => {
   useEffect(() => {
     if (selectedClass) {
       fetchClassStudents(selectedClass.id);
+      fetchTodaysAttendance(selectedClass.id);
+      fetchRecentActivities(selectedClass.id);
     }
   }, [selectedClass]);
+  
+  useEffect(() => {
+    if (user) {
+      fetchNotifications();
+    }
+  }, [user]);
 
   const fetchTeacherClasses = async () => {
     try {
@@ -523,5 +534,70 @@ const styles = StyleSheet.create({
     color: '#6B7280',
     textAlign: 'center',
     marginTop: 50,
+  },
+  attendanceGrid: {
+    backgroundColor: '#F9FAFB',
+    borderRadius: 8,
+    padding: 12,
+  },
+  attendanceStats: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 12,
+  },
+  attendanceItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
+  },
+  attendanceStudent: {
+    fontSize: 14,
+    color: '#374151',
+  },
+  attendanceStatus: {
+    fontSize: 12,
+    fontWeight: '600',
+    textTransform: 'uppercase',
+  },
+  recentActivityCard: {
+    backgroundColor: '#F9FAFB',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 8,
+  },
+  recentActivityTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  recentActivityStudent: {
+    fontSize: 12,
+    color: '#8B5CF6',
+    marginBottom: 2,
+  },
+  recentActivityTime: {
+    fontSize: 10,
+    color: '#6B7280',
+  },
+  notificationCard: {
+    backgroundColor: '#F9FAFB',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 8,
+  },
+  notificationTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  notificationMessage: {
+    fontSize: 12,
+    color: '#6B7280',
   },
 });

@@ -11,6 +11,9 @@ export const ParentDashboard: React.FC = () => {
   const [selectedChild, setSelectedChild] = useState<Child | null>(null);
   const [dailyLogs, setDailyLogs] = useState<DailyLog[]>([]);
   const [photos, setPhotos] = useState<Photo[]>([]);
+  const [milestones, setMilestones] = useState<any[]>([]);
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const [upcomingEvents, setUpcomingEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,6 +56,8 @@ export const ParentDashboard: React.FC = () => {
 
   const fetchChildData = async (childId: string) => {
     try {
+      console.log('🔄 Fetching data for child:', childId);
+      
       // Fetch daily logs
       const { data: logsData, error: logsError } = await supabase
         .from('daily_logs')
@@ -65,6 +70,7 @@ export const ParentDashboard: React.FC = () => {
         .limit(10);
 
       if (logsError) throw logsError;
+      console.log('✅ Daily logs fetched:', logsData?.length || 0);
       setDailyLogs(logsData || []);
 
       // Fetch photos
@@ -77,9 +83,51 @@ export const ParentDashboard: React.FC = () => {
         .limit(20);
 
       if (photosError) throw photosError;
+      console.log('✅ Photos fetched:', photosData?.length || 0);
       setPhotos(photosData || []);
+      
+      // Fetch milestones
+      const { data: milestonesData, error: milestonesError } = await supabase
+        .from('milestones')
+        .select(`
+          *,
+          teacher:users(full_name)
+        `)
+        .eq('child_id', childId)
+        .eq('is_shared_with_parents', true)
+        .order('achievement_date', { ascending: false })
+        .limit(5);
+
+      if (milestonesError) throw milestonesError;
+      console.log('✅ Milestones fetched:', milestonesData?.length || 0);
+      setMilestones(milestonesData || []);
+      
+      // Fetch notifications
+      const { data: notificationsData, error: notificationsError } = await supabase
+        .from('notifications')
+        .select('*')
+        .eq('user_id', user!.id)
+        .order('created_at', { ascending: false })
+        .limit(5);
+
+      if (notificationsError) throw notificationsError;
+      console.log('✅ Notifications fetched:', notificationsData?.length || 0);
+      setNotifications(notificationsData || []);
+      
+      // Fetch upcoming events
+      const { data: eventsData, error: eventsError } = await supabase
+        .from('events')
+        .select('*')
+        .gte('start_date', new Date().toISOString())
+        .order('start_date', { ascending: true })
+        .limit(3);
+
+      if (eventsError) throw eventsError;
+      console.log('✅ Events fetched:', eventsData?.length || 0);
+      setUpcomingEvents(eventsData || []);
+      
     } catch (error) {
-      console.error('Error fetching child data:', error);
+      console.error('💥 Error fetching child data:', error);
     }
   };
 
@@ -228,6 +276,67 @@ export const ParentDashboard: React.FC = () => {
                         ))}
                       </View>
                     </ScrollView>
+                  )}
+                </View>
+
+                {/* Recent Milestones */}
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitle}>Recent Milestones</Text>
+                  {milestones.length === 0 ? (
+                    <Text style={styles.emptyText}>No milestones recorded yet</Text>
+                  ) : (
+                    milestones.map((milestone) => (
+                      <View key={milestone.id} style={styles.milestoneCard}>
+                        <Text style={styles.milestoneTitle}>{milestone.title}</Text>
+                        <Text style={styles.milestoneDate}>
+                          {new Date(milestone.achievement_date).toLocaleDateString()}
+                        </Text>
+                        {milestone.description && (
+                          <Text style={styles.milestoneDescription}>{milestone.description}</Text>
+                        )}
+                        <View style={styles.milestoneBadge}>
+                          <Text style={styles.milestoneBadgeText}>{milestone.category}</Text>
+                        </View>
+                      </View>
+                    ))
+                  )}
+                </View>
+
+                {/* Notifications */}
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitle}>Recent Notifications</Text>
+                  {notifications.length === 0 ? (
+                    <Text style={styles.emptyText}>No notifications</Text>
+                  ) : (
+                    notifications.slice(0, 3).map((notification) => (
+                      <View key={notification.id} style={styles.notificationCard}>
+                        <Text style={styles.notificationTitle}>{notification.title}</Text>
+                        <Text style={styles.notificationMessage}>{notification.message}</Text>
+                        <Text style={styles.notificationTime}>
+                          {new Date(notification.created_at).toLocaleDateString()}
+                        </Text>
+                      </View>
+                    ))
+                  )}
+                </View>
+
+                {/* Upcoming Events */}
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitle}>Upcoming Events</Text>
+                  {upcomingEvents.length === 0 ? (
+                    <Text style={styles.emptyText}>No upcoming events</Text>
+                  ) : (
+                    upcomingEvents.map((event) => (
+                      <View key={event.id} style={styles.eventCard}>
+                        <Text style={styles.eventTitle}>{event.title}</Text>
+                        <Text style={styles.eventDate}>
+                          {new Date(event.start_date).toLocaleDateString()}
+                        </Text>
+                        {event.description && (
+                          <Text style={styles.eventDescription}>{event.description}</Text>
+                        )}
+                      </View>
+                    ))
                   )}
                 </View>
 
@@ -492,5 +601,98 @@ const styles = StyleSheet.create({
     color: '#6B7280',
     textAlign: 'center',
     marginTop: 50,
+  },
+  milestoneCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  milestoneTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  milestoneDate: {
+    fontSize: 12,
+    color: '#8B5CF6',
+    fontWeight: '500',
+    marginBottom: 8,
+  },
+  milestoneDescription: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 8,
+  },
+  milestoneBadge: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#F3F4F6',
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+    borderRadius: 16,
+  },
+  milestoneBadgeText: {
+    fontSize: 12,
+    color: '#374151',
+    fontWeight: '500',
+  },
+  notificationCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  notificationTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  notificationMessage: {
+    fontSize: 14,
+    color: '#6B7280',
+    marginBottom: 8,
+  },
+  notificationTime: {
+    fontSize: 12,
+    color: '#9CA3AF',
+  },
+  eventCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  eventTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 4,
+  },
+  eventDate: {
+    fontSize: 12,
+    color: '#EC4899',
+    fontWeight: '500',
+    marginBottom: 8,
+  },
+  eventDescription: {
+    fontSize: 14,
+    color: '#6B7280',
   },
 });
