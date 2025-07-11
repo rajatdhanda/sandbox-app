@@ -143,12 +143,14 @@ export const CurriculumAssignmentFlow: React.FC = () => {
         endDate
       });
 
+      const { data: { user } } = await supabase.auth.getUser();
+
       const assignments = selectedClasses.map(classId => ({
         curriculum_id: selectedCurriculum.id,
         class_id: classId,
         start_date: startDate,
         end_date: endDate || null,
-        assigned_by: (await supabase.auth.getUser()).data.user?.id
+        assigned_by: user?.id
       }));
 
       const { error } = await supabase
