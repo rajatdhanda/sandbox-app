@@ -10,9 +10,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
 
   const { email, full_name, role, phone, address, emergency_contact, emergency_phone } = req.body;
-
   if (!email || !full_name || !role) {
-    return res.status(400).json({ error: 'Missing required fields' });
+    return res.status(422).json({ error: 'Missing required fields' });
   }
 
   try {
