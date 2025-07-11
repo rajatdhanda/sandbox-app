@@ -1,11 +1,20 @@
 import { createClient } from '@supabase/supabase-js';
+import Constants from 'expo-constants';
 
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!;
+// ✅ Read from app.json's extra section
+const supabaseUrl = Constants.expoConfig?.extra?.supabaseUrl;
+const supabaseAnonKey = Constants.expoConfig?.extra?.supabaseAnonKey;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Missing Supabase configuration');
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Database types
+// -----------------------
+// Data Models
+// -----------------------
+
 export interface User {
   id: string;
   email: string;
@@ -150,7 +159,10 @@ export interface Attendance {
   child?: Child;
 }
 
-// Helper functions for data fetching
+// -----------------------
+// Helper Queries
+// -----------------------
+
 export const getConfigFields = async (category: string): Promise<ConfigField[]> => {
   const { data, error } = await supabase
     .from('config_fields')
@@ -164,7 +176,9 @@ export const getConfigFields = async (category: string): Promise<ConfigField[]> 
 };
 
 export const getCurrentUser = async (): Promise<User | null> => {
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   if (!user) return null;
 
   const { data, error } = await supabase
@@ -178,36 +192,36 @@ export const getCurrentUser = async (): Promise<User | null> => {
 };
 
 export const getChildrenForParent = async (parentId: string): Promise<Child[]> => {
+  const { data: relationData, error: relationError } = await supabase
+    .from('parent_child_relationships')
+    .select('child_id')
+    .eq('parent_id', parentId);
+
+  if (relationError) throw relationError;
+  const childIds = relationData.map((r) => r.child_id);
+
   const { data, error } = await supabase
     .from('children')
-    .select(`
-      *,
-      class:classes(*)
-    `)
-    .in('id', 
-      supabase
-        .from('parent_child_relationships')
-        .select('child_id')
-        .eq('parent_id', parentId)
-    );
+    .select(`*, class:classes(*)`)
+    .in('id', childIds);
 
   if (error) throw error;
   return data || [];
 };
 
 export const getChildrenForTeacher = async (teacherId: string): Promise<Child[]> => {
+  const { data: assignmentData, error: assignmentError } = await supabase
+    .from('class_assignments')
+    .select('class_id')
+    .eq('teacher_id', teacherId);
+
+  if (assignmentError) throw assignmentError;
+  const classIds = assignmentData.map((a) => a.class_id);
+
   const { data, error } = await supabase
     .from('children')
-    .select(`
-      *,
-      class:classes(*)
-    `)
-    .in('class_id',
-      supabase
-        .from('class_assignments')
-        .select('class_id')
-        .eq('teacher_id', teacherId)
-    );
+    .select(`*, class:classes(*)`)
+    .in('class_id', classIds);
 
   if (error) throw error;
   return data || [];
@@ -228,7 +242,6 @@ export const getDailyLogsForChild = async (childId: string, date?: string): Prom
   }
 
   const { data, error } = await query.order('created_at', { ascending: false });
-
   if (error) throw error;
   return data || [];
 };

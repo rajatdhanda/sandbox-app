@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getConfigFields, ConfigField } from '@/lib/supabase';
+import { getConfigFields, ConfigField } from '../lib/config';
 
 export const useConfigFields = (category: string) => {
   const [fields, setFields] = useState<ConfigField[]>([]);

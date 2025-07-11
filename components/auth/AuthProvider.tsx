@@ -52,16 +52,41 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const fetchUserProfile = async (userId: string) => {
     try {
-      const { data, error } = await supabase
+      console.log('🔍 Fetching user profile for userId:', userId);
+
+      // Diagnostic: log current authenticated user id
+      const { data: authUser } = await supabase.auth.getUser();
+      const currentAuthUid = authUser?.user?.id;
+      console.log('🆔 Current authenticated user id (auth.uid()):', currentAuthUid);
+
+      const { data: userData, error: userError } = await supabase
         .from('users')
         .select('*')
         .eq('id', userId)
-        .single();
+        .maybeSingle();
 
-      if (error) throw error;
-      setUser(data);
+      if (!userData) {
+        console.warn("⚠️ No user profile found for this user.");
+        setUser(null);
+        setLoading(false);
+        return null;
+      }
+
+      if (userError) {
+        console.error('❌ Supabase query error (users table):', userError);
+        throw userError;
+      }
+
+      // Diagnostic: compare fetched user id to auth.uid()
+      if (userData?.id !== currentAuthUid) {
+        console.warn('⚠️ Fetched user id does NOT match current auth.uid()!', { userDataId: userData?.id, currentAuthUid });
+      }
+
+      console.log('✅ User data from users table:', userData);
+      setUser(userData);
     } catch (error) {
-      console.error('Error fetching user profile:', error);
+      console.error('🚨 Error fetching user profile:', error);
+      console.warn('⚠️ If this error persists, check if RLS policy on "users" table allows "auth.uid() = id" and is not being tested recursively.');
       setUser(null);
     } finally {
       setLoading(false);
@@ -69,11 +94,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    if (error) throw error;
+
+    if (error) {
+      console.error('❌ Supabase Login Error:', error.message);
+      throw error;
+    }
+
+    console.log('✅ Login Success, session:', data.session);
   };
 
   const signOut = async () => {
