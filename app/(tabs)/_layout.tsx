@@ -19,6 +19,7 @@ export default function TabLayout() {
       case 'teacher':
         return [
           { name: 'index', title: 'Dashboard', icon: Home },
+          { name: 'curriculum-execution', title: 'Curriculum', icon: FileText },
           { name: 'attendance', title: 'Attendance', icon: UserCheck },
           { name: 'activities', title: 'Activities', icon: Baby },
           { name: 'photos', title: 'Photos', icon: Camera },
