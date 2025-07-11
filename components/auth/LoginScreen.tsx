@@ -37,8 +37,8 @@ export const LoginScreen: React.FC = () => {
         setPassword('password123');
         break;
       case 'admin':
-        setEmail('admin@example.com');
-        setPassword('password123');
+        setEmail('admin2@example.com');
+        setPassword('admin2');
         break;
     }
   };
