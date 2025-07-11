@@ -58,10 +58,35 @@ export const UserManagement: React.FC = () => {
     }
 
     try {
+      // First create user in Supabase Auth system
+      const { data: authData, error: authError } = await supabase.auth.admin.inviteUserByEmail(
+        formData.email,
+        {
+          data: {
+            full_name: formData.full_name,
+            role: formData.role
+          }
+        }
+      );
+
+      if (authError) {
+        // Check if user already exists in auth
+        if (authError.message.includes('already registered')) {
+          Alert.alert('Error', 'A user with this email already exists');
+          return;
+        }
+        throw authError;
+      }
+
+      if (!authData.user) {
+        throw new Error('Failed to create user in authentication system');
+      }
+
       // Create user profile
       const { error: profileError } = await supabase
         .from('users')
         .insert({
+          id: authData.user.id, // Use the auth user's ID
           email: formData.email,
           full_name: formData.full_name,
           role: formData.role,
@@ -73,12 +98,16 @@ export const UserManagement: React.FC = () => {
 
       if (profileError) throw profileError;
 
-      Alert.alert('Success', 'User created successfully');
+      Alert.alert('Success', 'User created successfully. An invitation email has been sent.');
       resetForm();
       fetchUsers();
     } catch (error: any) {
       console.error('Error creating user:', error);
-      Alert.alert('Error', error.message || 'Failed to create user');
+      if (error.message.includes('duplicate key value violates unique constraint')) {
+        Alert.alert('Error', 'A user with this email already exists');
+      } else {
+        Alert.alert('Error', error.message || 'Failed to create user');
+      }
     }
   };
 
