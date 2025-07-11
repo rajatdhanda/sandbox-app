@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
 import { supabase } from '@/lib/supabase';
-import { LogOut, Users, Baby, Settings, BarChart3, Database, Shield, FileText } from 'lucide-react-native';
+import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText } from 'lucide-react-native';
 
 interface AdminStats {
   totalUsers: number;
