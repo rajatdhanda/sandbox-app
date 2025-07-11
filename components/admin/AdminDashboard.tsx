@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
-import { supabase } from '@/lib/supabase';
+import { supabase, getNotifications, getAnnouncements, getUpcomingEvents, Notification, Announcement, Event } from '@/lib/supabase';
 import { UserManagement } from './UserManagement';
 import { ChildrenManagement } from './ChildrenManagement';
 import { ClassManagement } from './ClassManagement';
-import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText, X } from 'lucide-react-native';
+import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText, X, Bell, Calendar, MessageCircle, TrendingUp } from 'lucide-react-native';
 import { ConfigManagement } from './ConfigManagement';
 import { ReportsModule } from './ReportsModule';
 import { SystemLogs } from './SystemLogs';
@@ -24,6 +24,9 @@ export const AdminDashboard: React.FC = () => {
   const { user, signOut } = useAuth();
   const [activeModule, setActiveModule] = useState<string | null>(null);
   const [showModule, setShowModule] = useState(false);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]);
   const [stats, setStats] = useState<AdminStats>({
     totalUsers: 0,
     totalChildren: 0,
@@ -36,7 +39,26 @@ export const AdminDashboard: React.FC = () => {
 
   useEffect(() => {
     fetchAdminStats();
+    if (user) {
+      fetchDashboardData();
+    }
   }, []);
+
+  const fetchDashboardData = async () => {
+    try {
+      const [notificationsData, announcementsData, eventsData] = await Promise.all([
+        getNotifications(user!.id, 5),
+        getAnnouncements(3),
+        getUpcomingEvents(3)
+      ]);
+
+      setNotifications(notificationsData);
+      setAnnouncements(announcementsData);
+      setUpcomingEvents(eventsData);
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+    }
+  };
 
   const fetchAdminStats = async () => {
     try {
@@ -118,6 +140,16 @@ export const AdminDashboard: React.FC = () => {
         return <SystemLogs />;
       default:
         return null;
+    }
+  };
+
+  const getNotificationColor = (type: string) => {
+    switch (type) {
+      case 'urgent': return '#EF4444';
+      case 'warning': return '#F59E0B';
+      case 'success': return '#10B981';
+      case 'error': return '#EF4444';
+      default: return '#8B5CF6';
     }
   };
 
@@ -253,34 +285,99 @@ export const AdminDashboard: React.FC = () => {
 
         {/* Recent Activity */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Recent System Activity</Text>
-          <View style={styles.activityCard}>
-            <View style={styles.activityItem}>
-              <View style={styles.activityIcon}>
-                <Users size={16} color="#8B5CF6" />
-              </View>
-              <View style={styles.activityDetails}>
-                <Text style={styles.activityTitle}>New teacher account created</Text>
-                <Text style={styles.activityTime}>2 hours ago</Text>
-              </View>
+          <Text style={styles.sectionTitle}>Recent Notifications</Text>
+          <View style={styles.notificationsCard}>
+            {notifications.length === 0 ? (
+              <Text style={styles.emptyText}>No recent notifications</Text>
+            ) : (
+              notifications.slice(0, 3).map((notification) => (
+                <View key={notification.id} style={styles.notificationItem}>
+                  <View style={[styles.notificationIcon, { backgroundColor: getNotificationColor(notification.type) + '20' }]}>
+                    <Bell size={16} color={getNotificationColor(notification.type)} />
+                  </View>
+                  <View style={styles.notificationDetails}>
+                    <Text style={styles.notificationTitle}>{notification.title}</Text>
+                    <Text style={styles.notificationMessage}>{notification.message}</Text>
+                    <Text style={styles.notificationTime}>
+                      {new Date(notification.created_at).toLocaleDateString()}
+                    </Text>
+                  </View>
+                </View>
+              ))
+            )}
+          </View>
+        </View>
+
+        {/* Announcements */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Recent Announcements</Text>
+          <View style={styles.announcementsCard}>
+            {announcements.length === 0 ? (
+              <Text style={styles.emptyText}>No recent announcements</Text>
+            ) : (
+              announcements.map((announcement) => (
+                <View key={announcement.id} style={styles.announcementItem}>
+                  <View style={styles.announcementHeader}>
+                    <Text style={styles.announcementTitle}>{announcement.title}</Text>
+                    <Text style={styles.announcementType}>{announcement.type.toUpperCase()}</Text>
+                  </View>
+                  <Text style={styles.announcementContent} numberOfLines={2}>
+                    {announcement.content}
+                  </Text>
+                  <Text style={styles.announcementDate}>
+                    {new Date(announcement.publish_date).toLocaleDateString()}
+                  </Text>
+                </View>
+              ))
+            )}
+          </View>
+        </View>
+
+        {/* Upcoming Events */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Upcoming Events</Text>
+          <View style={styles.eventsCard}>
+            {upcomingEvents.length === 0 ? (
+              <Text style={styles.emptyText}>No upcoming events</Text>
+            ) : (
+              upcomingEvents.map((event) => (
+                <View key={event.id} style={styles.eventItem}>
+                  <View style={styles.eventIcon}>
+                    <Calendar size={16} color="#8B5CF6" />
+                  </View>
+                  <View style={styles.eventDetails}>
+                    <Text style={styles.eventTitle}>{event.title}</Text>
+                    <Text style={styles.eventDate}>
+                      {new Date(event.start_date).toLocaleDateString()} at {new Date(event.start_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </Text>
+                    {event.location && (
+                      <Text style={styles.eventLocation}>{event.location}</Text>
+                    )}
+                  </View>
+                </View>
+              ))
+            )}
+          </View>
+        </View>
+
+        {/* Quick Stats Summary */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Today's Summary</Text>
+          <View style={styles.summaryCard}>
+            <View style={styles.summaryItem}>
+              <TrendingUp size={20} color="#10B981" />
+              <Text style={styles.summaryLabel}>Active Users Today</Text>
+              <Text style={styles.summaryValue}>{Math.floor(stats.activeUsers * 0.8)}</Text>
             </View>
-            <View style={styles.activityItem}>
-              <View style={styles.activityIcon}>
-                <Baby size={16} color="#EC4899" />
-              </View>
-              <View style={styles.activityDetails}>
-                <Text style={styles.activityTitle}>Student enrolled in Rainbow Class</Text>
-                <Text style={styles.activityTime}>4 hours ago</Text>
-              </View>
+            <View style={styles.summaryItem}>
+              <MessageCircle size={20} color="#EC4899" />
+              <Text style={styles.summaryLabel}>Messages Sent</Text>
+              <Text style={styles.summaryValue}>23</Text>
             </View>
-            <View style={styles.activityItem}>
-              <View style={styles.activityIcon}>
-                <Settings size={16} color="#F97316" />
-              </View>
-              <View style={styles.activityDetails}>
-                <Text style={styles.activityTitle}>Class schedule updated</Text>
-                <Text style={styles.activityTime}>1 day ago</Text>
-              </View>
+            <View style={styles.summaryItem}>
+              <Bell size={20} color="#F97316" />
+              <Text style={styles.summaryLabel}>Notifications</Text>
+              <Text style={styles.summaryValue}>{notifications.filter(n => !n.is_read).length}</Text>
             </View>
           </View>
         </View>
@@ -520,6 +617,173 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
     color: '#1F2937',
+  },
+  notificationsCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  notificationItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F3F4F6',
+  },
+  notificationIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  notificationDetails: {
+    flex: 1,
+  },
+  notificationTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 2,
+  },
+  notificationMessage: {
+    fontSize: 12,
+    color: '#6B7280',
+    marginBottom: 4,
+  },
+  notificationTime: {
+    fontSize: 10,
+    color: '#9CA3AF',
+  },
+  announcementsCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  announcementItem: {
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F3F4F6',
+  },
+  announcementHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  announcementTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1F2937',
+    flex: 1,
+  },
+  announcementType: {
+    fontSize: 10,
+    fontWeight: '600',
+    color: '#8B5CF6',
+    backgroundColor: '#F3F4F6',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+  },
+  announcementContent: {
+    fontSize: 12,
+    color: '#6B7280',
+    marginBottom: 4,
+  },
+  announcementDate: {
+    fontSize: 10,
+    color: '#9CA3AF',
+  },
+  eventsCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  eventItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F3F4F6',
+  },
+  eventIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: '#F3F4F6',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  eventDetails: {
+    flex: 1,
+  },
+  eventTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#1F2937',
+    marginBottom: 2,
+  },
+  eventDate: {
+    fontSize: 12,
+    color: '#8B5CF6',
+    fontWeight: '500',
+    marginBottom: 2,
+  },
+  eventLocation: {
+    fontSize: 12,
+    color: '#6B7280',
+  },
+  summaryCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
+  },
+  summaryItem: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  summaryLabel: {
+    fontSize: 10,
+    color: '#6B7280',
+    textAlign: 'center',
+    marginTop: 4,
+    marginBottom: 4,
+  },
+  summaryValue: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#1F2937',
+  },
+  emptyText: {
+    fontSize: 14,
+    color: '#6B7280',
+    textAlign: 'center',
+    fontStyle: 'italic',
   },
   loadingText: {
     fontSize: 16,

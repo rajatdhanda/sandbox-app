@@ -119,18 +119,20 @@ export default function AdminConfigScreen() {
           style: 'destructive',
           onPress: async () => {
             try {
+              console.log('Deleting field with ID:', fieldId);
               const { error } = await supabase
                 .from('config_fields')
                 .delete()
                 .eq('id', fieldId);
 
+              console.log('Delete result:', error);
               if (error) throw error;
 
               fetchFields();
               Alert.alert('Success', 'Field deleted successfully');
             } catch (error) {
               console.error('Error deleting field:', error);
-              Alert.alert('Error', 'Failed to delete field');
+              Alert.alert('Error', `Failed to delete field: ${error.message}`);
             }
           }
         }

@@ -126,7 +126,7 @@ export const ClassManagement: React.FC = () => {
       fetchData();
     } catch (error: any) {
       console.error('Error creating class:', error);
-      Alert.alert('Error', error.message || 'Failed to create class');
+      Alert.alert('Error', `Failed to create class: ${error.message}`);
     }
   };
 

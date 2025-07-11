@@ -159,6 +159,91 @@ export interface Attendance {
   child?: Child;
 }
 
+export interface Notification {
+  id: string;
+  user_id: string;
+  title: string;
+  message: string;
+  type: 'info' | 'warning' | 'success' | 'error' | 'urgent';
+  is_read: boolean;
+  action_url?: string;
+  related_id?: string;
+  related_type?: string;
+  created_at: string;
+  expires_at?: string;
+}
+
+export interface Milestone {
+  id: string;
+  child_id: string;
+  teacher_id: string;
+  title: string;
+  description?: string;
+  category: string;
+  achievement_date: string;
+  is_shared_with_parents: boolean;
+  photos?: string[];
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+  child?: Child;
+  teacher?: User;
+}
+
+export interface Announcement {
+  id: string;
+  author_id: string;
+  title: string;
+  content: string;
+  type: 'general' | 'urgent' | 'event' | 'reminder';
+  target_audience: string[];
+  is_published: boolean;
+  publish_date: string;
+  expires_at?: string;
+  attachments?: string[];
+  created_at: string;
+  updated_at: string;
+  author?: User;
+}
+
+export interface Event {
+  id: string;
+  title: string;
+  description?: string;
+  event_type: string;
+  start_date: string;
+  end_date?: string;
+  location?: string;
+  organizer_id?: string;
+  class_ids?: string[];
+  is_all_classes: boolean;
+  requires_permission: boolean;
+  max_participants?: number;
+  current_participants: number;
+  status: 'scheduled' | 'ongoing' | 'completed' | 'cancelled';
+  created_at: string;
+  updated_at: string;
+  organizer?: User;
+}
+
+export interface StudentProgress {
+  id: string;
+  child_id: string;
+  teacher_id: string;
+  subject_area: string;
+  skill_name: string;
+  current_level: string;
+  target_level?: string;
+  progress_percentage: number;
+  assessment_date: string;
+  notes?: string;
+  next_steps?: string;
+  created_at: string;
+  updated_at: string;
+  child?: Child;
+  teacher?: User;
+}
+
 // -----------------------
 // Helper Queries
 // -----------------------
@@ -170,6 +255,123 @@ export const getConfigFields = async (category: string): Promise<ConfigField[]> 
     .eq('category', category)
     .eq('is_active', true)
     .order('sort_order');
+
+  if (error) throw error;
+  return data || [];
+};
+
+export const getNotifications = async (userId: string, limit: number = 10): Promise<Notification[]> => {
+  const { data, error } = await supabase
+    .from('notifications')
+    .select('*')
+    .eq('user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  if (error) throw error;
+  return data || [];
+};
+
+export const markNotificationAsRead = async (notificationId: string): Promise<void> => {
+  const { error } = await supabase
+    .from('notifications')
+    .update({ is_read: true })
+    .eq('id', notificationId);
+
+  if (error) throw error;
+};
+
+export const getMilestones = async (childId: string): Promise<Milestone[]> => {
+  const { data, error } = await supabase
+    .from('milestones')
+    .select(`
+      *,
+      child:children(*),
+      teacher:users(*)
+    `)
+    .eq('child_id', childId)
+    .eq('is_shared_with_parents', true)
+    .order('achievement_date', { ascending: false });
+
+  if (error) throw error;
+  return data || [];
+};
+
+export const getAnnouncements = async (limit: number = 5): Promise<Announcement[]> => {
+  const { data, error } = await supabase
+    .from('announcements')
+    .select(`
+      *,
+      author:users(*)
+    `)
+    .eq('is_published', true)
+    .order('publish_date', { ascending: false })
+    .limit(limit);
+
+  if (error) throw error;
+  return data || [];
+};
+
+export const getUpcomingEvents = async (limit: number = 5): Promise<Event[]> => {
+  const { data, error } = await supabase
+    .from('events')
+    .select(`
+      *,
+      organizer:users(*)
+    `)
+    .gte('start_date', new Date().toISOString())
+    .order('start_date', { ascending: true })
+    .limit(limit);
+
+  if (error) throw error;
+  return data || [];
+};
+
+export const getStudentProgress = async (childId: string): Promise<StudentProgress[]> => {
+  const { data, error } = await supabase
+    .from('student_progress')
+    .select(`
+      *,
+      child:children(*),
+      teacher:users(*)
+    `)
+    .eq('child_id', childId)
+    .order('assessment_date', { ascending: false });
+
+  if (error) throw error;
+  return data || [];
+};
+
+export const getTodaysAttendance = async (classId?: string): Promise<Attendance[]> => {
+  let query = supabase
+    .from('attendance')
+    .select(`
+      *,
+      child:children(*, class:classes(*))
+    `)
+    .eq('attendance_date', new Date().toISOString().split('T')[0]);
+
+  if (classId) {
+    query = query.eq('child.class_id', classId);
+  }
+
+  const { data, error } = await query.order('check_in_time', { ascending: true });
+  if (error) throw error;
+  return data || [];
+};
+
+export const getRecentMessages = async (userId: string, limit: number = 5): Promise<Message[]> => {
+  const { data, error } = await supabase
+    .from('messages')
+    .select(`
+      *,
+      sender:users!sender_id(*),
+      recipient:users!recipient_id(*),
+      child:children(*)
+    `)
+    .or(`sender_id.eq.${userId},recipient_id.eq.${userId}`)
+    .order('created_at', { ascending: false })
+    .limit(limit);
 
   if (error) throw error;
   return data || [];
