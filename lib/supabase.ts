@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import Constants from 'expo-constants';
+import 'react-native-url-polyfill/auto';
 
 // ✅ Read from app.json's extra section
 const supabaseUrl = Constants.expoConfig?.extra?.supabaseUrl;

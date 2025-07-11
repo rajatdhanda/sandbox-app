@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
-import { supabase, Class, User } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { Plus, CreditCard as Edit3, Trash2, Search, Users, Clock, X, Save, Settings } from 'lucide-react-native';
 
 interface ClassFormData {
@@ -13,6 +13,24 @@ interface ClassFormData {
   color_code: string;
 }
 
+interface Class {
+  id: string;
+  name: string;
+  age_group: string;
+  capacity: number;
+  schedule_start: string;
+  schedule_end: string;
+  description?: string;
+  color_code: string;
+  is_active: boolean;
+  class_assignments?: any[];
+  children?: any[];
+}
+
+interface User {
+  id: string;
+  full_name: string;
+}
 export const ClassManagement: React.FC = () => {
   const [classes, setClasses] = useState<Class[]>([]);
   const [teachers, setTeachers] = useState<User[]>([]);

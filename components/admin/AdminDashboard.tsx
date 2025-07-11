@@ -9,6 +9,9 @@ import { ClassManagement } from './ClassManagement';
 import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText, X, Bell, Calendar, MessageCircle, TrendingUp } from 'lucide-react-native';
 import { ConfigManagement } from './ConfigManagement';
 import { ReportsModule } from './ReportsModule';
+import { CurriculumManagement } from './CurriculumManagement';
+import { PhotoManagement } from './PhotoManagement';
+import { AttendanceManagement } from './AttendanceManagement';
 import { SystemLogs } from './SystemLogs';
 
 interface AdminStats {
@@ -134,6 +137,12 @@ export const AdminDashboard: React.FC = () => {
         return <ClassManagement />;
       case 'config':
         return <ConfigManagement />;
+      case 'curriculum':
+        return <CurriculumManagement />;
+      case 'photos':
+        return <PhotoManagement />;
+      case 'attendance':
+        return <AttendanceManagement />;
       case 'reports':
         return <ReportsModule />;
       case 'logs':
@@ -245,6 +254,39 @@ export const AdminDashboard: React.FC = () => {
               <Text style={styles.moduleTitle}>Class Management</Text>
               <Text style={styles.moduleDescription}>
                 Manage classes, schedules, and teacher assignments
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('curriculum')}
+            >
+              <FileText size={32} color="#059669" />
+              <Text style={styles.moduleTitle}>Curriculum Management</Text>
+              <Text style={styles.moduleDescription}>
+                Create and manage daily/weekly lesson plans
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('photos')}
+            >
+              <Database size={32} color="#DC2626" />
+              <Text style={styles.moduleTitle}>Photo Management</Text>
+              <Text style={styles.moduleDescription}>
+                Upload, tag, and organize student photos
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('attendance')}
+            >
+              <Users size={32} color="#7C3AED" />
+              <Text style={styles.moduleTitle}>Attendance Management</Text>
+              <Text style={styles.moduleDescription}>
+                Track daily attendance and check-in/out times
               </Text>
             </TouchableOpacity>
 
@@ -424,6 +466,9 @@ export const AdminDashboard: React.FC = () => {
               {activeModule === 'users' && 'User Management'}
               {activeModule === 'children' && 'Children Management'}
               {activeModule === 'classes' && 'Class Management'}
+              {activeModule === 'curriculum' && 'Curriculum Management'}
+              {activeModule === 'photos' && 'Photo Management'}
+              {activeModule === 'attendance' && 'Attendance Management'}
               {activeModule === 'config' && 'Configuration Management'}
               {activeModule === 'reports' && 'Reports & Analytics'}
               {activeModule === 'logs' && 'System Logs'}
