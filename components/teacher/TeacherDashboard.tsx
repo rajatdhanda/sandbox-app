@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
 import { supabase, Child, Class } from '@/lib/supabase';
 import { CurriculumExecution } from './CurriculumExecution';
+import { TeacherCurriculumExecution } from './TeacherCurriculumExecution';
 import { ActivityLogForm } from '../forms/ActivityLogForm';
 import { LogOut, Users, Plus, UserCheck, Camera, FileText, Clock, Calendar, BookOpen, CircleCheck as CheckCircle, Circle, CircleAlert as AlertCircle } from 'lucide-react-native';
 
@@ -564,10 +565,10 @@ export const TeacherDashboard: React.FC = () => {
                     </TouchableOpacity>
                     <TouchableOpacity 
                       style={styles.quickActionCard}
-                      onPress={openCurriculumExecution}
+                      onPress={() => setShowCurriculumExecution(true)}
                     >
                       <BookOpen size={24} color="#8B5CF6" />
-                      <Text style={styles.quickActionText}>Curriculum Execution</Text>
+                      <Text style={styles.quickActionText}>Advanced Curriculum</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.quickActionCard}>
                       <Camera size={24} color="#EC4899" />
@@ -607,13 +608,15 @@ export const TeacherDashboard: React.FC = () => {
         animationType="slide"
         presentationStyle="fullScreen"
       >
-        <CurriculumExecution />
-        <TouchableOpacity 
-          style={styles.closeButton}
-          onPress={closeCurriculumExecution}
-        >
-          <Text style={styles.closeButtonText}>Close</Text>
-        </TouchableOpacity>
+        <View style={{ flex: 1 }}>
+          <TeacherCurriculumExecution />
+          <TouchableOpacity 
+            style={styles.closeButton}
+            onPress={() => setShowCurriculumExecution(false)}
+          >
+            <Text style={styles.closeButtonText}>Close</Text>
+          </TouchableOpacity>
+        </View>
       </Modal>
     </SafeAreaView>
   );

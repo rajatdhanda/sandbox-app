@@ -4,9 +4,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
 import { supabase, getNotifications, getAnnouncements, getUpcomingEvents, Notification, Announcement, Event } from '@/lib/supabase';
 import { UserManagement } from './UserManagement';
+import { ClassroomAssignmentFlow } from './ClassroomAssignmentFlow';
+import { CurriculumAssignmentFlow } from './CurriculumAssignmentFlow';
 import { ChildrenManagement } from './ChildrenManagement';
 import { ClassManagement } from './ClassManagement';
-import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText, X, Bell, Calendar, MessageCircle, TrendingUp } from 'lucide-react-native';
+import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText, X, Bell, Calendar, MessageCircle, TrendingUp, BookOpen } from 'lucide-react-native';
 import { ConfigManagement } from './ConfigManagement';
 import { ReportsModule } from './ReportsModule';
 import { CurriculumManagement } from './CurriculumManagement';
@@ -129,6 +131,10 @@ export const AdminDashboard: React.FC = () => {
 
   const renderModule = () => {
     switch (activeModule) {
+      case 'classroom-assignment':
+        return <ClassroomAssignmentFlow />;
+      case 'curriculum-assignment':
+        return <CurriculumAssignmentFlow />;
       case 'users':
         return <UserManagement />;
       case 'children':
@@ -224,6 +230,28 @@ export const AdminDashboard: React.FC = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Management Modules</Text>
           <View style={styles.moduleGrid}>
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('classroom-assignment')}
+            >
+              <Users size={32} color="#8B5CF6" />
+              <Text style={styles.moduleTitle}>Classroom Assignment</Text>
+              <Text style={styles.moduleDescription}>
+                Assign students and teachers to classes
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              style={styles.moduleCard}
+              onPress={() => openModule('curriculum-assignment')}
+            >
+              <BookOpen size={32} color="#EC4899" />
+              <Text style={styles.moduleTitle}>Curriculum Assignment</Text>
+              <Text style={styles.moduleDescription}>
+                Assign curriculum to classes and manage schedules
+              </Text>
+            </TouchableOpacity>
+
             <TouchableOpacity 
               style={styles.moduleCard}
               onPress={() => openModule('users')}
@@ -464,6 +492,8 @@ export const AdminDashboard: React.FC = () => {
           <View style={styles.moduleHeader}>
             <Text style={styles.moduleHeaderTitle}>
               {activeModule === 'users' && 'User Management'}
+              {activeModule === 'classroom-assignment' && 'Classroom Assignment'}
+              {activeModule === 'curriculum-assignment' && 'Curriculum Assignment'}
               {activeModule === 'children' && 'Children Management'}
               {activeModule === 'classes' && 'Class Management'}
               {activeModule === 'curriculum' && 'Curriculum Management'}
