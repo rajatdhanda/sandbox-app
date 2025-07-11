@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { View, StyleSheet } from 'react-native';
-import { Users, Baby, Settings, Chrome as Home, Camera, MessageCircle, Calendar, ChartBar as BarChart3, UserCheck, FileText, Sliders } from 'lucide-react-native';
+import { Users, Baby, Settings, Chrome as Home, Camera, MessageCircle, Calendar, ChartBar as BarChart3, UserCheck, FileText, FileSliders as Sliders } from 'lucide-react-native';
 import { useRoleStore } from '@/stores/roleStore';
 
 export default function TabLayout() {
