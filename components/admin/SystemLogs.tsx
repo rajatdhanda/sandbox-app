@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { supabase } from '@/lib/supabase';
-import { Search, Filter, Calendar, User, Activity, AlertCircle } from 'lucide-react-native';
+import { Search, Filter, Calendar, User, Activity, CircleAlert as AlertCircle } from 'lucide-react-native';
 
 interface LogEntry {
   id: string;
