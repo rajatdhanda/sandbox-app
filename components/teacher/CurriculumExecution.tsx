@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
 import { supabase } from '@/lib/supabase';
-import { Calendar, Clock, CheckCircle, XCircle, Edit3, Camera, Save, X, Users, BookOpen } from 'lucide-react-native';
+import { Calendar, Clock, CircleCheck as CheckCircle, Circle as XCircle, CreditCard as Edit3, Camera, Save, X, Users, BookOpen } from 'lucide-react-native';
 
 interface CurriculumItem {
   id: string;
