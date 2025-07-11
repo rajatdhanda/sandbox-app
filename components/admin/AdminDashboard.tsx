@@ -9,6 +9,7 @@ import { ClassManagement } from './ClassManagement';
 import { LogOut, Users, Baby, Settings, ChartBar as BarChart3, Database, Shield, FileText, X } from 'lucide-react-native';
 import { ConfigManagement } from './ConfigManagement';
 import { ReportsModule } from './ReportsModule';
+import { SystemLogs } from './SystemLogs';
 
 interface AdminStats {
   totalUsers: number;
