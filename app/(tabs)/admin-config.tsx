@@ -5,8 +5,6 @@ import { useConfigFields } from '@/hooks/useConfigFields';
 import { supabase } from '@/lib/supabase';
 import { Plus, CreditCard as Edit3, Trash2, Save, X } from 'lucide-react-native';
 
-import { supabase } from '@/lib/supabase';
-
 export default function AdminConfigScreen() {
   const [selectedCategory, setSelectedCategory] = useState('mood');
   const [showAddForm, setShowAddForm] = useState(false);
