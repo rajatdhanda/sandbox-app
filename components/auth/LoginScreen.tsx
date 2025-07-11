@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from './AuthProvider';
+import { supabase } from '../../lib/supabase';
 import { LogIn, User, Lock } from 'lucide-react-native';
 
 export const LoginScreen: React.FC = () => {
@@ -18,7 +19,24 @@ export const LoginScreen: React.FC = () => {
 
     try {
       setLoading(true);
-      await signIn(email, password);
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error || !data.session) {
+        throw new Error(error?.message || 'Login failed');
+      }
+
+      const { data: userData, error: userError } = await supabase.auth.getUser();
+
+      if (userError) {
+        throw new Error(userError.message);
+      }
+
+      console.log('✅ Logged in user:', userData.user);
+      Alert.alert('Login Successful', `Welcome ${userData.user.email}`);
+      // Optionally, navigate to a home screen here
     } catch (error: any) {
       Alert.alert('Login Failed', error.message);
     } finally {

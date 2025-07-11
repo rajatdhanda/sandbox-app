@@ -52,62 +52,33 @@ export const UserManagement: React.FC = () => {
   };
 
   const handleCreateUser = async () => {
+    console.log('▶️ handleCreateUser called');
     if (!formData.email || !formData.full_name) {
+      console.warn('⚠️ Missing required fields:', formData);
       Alert.alert('Error', 'Email and full name are required');
       return;
     }
 
     try {
-      // First create user in Supabase Auth system
-      const { data: authData, error: authError } = await supabase.auth.admin.inviteUserByEmail(
-        formData.email,
-        {
-          data: {
-            full_name: formData.full_name,
-            role: formData.role
-          }
-        }
-      );
+      console.log('🌐 Sending request to /api/createUser');
+      const response = await fetch('/api/createUser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
 
-      if (authError) {
-        // Check if user already exists in auth
-        if (authError.message.includes('already registered')) {
-          Alert.alert('Error', 'A user with this email already exists');
-          return;
-        }
-        throw authError;
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || 'Unknown error');
       }
 
-      if (!authData.user) {
-        throw new Error('Failed to create user in authentication system');
-      }
-
-      // Create user profile
-      const { error: profileError } = await supabase
-        .from('users')
-        .insert({
-          id: authData.user.id, // Use the auth user's ID
-          email: formData.email,
-          full_name: formData.full_name,
-          role: formData.role,
-          phone: formData.phone || null,
-          address: formData.address || null,
-          emergency_contact: formData.emergency_contact || null,
-          emergency_phone: formData.emergency_phone || null
-        });
-
-      if (profileError) throw profileError;
-
-      Alert.alert('Success', 'User created successfully. An invitation email has been sent.');
+      console.log('✅ API response:', result);
+      Alert.alert('Success', 'User created successfully.');
       resetForm();
       fetchUsers();
     } catch (error: any) {
-      console.error('Error creating user:', error);
-      if (error.message.includes('duplicate key value violates unique constraint')) {
-        Alert.alert('Error', 'A user with this email already exists');
-      } else {
-        Alert.alert('Error', error.message || 'Failed to create user');
-      }
+      console.error('🚨 Error calling API:', error);
+      Alert.alert('Error', error.message || 'Failed to create user');
     }
   };
 
@@ -436,7 +407,10 @@ export const UserManagement: React.FC = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.saveButton}
-                onPress={editingUser ? handleUpdateUser : handleCreateUser}
+                onPress={() => {
+                  console.log('🟣 Create button pressed');
+                  editingUser ? handleUpdateUser() : handleCreateUser();
+                }}
               >
                 <Save size={16} color="#FFFFFF" />
                 <Text style={styles.saveButtonText}>
