@@ -1,11 +1,11 @@
 {
   "buildCommand": "npm run build:web",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/node"
+  "outputDirectory": "dist",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/**"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/(.*)",
