@@ -1,8 +1,0 @@
-
-{
-  "functions": {
-    "pages/api/**/*.ts": {
-      "runtime": "nodejs20.x"
-    }
-  }
-}
