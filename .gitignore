@@ -34,3 +34,4 @@ yarn-error.*
 *.tsbuildinfo
 .env.local
 dist/
+.vercel
