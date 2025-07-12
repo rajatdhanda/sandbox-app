@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "EXPO_NO_TELEMETRY=1 expo start",
+    "build": "next build",
     "build:web": "expo export --platform web --output-dir dist",
     "lint": "expo lint",
     "dev:next": "next dev"
