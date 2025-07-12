@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Alert, TextInput } from 'react-native';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/clients';
 import { Users, Baby, BookOpen, Calendar, Plus, Check, X, ArrowRight, Settings, Target, Clock } from 'lucide-react-native';
 
 interface Student {

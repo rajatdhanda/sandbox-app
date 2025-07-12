@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Image, Modal } from 'react-native';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/clients';
 import { Camera, Plus, Tag, Search, Filter, X, Save, Upload } from 'lucide-react-native';
 
 interface Photo {

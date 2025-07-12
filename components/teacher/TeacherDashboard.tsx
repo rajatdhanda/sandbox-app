@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
-import { supabase, Child, Class } from '@/lib/supabase';
+import type { Child, Class } from '@/lib/supabase/types'
 import { CurriculumExecution } from './CurriculumExecution';
 import { TeacherCurriculumExecution } from './TeacherCurriculumExecution';
 import { ActivityLogForm } from '../forms/ActivityLogForm';

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
-import { supabase, Child, DailyLog, Photo } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/clients';
+import { Child, DailyLog, Photo } from '@/lib/supabase/types';
 import { LogOut, Baby, Camera, FileText, MessageCircle, Calendar, Clock } from 'lucide-react-native';
 
 export const ParentDashboard: React.FC = () => {

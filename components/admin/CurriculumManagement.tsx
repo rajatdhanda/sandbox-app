@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/clients';
 import { Plus, Upload, Download, Calendar, Clock, Users, BookOpen, X, Save, FileText, Link, CircleCheck as CheckCircle, CircleAlert as AlertCircle } from 'lucide-react-native';
 
 interface CurriculumTemplate {

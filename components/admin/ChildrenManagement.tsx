@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
-import { supabase, Child, Class, User } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/clients';
+import { Child, Class, User } from '@/lib/supabase/types';
 import { Plus, CreditCard as Edit3, Trash2, Search, Baby, Calendar, X, Save, Users } from 'lucide-react-native';
 
 interface ChildFormData {

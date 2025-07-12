@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useConfigFields } from '@/hooks/useConfigFields';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/clients';
 import { Plus, CreditCard as Edit3, Trash2, Save, X } from 'lucide-react-native';
 
 export default function AdminConfigScreen() {
@@ -135,17 +135,18 @@ export default function AdminConfigScreen() {
               console.log('🎉 Field deleted successfully!');
               fetchFields();
               Alert.alert('Success', 'Field deleted successfully');
-            } catch (error) {
-              console.error('💥 Error deleting field:', error);
-              if (error instanceof Error) {
-                console.error('💥 Error details:', {
-                  message: error.message,
-                });
-                Alert.alert('Error', `Failed to delete field: ${error.message}`);
-              } else {
-                console.error('💥 Unknown error object:', error);
-                Alert.alert('Error', 'Failed to delete field: Unknown error');
-              }
+            } catch (err) {
+              console.error('💥 Error deleting field:', err);
+
+              const error = err as { message?: string; code?: string; details?: any };
+
+              console.error('💥 Error details:', {
+                message: error.message,
+                code: error.code,
+                details: error.details,
+              });
+
+              Alert.alert('Error', `Failed to delete field: ${error.message || 'Unknown error'}`);
             }
           }
         }

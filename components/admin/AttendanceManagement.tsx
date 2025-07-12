@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase/clients';
 import { UserCheck, UserX, Clock, Calendar, Check, X, Users } from 'lucide-react-native';
 
 interface AttendanceRecord {
