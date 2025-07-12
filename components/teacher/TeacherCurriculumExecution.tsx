@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import type { Users as UsersType, NotificationsWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { classAssignmentsClient, curriculumExecutionsClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Alert, TextInput } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
+
 import { Calendar, Clock, CircleCheck as CheckCircle, Circle, CreditCard as Edit3, Camera, Save, X, Users, BookOpen, Target, Star, CircleAlert as AlertCircle } from 'lucide-react-native';
 
 interface CurriculumItem {
@@ -101,8 +103,7 @@ export const TeacherCurriculumExecution: React.FC = () => {
       
       const { data: userData } = await supabase.auth.getUser();
       
-      const { data, error } = await supabase
-        .from('class_assignments')
+      const { data, error } = await classAssignmentsClient()
         .select(`
           class:classes(
             id,
@@ -169,8 +170,7 @@ export const TeacherCurriculumExecution: React.FC = () => {
     if (!selectedClass) return;
 
     try {
-      const { data, error } = await supabase
-        .from('curriculum_executions')
+      const { data, error } = await curriculumExecutionsClient()
         .select('*')
         .eq('class_id', selectedClass.id)
         .eq('execution_date', selectedDate);
@@ -209,7 +209,7 @@ export const TeacherCurriculumExecution: React.FC = () => {
     }
 
     // Initialize student participation
-    const participation = selectedClass?.children.map(child => ({
+    const participation = selectedClass?.childrens?.map(child => ({
       student_id: child.id,
       participation_level: 'medium' as const,
       notes: ''
@@ -247,15 +247,13 @@ export const TeacherCurriculumExecution: React.FC = () => {
       const existingExecution = executions.find(exec => exec.curriculum_item_id === selectedItem.id);
       
       if (existingExecution) {
-        const { error } = await supabase
-          .from('curriculum_executions')
+        const { error } = await curriculumExecutionsClient()
           .update(executionData)
           .eq('id', existingExecution.id);
         
         if (error) throw error;
       } else {
-        const { error } = await supabase
-          .from('curriculum_executions')
+        const { error } = await curriculumExecutionsClient()
           .insert(executionData);
         
         if (error) throw error;
@@ -290,15 +288,13 @@ export const TeacherCurriculumExecution: React.FC = () => {
       const existingExecution = executions.find(exec => exec.curriculum_item_id === item.id);
       
       if (existingExecution) {
-        const { error } = await supabase
-          .from('curriculum_executions')
+        const { error } = await curriculumExecutionsClient()
           .update(executionData)
           .eq('id', existingExecution.id);
         
         if (error) throw error;
       } else {
-        const { error } = await supabase
-          .from('curriculum_executions')
+        const { error } = await curriculumExecutionsClient()
           .insert(executionData);
         
         if (error) throw error;
@@ -728,7 +724,7 @@ export const TeacherCurriculumExecution: React.FC = () => {
                 <View style={styles.formSection}>
                   <Text style={styles.formSectionTitle}>Individual Student Participation</Text>
                   
-                  {selectedClass?.children.map((student) => {
+                  {selectedClass?.childrens?.map((student) => {
                     const participation = studentParticipation.find(p => p.student_id === student.id);
                     
                     return (

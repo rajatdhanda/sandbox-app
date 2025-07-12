@@ -1,6 +1,9 @@
+import { supabase } from "@/lib/supabase/clients";
 import React, { useState, useEffect } from 'react';
+import type { ChildrenWithRelations, Users as UsersType, Classes, Children, Attendance, NotificationsWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { childrenClient, classesClient, attendanceClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
+
 import { UserCheck, UserX, Clock, Calendar, Check, X, Users } from 'lucide-react-native';
 
 interface AttendanceRecord {
@@ -27,7 +30,7 @@ interface Child {
 
 export const AttendanceManagement: React.FC = () => {
   const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([]);
-  const [children, setChildren] = useState<Child[]>([]);
+  const [children, setChildren] = useState<ChildrenWithRelations[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [selectedClass, setSelectedClass] = useState<string>('');
   const [classes, setClasses] = useState<any[]>([]);
@@ -47,8 +50,7 @@ export const AttendanceManagement: React.FC = () => {
   const fetchClasses = async () => {
     try {
       console.log('🏫 Fetching classes...');
-      const { data, error } = await supabase
-        .from('classes')
+      const { data, error } = await classesClient()
         .select('*')
         .eq('is_active', true)
         .order('name');
@@ -70,8 +72,7 @@ export const AttendanceManagement: React.FC = () => {
   const fetchChildren = async () => {
     try {
       console.log('👶 Fetching children for class:', selectedClass);
-      const { data, error } = await supabase
-        .from('children')
+      const { data, error } = await childrenClient()
         .select('*')
         .eq('class_id', selectedClass)
         .eq('is_active', true)
@@ -88,8 +89,7 @@ export const AttendanceManagement: React.FC = () => {
   const fetchAttendance = async () => {
     try {
       console.log('📊 Fetching attendance for date:', selectedDate);
-      const { data, error } = await supabase
-        .from('attendance_records')
+      const { data, error } = await attendanceClient()
         .select(`
           *,
           child:children(first_name, last_name)
@@ -117,8 +117,7 @@ export const AttendanceManagement: React.FC = () => {
       
       if (existingRecord) {
         // Update existing record
-        const { error } = await supabase
-          .from('attendance_records')
+        const { error } = await attendanceClient()
           .update({
             status,
             check_in_time: status !== 'absent' ? currentTime : null,
@@ -129,8 +128,7 @@ export const AttendanceManagement: React.FC = () => {
         if (error) throw error;
       } else {
         // Create new record
-        const { error } = await supabase
-          .from('attendance_records')
+        const { error } = await attendanceClient()
           .insert({
             child_id: childId,
             class_id: selectedClass,
@@ -161,8 +159,7 @@ export const AttendanceManagement: React.FC = () => {
       const existingRecord = attendanceRecords.find(record => record.child_id === childId);
       
       if (existingRecord) {
-        const { error } = await supabase
-          .from('attendance_records')
+        const { error } = await attendanceClient()
           .update({
             check_out_time: currentTime,
             checked_out_by: userData.user?.id,

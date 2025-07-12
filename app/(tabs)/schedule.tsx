@@ -1,3 +1,4 @@
+import type { Events } from '@/lib/supabase/_generated/generated-types';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Clock, MapPin, User, Bell, Calendar, ChevronRight } from 'lucide-react-native';

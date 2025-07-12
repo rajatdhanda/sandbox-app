@@ -59,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         for (const file of tsFiles.slice(0, 3)) { // Test first 3 clients
           try {
             const tableName = file.replace('.ts', '');
-            const clientModule = await import(`../../../lib/supabase/_generated/clients/${tableName}`);
+            const clientModule = await import(`@/lib/supabase/_generated/clients/${tableName}`);
             
             // Test if client can be created
             const client = clientModule[`${tableName}Client`]?.();

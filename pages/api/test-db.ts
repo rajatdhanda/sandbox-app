@@ -1,14 +1,13 @@
 // pages/api/test-db.ts
 import { NextApiRequest, NextApiResponse } from 'next';
-import { supabase } from '@/lib/supabase-server';
+import { usersClient } from '@/lib/supabase/compatibility';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const start = Date.now();
   console.log('🔍 [test-db] Starting database health check...');
 
   try {
-    const { data, error } = await supabase
-      .from('users') // existing table
+    const { data, error } = await usersClient() // existing table
       .select('id')
       .limit(1);
 

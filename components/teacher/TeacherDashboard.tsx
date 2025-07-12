@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import type { Users as UsersType, ChildrenWithRelations, Photos as PhotosType, Reports as ReportsType, Attendance } from '@/lib/supabase/_generated/generated-types';
+import { classAssignmentsClient, curriculumItemsClient, curriculumExecutionsClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
@@ -49,7 +51,7 @@ export const TeacherDashboard: React.FC = () => {
   const [weeklyActivities, setWeeklyActivities] = useState<TodaysActivity[]>([]);
   const [showActivityForm, setShowActivityForm] = useState(false);
   const [showCurriculumExecution, setShowCurriculumExecution] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState<Child | null>(null);
+  const [selectedStudent, setSelectedStudent] = useState<ChildrenWithRelations | null>(null);
   const [selectedActivity, setSelectedActivity] = useState<TodaysActivity | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'today' | 'week'>('today');
@@ -71,8 +73,7 @@ export const TeacherDashboard: React.FC = () => {
     try {
       console.log('👨‍🏫 Fetching teacher classes...');
       
-      const { data, error } = await supabase
-        .from('class_assignments')
+      const { data, error } = await classAssignmentsClient()
         .select(`
           class:classes(
             *,
@@ -121,8 +122,7 @@ export const TeacherDashboard: React.FC = () => {
       const currentWeek = Math.ceil(today.getDate() / 7);
       
       // Get curriculum items for today
-      const { data: curriculumItems, error: curriculumError } = await supabase
-        .from('curriculum_items')
+      const { data: curriculumItems, error: curriculumError } = await curriculumItemsClient()
         .select(`
           *,
           time_slot:time_slots(*),
@@ -136,8 +136,7 @@ export const TeacherDashboard: React.FC = () => {
       if (curriculumError) throw curriculumError;
 
       // Get executions for today
-      const { data: executions, error: executionsError } = await supabase
-        .from('curriculum_executions')
+      const { data: executions, error: executionsError } = await curriculumExecutionsClient()
         .select('*')
         .eq('class_id', selectedClass.id)
         .eq('execution_date', today.toISOString().split('T')[0]);
@@ -167,8 +166,7 @@ export const TeacherDashboard: React.FC = () => {
       const currentWeek = Math.ceil(today.getDate() / 7);
       
       // Get all curriculum items for this week
-      const { data: curriculumItems, error: curriculumError } = await supabase
-        .from('curriculum_items')
+      const { data: curriculumItems, error: curriculumError } = await curriculumItemsClient()
         .select(`
           *,
           time_slot:time_slots(*),
@@ -234,16 +232,14 @@ export const TeacherDashboard: React.FC = () => {
 
       if (activity.execution) {
         // Update existing execution
-        const { error } = await supabase
-          .from('curriculum_executions')
+        const { error } = await curriculumExecutionsClient()
           .update(executionData)
           .eq('id', activity.execution.id);
         
         if (error) throw error;
       } else {
         // Create new execution
-        const { error } = await supabase
-          .from('curriculum_executions')
+        const { error } = await curriculumExecutionsClient()
           .insert(executionData);
         
         if (error) throw error;
@@ -341,7 +337,7 @@ export const TeacherDashboard: React.FC = () => {
                 <View style={styles.classInfo}>
                   <Text style={styles.className}>{selectedClass.name}</Text>
                   <Text style={styles.classDetails}>
-                    {selectedClass.children?.length || 0} students • {selectedClass.age_group}
+                    {selectedClass.childrens?.length || 0} students • {selectedClass.age_group}
                   </Text>
                   <Text style={styles.classSchedule}>
                     {selectedClass.schedule_start} - {selectedClass.schedule_end}
@@ -352,7 +348,7 @@ export const TeacherDashboard: React.FC = () => {
                 <View style={styles.statsContainer}>
                   <View style={styles.statCard}>
                     <Users size={24} color="#8B5CF6" />
-                    <Text style={styles.statNumber}>{selectedClass.children?.length || 0}</Text>
+                    <Text style={styles.statNumber}>{selectedClass.childrens?.length || 0}</Text>
                     <Text style={styles.statLabel}>Students</Text>
                   </View>
                   <View style={styles.statCard}>
@@ -518,10 +514,10 @@ export const TeacherDashboard: React.FC = () => {
                 {/* Student Roster */}
                 <View style={styles.section}>
                   <Text style={styles.sectionTitle}>Student Roster</Text>
-                  {selectedClass.children?.length === 0 ? (
+                  {selectedClass.childrens?.length === 0 ? (
                     <Text style={styles.emptyText}>No students in this class</Text>
                   ) : (
-                    selectedClass.children?.map((student) => (
+                    selectedClass.childrens?.map((student) => (
                       <View key={student.id} style={styles.studentCard}>
                         <View style={styles.studentInfo}>
                           <View style={styles.studentAvatar}>

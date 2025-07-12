@@ -1,0 +1,1 @@
+"use strict";exports.id=949,exports.ids=[949],exports.modules={949:(e,r,t)=>{t.r(r),t.d(r,{attendanceClient:()=>n});var s=t(3939);let n=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,s.createClient)(e,r)})().from("attendance")}};

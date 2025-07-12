@@ -1,3 +1,5 @@
+import type { NotificationsWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { usersClient } from '@/lib/supabase/compatibility';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 
@@ -49,7 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (authError || !authData.user) throw authError;
 
     const { error: profileError } = await usersClient().insert({
-      id: authData.user.id,
+      id: authData.users?.id,
       email,
       full_name,
       role,
@@ -61,7 +63,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (profileError) throw profileError;
 
-    return res.status(200).json({ message: 'User created', userId: authData.user.id });
+    return res.status(200).json({ message: 'User created', userId: authData.users?.id });
   } catch (err: any) {
     console.error('CreateUser Error:', err);
     return res.status(500).json({ error: err.message });

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import type { Photos as PhotosType, NotificationsWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { childrenClient, photosClient, photoTagsClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Image, Modal } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
+
 import { Camera, Plus, Tag, Search, Filter, X, Save, Upload } from 'lucide-react-native';
+
 
 interface Photo {
   id: string;
@@ -60,8 +63,7 @@ export const PhotoManagement: React.FC = () => {
   const fetchPhotos = async () => {
     try {
       console.log('📸 Fetching photos...');
-      const { data, error } = await supabase
-        .from('photos')
+      const { data, error } = await photosClient()
         .select(`
           *,
           child:children(first_name, last_name),
@@ -84,8 +86,7 @@ export const PhotoManagement: React.FC = () => {
 
   const fetchChildren = async () => {
     try {
-      const { data, error } = await supabase
-        .from('children')
+      const { data, error } = await childrenClient()
         .select('id, first_name, last_name')
         .eq('is_active', true)
         .order('first_name');
@@ -110,8 +111,7 @@ export const PhotoManagement: React.FC = () => {
         tag_type: 'custom'
       }));
 
-      const { error } = await supabase
-        .from('photo_tags')
+      const { error } = await photoTagsClient()
         .insert(tagsToInsert);
 
       if (error) throw error;
@@ -138,8 +138,7 @@ export const PhotoManagement: React.FC = () => {
       // For demo purposes, we'll use a placeholder image
       const { data: userData } = await supabase.auth.getUser();
       
-      const { error } = await supabase
-        .from('photos')
+      const { error } = await photosClient()
         .insert({
           child_id: uploadData.child_id,
           teacher_id: userData.user?.id,

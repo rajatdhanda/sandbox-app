@@ -1,3 +1,4 @@
+import type { Classes  } from '@/lib/supabase/_generated/generated-types';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Users, User, Plus, CreditCard as Edit3, Settings, Calendar, Baby, Clock } from 'lucide-react-native';

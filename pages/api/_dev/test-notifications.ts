@@ -1,5 +1,8 @@
+import type { Notifications } from '@/lib/supabase/_generated/generated-types';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
+import { announcementsClient } from '@/lib/supabase/compatibility';
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -16,8 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     );
 
     // Test direct Supabase connection
-    const { data, error } = await supabase
-      .from('announcements')
+    const { data, error } = await announcementsClient()
       .select('*')
       .limit(5);
 

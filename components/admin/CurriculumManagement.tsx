@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import type { Users as UsersType, Children, Classes, ChildrenWithRelations, NotificationsWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { classesClient, curriculumAssignmentsClient, curriculumItemsClient, curriculumTemplatesClient, curriculumImportsClient, timeSlotsClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
+
 import { Plus, Upload, Download, Calendar, Clock, Users, BookOpen, X, Save, FileText, Link, CircleCheck as CheckCircle, CircleAlert as AlertCircle } from 'lucide-react-native';
+
 
 interface CurriculumTemplate {
   id: string;
@@ -64,7 +67,7 @@ export const CurriculumManagement: React.FC = () => {
   const [selectedCurriculum, setSelectedCurriculum] = useState<CurriculumTemplate | null>(null);
   const [curriculumItems, setCurriculumItems] = useState<CurriculumItem[]>([]);
   const [timeSlots, setTimeSlots] = useState<TimeSlot[]>([]);
-  const [classes, setClasses] = useState<Class[]>([]);
+  const [classes, setClasses] = useState<Classes[]>([]);
   const [assignments, setAssignments] = useState<CurriculumAssignment[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'templates' | 'schedule' | 'assignments' | 'import'>('templates');
@@ -126,8 +129,7 @@ export const CurriculumManagement: React.FC = () => {
       console.log('📚 Fetching curriculum data...');
       
       // Fetch curricula
-      const { data: curriculaData, error: curriculaError } = await supabase
-        .from('curriculum_templates')
+      const { data: curriculaData, error: curriculaError } = await curriculumTemplatesClient()
         .select('*')
         .eq('is_active', true)
         .order('created_at', { ascending: false });
@@ -135,8 +137,7 @@ export const CurriculumManagement: React.FC = () => {
       if (curriculaError) throw curriculaError;
 
       // Fetch time slots
-      const { data: timeSlotsData, error: timeSlotsError } = await supabase
-        .from('time_slots')
+      const { data: timeSlotsData, error: timeSlotsError } = await timeSlotsClient()
         .select('*')
         .eq('is_active', true)
         .order('sort_order');
@@ -144,8 +145,7 @@ export const CurriculumManagement: React.FC = () => {
       if (timeSlotsError) throw timeSlotsError;
 
       // Fetch classes
-      const { data: classesData, error: classesError } = await supabase
-        .from('classes')
+      const { data: classesData, error: classesError } = await classesClient()
         .select('*')
         .eq('is_active', true)
         .order('name');
@@ -176,8 +176,7 @@ export const CurriculumManagement: React.FC = () => {
   const fetchCurriculumItems = async (curriculumId: string) => {
     try {
       console.log('📖 Fetching curriculum items for:', curriculumId);
-      const { data, error } = await supabase
-        .from('curriculum_items')
+      const { data, error } = await curriculumItemsClient()
         .select(`
           *,
           time_slot:time_slots(name, start_time, end_time)
@@ -196,8 +195,7 @@ export const CurriculumManagement: React.FC = () => {
 
   const fetchAssignments = async (curriculumId: string) => {
     try {
-      const { data, error } = await supabase
-        .from('curriculum_assignments')
+      const { data, error } = await curriculumAssignmentsClient()
         .select(`
           *,
           class:classes(*)
@@ -223,8 +221,7 @@ export const CurriculumManagement: React.FC = () => {
       
       const { data: userData } = await supabase.auth.getUser();
       
-      const { error } = await supabase
-        .from('curriculum_templates')
+      const { error } = await curriculumTemplatesClient()
         .insert({
           name: templateForm.name,
           description: templateForm.description || null,
@@ -257,8 +254,7 @@ export const CurriculumManagement: React.FC = () => {
     try {
       console.log('🚀 Creating curriculum item:', itemForm);
       
-      const { error } = await supabase
-        .from('curriculum_items')
+      const { error } = await curriculumItemsClient()
         .insert({
           curriculum_id: selectedCurriculum.id,
           title: itemForm.title,
@@ -297,8 +293,7 @@ export const CurriculumManagement: React.FC = () => {
       const { data: userData } = await supabase.auth.getUser();
       
       // Create import record
-      const { data: importRecord, error: importError } = await supabase
-        .from('curriculum_imports')
+      const { data: importRecord, error: importError } = await curriculumImportsClient()
         .insert({
           import_type: importForm.import_type,
           source_url: importForm.source_url,
@@ -362,8 +357,7 @@ export const CurriculumManagement: React.FC = () => {
 
       console.log('📋 Assignment data to insert:', assignments);
 
-      const { error } = await supabase
-        .from('curriculum_assignments')
+      const { error } = await curriculumAssignmentsClient()
         .insert(assignments);
 
       console.log('✅ Assignment result:', error);
@@ -598,7 +592,7 @@ export const CurriculumManagement: React.FC = () => {
               assignments.map((assignment) => (
                 <View key={assignment.id} style={styles.assignmentCard}>
                   <View style={styles.assignmentHeader}>
-                    <Text style={styles.assignmentClass}>{assignment.class?.name}</Text>
+                    <Text style={styles.assignmentClass}>{assignment.classes?.name}</Text>
                     <View style={styles.assignmentStatus}>
                       <CheckCircle size={16} color="#10B981" />
                       <Text style={styles.assignmentStatusText}>Active</Text>
@@ -607,7 +601,7 @@ export const CurriculumManagement: React.FC = () => {
                   <Text style={styles.assignmentDate}>
                     Started: {new Date(assignment.start_date).toLocaleDateString()}
                   </Text>
-                  <Text style={styles.assignmentAge}>{assignment.class?.age_group}</Text>
+                  <Text style={styles.assignmentAge}>{assignment.classes?.age_group}</Text>
                 </View>
               ))
             )}

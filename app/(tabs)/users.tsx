@@ -1,3 +1,4 @@
+import type { Users as UsersType, Children } from '@/lib/supabase/_generated/generated-types';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Search, Plus, User, Users, Baby, Filter, CreditCard as Edit3, Trash2, Mail } from 'lucide-react-native';
@@ -102,7 +103,7 @@ export default function UsersScreen() {
                   <Text style={styles.userName}>{user.name}</Text>
                   <Text style={styles.userEmail}>{user.email}</Text>
                   {user.children && (
-                    <Text style={styles.userChildren}>Children: {user.children.join(', ')}</Text>
+                    <Text style={styles.userChildren}>Children: {user.children?.join(', ')}</Text>
                   )}
                   {user.class && (
                     <Text style={styles.userClass}>Class: {user.class}</Text>
@@ -111,9 +112,9 @@ export default function UsersScreen() {
               </View>
               
               <View style={styles.userMeta}>
-                <View style={[styles.roleBadge, { backgroundColor: getRoleColor(user.role) + '20' }]}>
+                <View style={[styles.roleBadge, { backgroundColor: getRoleColor(user.role as string) + '20' }]}>
                   {getRoleIcon(user.role)}
-                  <Text style={[styles.roleText, { color: getRoleColor(user.role) }]}>
+                  <Text style={[styles.roleText, { color: getRoleColor(user.role as string) }]}>
                     {user.role}
                   </Text>
                 </View>

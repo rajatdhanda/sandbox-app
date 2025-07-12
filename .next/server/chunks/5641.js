@@ -1,0 +1,1 @@
+"use strict";exports.id=5641,exports.ids=[5641],exports.modules={5641:(r,e,s)=>{s.r(e),s.d(e,{curriculumClient:()=>u});var t=s(3939);let u=()=>(function(){let r=process.env.SUPABASE_URL,e=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!r||!e)throw Error("supabaseKey is required.");return(0,t.createClient)(r,e)})().from("curriculum")}};

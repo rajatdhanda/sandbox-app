@@ -1,0 +1,1 @@
+"use strict";exports.id=9023,exports.ids=[9023],exports.modules={9023:(e,r,s)=>{s.r(r),s.d(r,{eventsClient:()=>o});var t=s(3939);let o=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,t.createClient)(e,r)})().from("events")}};

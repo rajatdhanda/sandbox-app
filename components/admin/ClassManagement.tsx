@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import type { Classes, Users as UsersType, ClassesWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { classesClient, usersClient, classAssignmentsClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
+
 import { Plus, CreditCard as Edit3, Trash2, Search, Users, Clock, X, Save, Settings } from 'lucide-react-native';
 
 interface ClassFormData {
@@ -27,13 +29,10 @@ interface Class {
   children?: any[];
 }
 
-interface User {
-  id: string;
-  full_name: string;
-}
+// Using Users type from generated types
 export const ClassManagement: React.FC = () => {
-  const [classes, setClasses] = useState<Class[]>([]);
-  const [teachers, setTeachers] = useState<User[]>([]);
+  const [classes, setClasses] = useState<ClassesWithRelations[]>([]);
+  const [teachers, setTeachers] = useState<UsersType[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [showForm, setShowForm] = useState(false);
@@ -61,8 +60,7 @@ export const ClassManagement: React.FC = () => {
   const fetchData = async () => {
     try {
       // Fetch classes with teacher assignments
-      const { data: classesData, error: classesError } = await supabase
-        .from('classes')
+      const { data: classesData, error: classesError } = await classesClient()
         .select(`
           *,
           class_assignments(
@@ -76,8 +74,7 @@ export const ClassManagement: React.FC = () => {
       if (classesError) throw classesError;
 
       // Fetch teachers
-      const { data: teachersData, error: teachersError } = await supabase
-        .from('users')
+      const { data: teachersData, error: teachersError } = await usersClient()
         .select('*')
         .eq('role', 'teacher')
         .eq('is_active', true)
@@ -110,8 +107,7 @@ export const ClassManagement: React.FC = () => {
       console.log('🔄 Attempting to insert class into database...');
       
       // Create class
-      const { data: classData, error: classError } = await supabase
-        .from('classes')
+      const { data: classData, error: classError } = await classesClient()
         .insert({
           name: formData.name,
           age_group: formData.age_group,
@@ -139,8 +135,7 @@ export const ClassManagement: React.FC = () => {
 
         console.log('📋 Assignment data:', assignments);
         
-        const { error: assignmentError } = await supabase
-          .from('class_assignments')
+        const { error: assignmentError } = await classAssignmentsClient()
           .insert(assignments);
 
         console.log('✅ Assignment result:', assignmentError);
@@ -171,8 +166,7 @@ export const ClassManagement: React.FC = () => {
 
     try {
       // Update class
-      const { error: classError } = await supabase
-        .from('classes')
+      const { error: classError } = await classesClient()
         .update({
           name: formData.name,
           age_group: formData.age_group,
@@ -189,8 +183,7 @@ export const ClassManagement: React.FC = () => {
 
       // Update teacher assignments
       // First, delete existing assignments
-      await supabase
-        .from('class_assignments')
+      await classAssignmentsClient()
         .delete()
         .eq('class_id', editingClass.id);
 
@@ -202,8 +195,7 @@ export const ClassManagement: React.FC = () => {
           is_primary: index === 0
         }));
 
-        const { error: assignmentError } = await supabase
-          .from('class_assignments')
+        const { error: assignmentError } = await classAssignmentsClient()
           .insert(assignments);
 
         if (assignmentError) throw assignmentError;
@@ -230,14 +222,12 @@ export const ClassManagement: React.FC = () => {
           onPress: async () => {
             try {
               // First delete class assignments
-              await supabase
-                .from('class_assignments')
+              await classAssignmentsClient()
                 .delete()
                 .eq('class_id', classId);
 
               // Then delete the class
-              const { error } = await supabase
-                .from('classes')
+              const { error } = await classesClient()
                 .delete()
                 .eq('id', classId);
 
@@ -346,7 +336,7 @@ export const ClassManagement: React.FC = () => {
                   <View style={styles.detailRow}>
                     <Users size={14} color="#6B7280" />
                     <Text style={styles.detailText}>
-                      {classItem.children?.[0]?.count || 0}/{classItem.capacity} students
+                      {classItem.childrens?.length || 0}/{classItem.capacity} students
                     </Text>
                   </View>
                   
@@ -354,7 +344,7 @@ export const ClassManagement: React.FC = () => {
                     <View style={styles.detailRow}>
                       <Settings size={14} color="#6B7280" />
                       <Text style={styles.detailText}>
-                        Teachers: {classItem.class_assignments.map(assignment => assignment.teacher.full_name).join(', ')}
+                        Teachers: {classItem.class_assignments.map((assignment: any) => assignment.teacher?.full_name).filter(Boolean).join(', ')}
                       </Text>
                     </View>
                   )}

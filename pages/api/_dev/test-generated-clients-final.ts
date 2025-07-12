@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         let clientModule;
         try {
           // Try relative import first
-          clientModule = await import(`../../../lib/supabase/_generated/clients/${tableName}`);
+          clientModule = await import(`@/lib/supabase/_generated/clients/${tableName}`);
         } catch (relativeError) {
           try {
             // Try absolute import

@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase/clients'
+import type { NotificationsWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { usersClient } from '@/lib/supabase/compatibility';
+
 import type { User } from '@/lib/supabase/types'
 import { Session } from '@supabase/supabase-js';
 
@@ -31,7 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session?.user) {
-        fetchUserProfile(session.user.id);
+        fetchUserProfile(session.users?.id);
       } else {
         setLoading(false);
       }
@@ -41,7 +43,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       setSession(session);
       if (session?.user) {
-        await fetchUserProfile(session.user.id);
+        await fetchUserProfile(session.users?.id);
       } else {
         setUser(null);
         setLoading(false);
@@ -57,11 +59,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       // Diagnostic: log current authenticated user id
       const { data: authUser } = await supabase.auth.getUser();
-      const currentAuthUid = authUser?.user?.id;
+      const currentAuthUid = authUser?.users?.id;
       console.log('🆔 Current authenticated user id (auth.uid()):', currentAuthUid);
 
-      const { data: userData, error: userError } = await supabase
-        .from('users')
+      const { data: userData, error: userError } = await usersClient()
         .select('*')
         .eq('id', userId)
         .maybeSingle();

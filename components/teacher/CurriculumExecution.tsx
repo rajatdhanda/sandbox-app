@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import type { Users as UsersType, NotificationsWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { classAssignmentsClient, curriculumExecutionsClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
+
 import { Calendar, Clock, CircleCheck as CheckCircle, Circle as XCircle, CreditCard as Edit3, Camera, Save, X, Users, BookOpen } from 'lucide-react-native';
 
 interface CurriculumItem {
@@ -87,8 +89,7 @@ export const CurriculumExecution: React.FC = () => {
       
       const { data: userData } = await supabase.auth.getUser();
       
-      const { data, error } = await supabase
-        .from('class_assignments')
+      const { data, error } = await classAssignmentsClient()
         .select(`
           class:classes(
             id,
@@ -156,8 +157,7 @@ export const CurriculumExecution: React.FC = () => {
     if (!selectedClass) return;
 
     try {
-      const { data, error } = await supabase
-        .from('curriculum_executions')
+      const { data, error } = await curriculumExecutionsClient()
         .select('*')
         .eq('class_id', selectedClass.id)
         .eq('execution_date', selectedDate);
@@ -228,15 +228,13 @@ export const CurriculumExecution: React.FC = () => {
       const existingExecution = executions.find(exec => exec.curriculum_item_id === selectedItem.id);
       
       if (existingExecution) {
-        const { error } = await supabase
-          .from('curriculum_executions')
+        const { error } = await curriculumExecutionsClient()
           .update(executionData)
           .eq('id', existingExecution.id);
         
         if (error) throw error;
       } else {
-        const { error } = await supabase
-          .from('curriculum_executions')
+        const { error } = await curriculumExecutionsClient()
           .insert(executionData);
         
         if (error) throw error;

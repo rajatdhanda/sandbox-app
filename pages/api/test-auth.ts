@@ -1,7 +1,6 @@
+import { supabase } from '@/lib/supabase/clients';
 // pages/api/test-auth.ts
 import { NextApiRequest, NextApiResponse } from 'next';
-import { supabase } from '@/lib/supabase';
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const token = req.headers.authorization?.replace('Bearer ', '');
 

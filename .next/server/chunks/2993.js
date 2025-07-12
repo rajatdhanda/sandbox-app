@@ -1,0 +1,1 @@
+"use strict";exports.id=2993,exports.ids=[2993],exports.modules={2993:(e,r,s)=>{s.r(r),s.d(r,{milestonesClient:()=>o});var t=s(3939);let o=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,t.createClient)(e,r)})().from("milestones")}};

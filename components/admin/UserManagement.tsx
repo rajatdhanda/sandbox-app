@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
-import { User } from '@/lib/supabase/types';
+
+import type {  Users as UsersType , QueryWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { usersClient, childrenClient, classesClient, parentChildRelationshipsClient, classAssignmentsClient } from '@/lib/supabase/compatibility';
 import { Plus, CreditCard as Edit3, Trash2, Search, Filter, Mail, Phone, X, Save } from 'lucide-react-native';
 
 interface UserFormData {
@@ -15,7 +16,7 @@ interface UserFormData {
 }
 
 export const UserManagement: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<UsersType[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState<string>('all');
@@ -37,8 +38,7 @@ export const UserManagement: React.FC = () => {
 
   const fetchUsers = async () => {
     try {
-      const { data, error } = await supabase
-        .from('users')
+      const { data, error } = await usersClient()
         .select('*')
         .order('created_at', { ascending: false });
 
@@ -90,8 +90,7 @@ export const UserManagement: React.FC = () => {
     }
 
     try {
-      const { error } = await supabase
-        .from('users')
+      const { error } = await usersClient()
         .update({
           email: formData.email,
           full_name: formData.full_name,
@@ -127,19 +126,16 @@ export const UserManagement: React.FC = () => {
           onPress: async () => {
             try {
               // First delete related records
-              await supabase
-                .from('parent_child_relationships')
+              await parentChildRelationshipsClient()
                 .delete()
                 .eq('parent_id', userId);
 
-              await supabase
-                .from('class_assignments')
+              await classAssignmentsClient()
                 .delete()
                 .eq('teacher_id', userId);
 
               // Then delete the user
-              const { error } = await supabase
-                .from('users')
+              const { error } = await usersClient()
                 .delete()
                 .eq('id', userId);
 
@@ -257,9 +253,9 @@ export const UserManagement: React.FC = () => {
               <View style={styles.userInfo}>
                 <View style={styles.userHeader}>
                   <Text style={styles.userName}>{user.full_name}</Text>
-                  <View style={[styles.roleBadge, { backgroundColor: getRoleColor(user.role) + '20' }]}>
-                    <Text style={[styles.roleText, { color: getRoleColor(user.role) }]}>
-                      {user.role.toUpperCase()}
+                  <View style={[styles.roleBadge, { backgroundColor: getRoleColor(user.role as string) + '20' }]}>
+                    <Text style={[styles.roleText, { color: getRoleColor(user.role as string) }]}>
+                      {(user.role as string).toUpperCase()}
                     </Text>
                   </View>
                 </View>

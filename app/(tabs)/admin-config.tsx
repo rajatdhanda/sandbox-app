@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useConfigFields } from '@/hooks/useConfigFields';
-import { supabase } from '@/lib/supabase/clients';
+
 import { Plus, CreditCard as Edit3, Trash2, Save, X } from 'lucide-react-native';
+import { configFieldsClient } from '@/lib/supabase/compatibility';
+
 
 export default function AdminConfigScreen() {
   const [selectedCategory, setSelectedCategory] = useState('mood');
@@ -20,8 +22,7 @@ export default function AdminConfigScreen() {
   const fetchFields = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('config_fields')
+      const { data, error } = await configFieldsClient()
         .select('*')
         .eq('category', selectedCategory)
         .eq('is_active', true)
@@ -54,8 +55,7 @@ export default function AdminConfigScreen() {
     }
 
     try {
-      const { error } = await supabase
-        .from('config_fields')
+      const { error } = await configFieldsClient()
         .insert({
           category: selectedCategory,
           label: newLabel,
@@ -85,8 +85,7 @@ export default function AdminConfigScreen() {
     }
 
     try {
-      const { error } = await supabase
-        .from('config_fields')
+      const { error } = await configFieldsClient()
         .update({
           label: newLabel,
           value: newValue,
@@ -123,8 +122,7 @@ export default function AdminConfigScreen() {
             try {
               console.log('🔄 Executing delete for field ID:', fieldId);
               
-              const { error } = await supabase
-                .from('config_fields')
+              const { error } = await configFieldsClient()
                 .delete()
                 .eq('id', fieldId);
 

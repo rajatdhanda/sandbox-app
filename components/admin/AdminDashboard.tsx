@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import type { Users as UsersType, Classes, Children, Announcements, Notifications, Events, Messages as MessagesType, Reports as ReportsType, Attendance } from '@/lib/supabase/_generated/generated-types';
+import { classesClient, childrenClient, usersClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
-import { supabase } from '@/lib/supabase/clients';
+
 import { getNotifications, getAnnouncements, getUpcomingEvents } from '@/lib/supabase/queries';
-import type { Notification, Announcement, Event } from '@/lib/supabase/types';
+import type { Notification, Announcement, Event } from '@/lib/supabase/core/types';
 import { UserManagement } from './UserManagement';
 import { ClassroomAssignmentFlow } from './ClassroomAssignmentFlow';
 import { CurriculumAssignmentFlow } from './CurriculumAssignmentFlow';
@@ -70,23 +72,20 @@ export const AdminDashboard: React.FC = () => {
   const fetchAdminStats = async () => {
     try {
       // Fetch user statistics
-      const { data: users, error: usersError } = await supabase
-        .from('users')
+      const { data: users, error: usersError } = await usersClient()
         .select('role, is_active');
 
       if (usersError) throw usersError;
 
       // Fetch children count
-      const { count: childrenCount, error: childrenError } = await supabase
-        .from('children')
+      const { count: childrenCount, error: childrenError } = await childrenClient()
         .select('*', { count: 'exact', head: true })
         .eq('is_active', true);
 
       if (childrenError) throw childrenError;
 
       // Fetch classes count
-      const { count: classesCount, error: classesError } = await supabase
-        .from('classes')
+      const { count: classesCount, error: classesError } = await classesClient()
         .select('*', { count: 'exact', head: true })
         .eq('is_active', true);
 

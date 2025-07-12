@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { supabase } from "@/lib/supabase/clients";
+// Removed incorrect default import - use specific clients from compatibility layer
+import type { Users as UsersType, Classes, ChildrenWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { classesClient, curriculumAssignmentsClient, curriculumTemplatesClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Alert, TextInput } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
+
 import { BookOpen, Calendar, Target, Users, Plus, Check, X, ArrowRight, Clock, Settings } from 'lucide-react-native';
+
 
 interface CurriculumTemplate {
   id: string;
@@ -50,7 +55,7 @@ interface CurriculumAssignment {
 
 export const CurriculumAssignmentFlow: React.FC = () => {
   const [curriculumTemplates, setCurriculumTemplates] = useState<CurriculumTemplate[]>([]);
-  const [classes, setClasses] = useState<Class[]>([]);
+  const [classes, setClasses] = useState<Classes[]>([]);
   const [assignments, setAssignments] = useState<CurriculumAssignment[]>([]);
   const [selectedCurriculum, setSelectedCurriculum] = useState<CurriculumTemplate | null>(null);
   const [showAssignmentModal, setShowAssignmentModal] = useState(false);
@@ -69,8 +74,7 @@ export const CurriculumAssignmentFlow: React.FC = () => {
       console.log('🔄 Fetching curriculum assignment data...');
       
       // Fetch curriculum templates with items
-      const { data: templatesData, error: templatesError } = await supabase
-        .from('curriculum_templates')
+      const { data: templatesData, error: templatesError } = await curriculumTemplatesClient()
         .select(`
           *,
           curriculum_items(
@@ -84,8 +88,7 @@ export const CurriculumAssignmentFlow: React.FC = () => {
       if (templatesError) throw templatesError;
 
       // Fetch classes with current assignments
-      const { data: classesData, error: classesError } = await supabase
-        .from('classes')
+      const { data: classesData, error: classesError } = await classesClient()
         .select(`
           *,
           curriculum_assignments(
@@ -99,8 +102,7 @@ export const CurriculumAssignmentFlow: React.FC = () => {
       if (classesError) throw classesError;
 
       // Fetch all assignments
-      const { data: assignmentsData, error: assignmentsError } = await supabase
-        .from('curriculum_assignments')
+      const { data: assignmentsData, error: assignmentsError } = await curriculumAssignmentsClient()
         .select(`
           *,
           curriculum_template:curriculum_templates(*),
@@ -153,8 +155,7 @@ export const CurriculumAssignmentFlow: React.FC = () => {
         assigned_by: user?.id
       }));
 
-      const { error } = await supabase
-        .from('curriculum_assignments')
+      const { error } = await curriculumAssignmentsClient()
         .insert(assignments);
 
       if (error) throw error;
@@ -170,8 +171,7 @@ export const CurriculumAssignmentFlow: React.FC = () => {
 
   const removeAssignment = async (assignmentId: string) => {
     try {
-      const { error } = await supabase
-        .from('curriculum_assignments')
+      const { error } = await curriculumAssignmentsClient()
         .update({ is_active: false })
         .eq('id', assignmentId);
 
@@ -294,7 +294,7 @@ export const CurriculumAssignmentFlow: React.FC = () => {
                           {assignment.curriculum_template?.name}
                         </Text>
                         <Text style={styles.assignmentClass}>
-                          {assignment.class?.name}
+                          {assignment.classes?.name}
                         </Text>
                         <Text style={styles.assignmentDate}>
                           Started: {new Date(assignment.start_date).toLocaleDateString()}
@@ -375,7 +375,7 @@ export const CurriculumAssignmentFlow: React.FC = () => {
                           {assignedClasses.map((assignment) => (
                             <View key={assignment.id} style={styles.assignedClassChip}>
                               <Text style={styles.assignedClassText}>
-                                {assignment.class?.name}
+                                {assignment.classes?.name}
                               </Text>
                             </View>
                           ))}
@@ -415,7 +415,7 @@ export const CurriculumAssignmentFlow: React.FC = () => {
                   <View key={curriculum.id} style={styles.scheduleCard}>
                     <Text style={styles.scheduleTitle}>{curriculum.name}</Text>
                     <Text style={styles.scheduleSubtitle}>
-                      Assigned to: {assignedClasses.map(a => a.class?.name).join(', ')}
+                      Assigned to: {assignedClasses.map(a => a.classes?.name).join(', ')}
                     </Text>
 
                     {weeklySchedule && Object.entries(weeklySchedule).map(([week, days]) => (

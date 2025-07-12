@@ -1,4 +1,4 @@
-// schema/generate-clients-from-edits.mts
+// schema/generators/generate-clients-from-edits.mts
 import { readFile, writeFile, mkdir } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -22,6 +22,28 @@ const toPascalCase = (str: string): string =>
      .replace(/\w\S*/g, (txt) => txt[0].toUpperCase() + txt.slice(1))
      .replace(/\s+/g, '');
 
+async function generateClientsIndex(outputDir: string, tableNames: string[]) {
+  console.log('📦 Generating clients index file...');
+  
+  let indexContent = `// AUTO-GENERATED CLIENTS INDEX - DO NOT EDIT
+// This file exports all client functions from individual table client files
+// Run schema/generators/generate-clients-from-edits.mts to regenerate
+
+`;
+  
+  // Generate exports for each table
+  for (const tableName of tableNames) {
+    indexContent += `// Client for ${tableName}
+export * from './${tableName}';
+`;
+  }
+  
+  const indexPath = path.join(outputDir, 'index.ts');
+  await writeFile(indexPath, indexContent);
+  
+  console.log(`✅ Generated clients index: ${indexPath}`);
+}
+
 async function generateClients() {
   try {
     const data = await readFile(editsPath, 'utf-8');
@@ -32,12 +54,16 @@ async function generateClients() {
       (table: any) => table.delete !== true && typeof table.name === 'string'
     );
 
+    const tableNames: string[] = [];
+
     for (const table of activeTables) {
       const tableName = table.name;
+      tableNames.push(tableName);
+      
       const typeName = toPascalCase(tableName);
       const filePath = path.join(clientsDir, `${tableName}.ts`);
 
-    const content = `// AUTO-GENERATED — DO NOT EDIT
+      const content = `// AUTO-GENERATED — DO NOT EDIT
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '../database.types';
 
@@ -59,6 +85,10 @@ export const ${tableName}Client = () =>
     }
 
     console.log(`🎉 Generated clients for ${activeTables.length} tables`);
+    
+    // Generate the index file
+    await generateClientsIndex(clientsDir, tableNames);
+    
   } catch (err) {
     console.error('❌ Failed to generate clients:', err instanceof Error ? err.message : err);
   }

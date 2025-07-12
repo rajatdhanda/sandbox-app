@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import type { Classes, Children, ChildrenWithRelations, Users as UsersType } from '@/lib/supabase/_generated/generated-types';
+import { QueryWithRelations } from '@/lib/supabase/_generated/queries';
+import { usersClient, classesClient, childrenClient, parentChildRelationshipsClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert, Modal } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
-import { Child, Class, User } from '@/lib/supabase/types';
+
 import { Plus, CreditCard as Edit3, Trash2, Search, Baby, Calendar, X, Save, Users } from 'lucide-react-native';
 
 interface ChildFormData {
@@ -17,13 +19,13 @@ interface ChildFormData {
 }
 
 export const ChildrenManagement: React.FC = () => {
-  const [children, setChildren] = useState<Child[]>([]);
-  const [classes, setClasses] = useState<Class[]>([]);
-  const [parents, setParents] = useState<User[]>([]);
+  const [children, setChildren] = useState<ChildrenWithRelations[]>([]);
+  const [classes, setClasses] = useState<Classes[]>([]);
+  const [parents, setParents] = useState<UsersType[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [showForm, setShowForm] = useState(false);
-  const [editingChild, setEditingChild] = useState<Child | null>(null);
+  const [editingChild, setEditingChild] = useState<ChildrenWithRelations | null>(null);
   const [selectedParents, setSelectedParents] = useState<string[]>([]);
   const [formData, setFormData] = useState<ChildFormData>({
     first_name: '',
@@ -44,23 +46,15 @@ export const ChildrenManagement: React.FC = () => {
   const fetchData = async () => {
     try {
       // Fetch children with class and parent relationships
-      const { data: childrenData, error: childrenError } = await supabase
-        .from('children')
-        .select(`
-          *,
-          class:classes(*),
-          parent_child_relationships(
-            parent:users(*)
-          )
-        `)
+      const { data: childrenData, error: childrenError } = await childrenClient()
+        .select(QueryWithRelations.children)
         .eq('is_active', true)
         .order('first_name');
 
       if (childrenError) throw childrenError;
 
       // Fetch classes
-      const { data: classesData, error: classesError } = await supabase
-        .from('classes')
+      const { data: classesData, error: classesError } = await classesClient()
         .select('*')
         .eq('is_active', true)
         .order('name');
@@ -68,8 +62,7 @@ export const ChildrenManagement: React.FC = () => {
       if (classesError) throw classesError;
 
       // Fetch parents
-      const { data: parentsData, error: parentsError } = await supabase
-        .from('users')
+      const { data: parentsData, error: parentsError } = await usersClient()
         .select('*')
         .eq('role', 'parent')
         .eq('is_active', true)
@@ -77,7 +70,7 @@ export const ChildrenManagement: React.FC = () => {
 
       if (parentsError) throw parentsError;
 
-      setChildren(childrenData || []);
+      setChildren(childrenData as ChildrenWithRelations[] || []);
       setClasses(classesData || []);
       setParents(parentsData || []);
     } catch (error) {
@@ -98,8 +91,7 @@ export const ChildrenManagement: React.FC = () => {
       console.log('Creating child with data:', formData);
       
       // Create child
-      const { data: childData, error: childError } = await supabase
-        .from('children')
+      const { data: childData, error: childError } = await childrenClient()
         .insert({
           first_name: formData.first_name,
           last_name: formData.last_name,
@@ -126,8 +118,7 @@ export const ChildrenManagement: React.FC = () => {
           is_primary: index === 0
         }));
 
-        const { error: relationshipError } = await supabase
-          .from('parent_child_relationships')
+        const { error: relationshipError } = await parentChildRelationshipsClient()
           .insert(relationships);
 
         console.log('Relationship result:', relationshipError);
@@ -151,8 +142,7 @@ export const ChildrenManagement: React.FC = () => {
 
     try {
       // Update child
-      const { error: childError } = await supabase
-        .from('children')
+      const { error: childError } = await childrenClient()
         .update({
           first_name: formData.first_name,
           last_name: formData.last_name,
@@ -171,8 +161,7 @@ export const ChildrenManagement: React.FC = () => {
 
       // Update parent-child relationships
       // First, delete existing relationships
-      await supabase
-        .from('parent_child_relationships')
+      await parentChildRelationshipsClient()
         .delete()
         .eq('child_id', editingChild.id);
 
@@ -184,8 +173,7 @@ export const ChildrenManagement: React.FC = () => {
           is_primary: index === 0
         }));
 
-        const { error: relationshipError } = await supabase
-          .from('parent_child_relationships')
+        const { error: relationshipError } = await parentChildRelationshipsClient()
           .insert(relationships);
 
         if (relationshipError) throw relationshipError;
@@ -212,14 +200,12 @@ export const ChildrenManagement: React.FC = () => {
           onPress: async () => {
             try {
               // First delete parent-child relationships
-              await supabase
-                .from('parent_child_relationships')
+              await parentChildRelationshipsClient()
                 .delete()
                 .eq('child_id', childId);
 
               // Then delete the child
-              const { error } = await supabase
-                .from('children')
+              const { error } = await childrenClient()
                 .delete()
                 .eq('id', childId);
 
@@ -254,7 +240,7 @@ export const ChildrenManagement: React.FC = () => {
     setShowForm(false);
   };
 
-  const openEditForm = (child: Child) => {
+  const openEditForm = (child: ChildrenWithRelations) => {
     setEditingChild(child);
     setFormData({
       first_name: child.first_name,
@@ -269,7 +255,7 @@ export const ChildrenManagement: React.FC = () => {
     });
     
     // Set selected parents
-    const parentIds = child.parent_child_relationships?.map(rel => rel.parent.id) || [];
+    const parentIds = child.parent_child_relationships?.map(rel => rel.parent_id).filter(Boolean) || [];
     setSelectedParents(parentIds);
     setShowForm(true);
   };
@@ -347,7 +333,7 @@ export const ChildrenManagement: React.FC = () => {
                   {child.class && (
                     <View style={styles.detailRow}>
                       <Baby size={14} color="#6B7280" />
-                      <Text style={styles.detailText}>Class: {child.class.name}</Text>
+                      <Text style={styles.detailText}>Class: {child.class?.name}</Text>
                     </View>
                   )}
                   
@@ -355,7 +341,7 @@ export const ChildrenManagement: React.FC = () => {
                     <View style={styles.detailRow}>
                       <Users size={14} color="#6B7280" />
                       <Text style={styles.detailText}>
-                        Parents: {child.parent_child_relationships.map(rel => rel.parent.full_name).join(', ')}
+                        Parents: {child.parent_child_relationships.map(rel => parents.find(p => p.id === rel.parent_id)?.full_name || 'Unknown').join(', ')}
                       </Text>
                     </View>
                   )}

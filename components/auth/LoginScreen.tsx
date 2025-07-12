@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import type { NotificationsWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { supabase } from '@/lib/supabase/clients';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from './AuthProvider';
-import { supabase } from '../../lib/supabase';
 import { LogIn, User, Lock } from 'lucide-react-native';
 
 export const LoginScreen: React.FC = () => {
@@ -35,7 +36,7 @@ export const LoginScreen: React.FC = () => {
       }
 
       console.log('✅ Logged in user:', userData.user);
-      Alert.alert('Login Successful', `Welcome ${userData.user.email}`);
+      Alert.alert('Login Successful', `Welcome ${userData.user?.email}`);
       // Optionally, navigate to a home screen here
     } catch (error: any) {
       Alert.alert('Login Failed', error.message);

@@ -1,3 +1,4 @@
+import type { Messages as MessagesType } from '@/lib/supabase/_generated/generated-types';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoleStore } from '@/stores/roleStore';

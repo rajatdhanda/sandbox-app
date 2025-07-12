@@ -1,0 +1,1 @@
+"use strict";exports.id=7540,exports.ids=[7540],exports.modules={7540:(e,r,t)=>{t.r(r),t.d(r,{notificationsClient:()=>i});var s=t(3939);let i=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,s.createClient)(e,r)})().from("notifications")}};

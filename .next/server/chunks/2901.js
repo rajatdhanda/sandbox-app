@@ -1,0 +1,1 @@
+"use strict";exports.id=2901,exports.ids=[2901],exports.modules={2901:(e,r,s)=>{s.r(r),s.d(r,{time_slotsClient:()=>o});var t=s(3939);let o=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,t.createClient)(e,r)})().from("time_slots")}};

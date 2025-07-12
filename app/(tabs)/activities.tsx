@@ -1,3 +1,4 @@
+import type { Users as UsersType } from '@/lib/supabase/_generated/generated-types';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoleStore } from '@/stores/roleStore';

@@ -1,3 +1,4 @@
+import type { Users as UsersType, Notifications } from '@/lib/supabase/_generated/generated-types';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Settings, Bell, Shield, Database, Users, Wifi, CircleHelp as HelpCircle, ChevronRight, Mail, Phone } from 'lucide-react-native';

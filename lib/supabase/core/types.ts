@@ -34,3 +34,6 @@ export type {
   Events,
   CurriculumAssignments
 } from '@/lib/supabase/_generated/generated-types';
+
+// RELATION TYPES — AUTO-GENERATED BELOW
+import type { Database } from '../_generated/database.types';

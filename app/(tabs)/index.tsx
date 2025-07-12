@@ -1,3 +1,4 @@
+import type { Classes, Photos as PhotosType, Messages as MessagesType, Attendance  } from '@/lib/supabase/_generated/generated-types';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { useRoleStore } from '@/stores/roleStore';
 import { SafeAreaView } from 'react-native-safe-area-context';

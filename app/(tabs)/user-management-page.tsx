@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import type { Users } from '@/lib/supabase/_generated/generated-types';
+import { usersClient } from '@/lib/supabase/compatibility';
 import {
   View,
   Text,
@@ -12,22 +14,14 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { supabase } from '../../lib/supabase';
 import { Picker } from '@react-native-picker/picker';
 
-type UserRole = 'admin' | 'teacher' | 'parent' | 'student';
+// Using role from generated Users type
 
-interface User {
-  id: string;
-  email: string;
-  full_name: string;
-  role: UserRole;
-  phone?: string;
-  created_at: string;
-}
+// Using Users type from generated types
 
 export default function UsersScreen() {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<Users[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [creating, setCreating] = useState(false);
@@ -35,7 +29,7 @@ export default function UsersScreen() {
   // Form states
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
-  const [role, setRole] = useState<UserRole>('teacher');
+  const [role, setRole] = useState<string>('teacher');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
@@ -46,8 +40,7 @@ export default function UsersScreen() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('users')
+      const { data, error } = await usersClient()
         .select('*')
         .order('created_at', { ascending: false });
 
@@ -113,7 +106,7 @@ export default function UsersScreen() {
     setPassword('');
   };
 
-  const getRoleColor = (role: UserRole) => {
+  const getRoleColor = (role: string) => {
     switch (role) {
       case 'admin':
         return '#e74c3c';
@@ -157,8 +150,8 @@ export default function UsersScreen() {
               <Text style={styles.userEmail}>{user.email}</Text>
               {user.phone && <Text style={styles.userPhone}>📱 {user.phone}</Text>}
             </View>
-            <View style={[styles.roleTag, { backgroundColor: getRoleColor(user.role) }]}>
-              <Text style={styles.roleText}>{user.role.toUpperCase()}</Text>
+            <View style={[styles.roleTag, { backgroundColor: getRoleColor(user.role as string) }]}>
+              <Text style={styles.roleText}>{(user.role as string).toUpperCase()}</Text>
             </View>
           </View>
         ))}
@@ -212,7 +205,7 @@ export default function UsersScreen() {
             <View style={styles.pickerContainer}>
               <Picker
                 selectedValue={role}
-                onValueChange={(itemValue) => setRole(itemValue as UserRole)}
+                onValueChange={(itemValue) => setRole(itemValue as string)}
                 style={styles.picker}
               >
                 <Picker.Item label="Teacher" value="teacher" />

@@ -1,8 +1,21 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
+  "/api/_dev/debug-migration": "pages/api/_dev/debug-migration.js",
+  "/api/_dev/test-schema-robust": "pages/api/_dev/test-schema-robust.js",
   "/api/hello": "pages/api/hello.js",
+  "/api/test-admin-data": "pages/api/test-admin-data.js",
+  "/api/test-all": "pages/api/test-all.js",
   "/api/_dev/test-generated-clients-final": "pages/api/_dev/test-generated-clients-final.js",
-  "/api/_dev/debug-migration": "pages/api/_dev/debug-migration.js"
+  "/api/_dev/test-notifications": "pages/api/_dev/test-notifications.js",
+  "/api/test-auth": "pages/api/test-auth.js",
+  "/api/test-db": "pages/api/test-db.js",
+  "/api/test-generated-clients": "pages/api/test-generated-clients.js",
+  "/api/test-cache": "pages/api/test-cache.js",
+  "/api/test-health": "pages/api/test-health.js",
+  "/api/test-schema-pipeline": "pages/api/test-schema-pipeline.js",
+  "/api/test-supabase": "pages/api/test-supabase.js",
+  "/": "pages/index.js",
+  "/api/create-user": "pages/api/create-user.js",
+  "/_document": "pages/_document.js"
 }

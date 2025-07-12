@@ -1,0 +1,1 @@
+"use strict";exports.id=5306,exports.ids=[5306],exports.modules={5306:(e,r,s)=>{s.r(r),s.d(r,{config_fieldsClient:()=>t});var i=s(3939);let t=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,i.createClient)(e,r)})().from("config_fields")}};

@@ -126,8 +126,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "user": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "users",
+          "foreign_key": "user_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "photos",
@@ -267,8 +278,29 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "photo_tags": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "photo_tags",
+          "foreign_key": "photo_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "classes",
@@ -397,8 +429,69 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "childrens": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "children",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "class_assignments": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "class_assignments",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "photo_albums": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "photo_albums",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "attendance_records": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "attendance_records",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "curriculum_assignments": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "curriculum_assignments",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "curriculum_executions": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "curriculum_executions",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "children",
@@ -560,8 +653,99 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "class": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "classes",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "parent_child_relationships": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "parent_child_relationships",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "daily_logs": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "daily_logs",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "worksheets": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "worksheets",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "attendances": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "attendance",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "milestones": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "milestones",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "messages": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "messages",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "student_progress": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "student_progress",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "attendance_records": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "attendance_records",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "parent_child_relationships",
@@ -635,8 +819,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "class_assignments",
@@ -710,8 +905,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "class": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "classes",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "config_fields",
@@ -819,7 +1025,7 @@
     ],
     "fields": {},
     "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "daily_logs",
@@ -959,8 +1165,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "worksheets",
@@ -1144,8 +1361,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "users",
@@ -1274,8 +1502,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "system_logs": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "system_logs",
+          "foreign_key": "user_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "attendance",
@@ -1404,8 +1643,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "milestones",
@@ -1545,8 +1795,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "announcements",
@@ -1687,7 +1948,7 @@
     ],
     "fields": {},
     "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "events",
@@ -1872,7 +2133,7 @@
     ],
     "fields": {},
     "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "messages",
@@ -2012,8 +2273,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "message_threads",
@@ -2099,7 +2371,7 @@
     ],
     "fields": {},
     "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "photo_albums",
@@ -2206,8 +2478,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "class": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "classes",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "student_progress",
@@ -2358,8 +2641,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "curriculum",
@@ -2499,8 +2793,29 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "curriculum_assignments": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "curriculum_assignments",
+          "foreign_key": "curriculum_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "curriculum_items": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "curriculum_items",
+          "foreign_key": "curriculum_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "photo_tags",
@@ -2574,8 +2889,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "photo": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "photos",
+          "foreign_key": "photo_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "system_logs",
@@ -2704,8 +3030,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "user": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "users",
+          "foreign_key": "user_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "attendance_records",
@@ -2856,8 +3193,29 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "child": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "children",
+          "foreign_key": "child_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "class": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "classes",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "reports",
@@ -2998,7 +3356,7 @@
     ],
     "fields": {},
     "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "curriculum_assignments",
@@ -3105,8 +3463,29 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "curriculum": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "curriculum",
+          "foreign_key": "curriculum_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "class": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "classes",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "curriculum_items",
@@ -3323,8 +3702,39 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "curriculum": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "curriculum",
+          "foreign_key": "curriculum_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "time_slot": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "time_slots",
+          "foreign_key": "time_slot_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "curriculum_executions": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "curriculum_executions",
+          "foreign_key": "curriculum_item_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "time_slots",
@@ -3421,7 +3831,7 @@
     ],
     "fields": {},
     "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "curriculum_templates",
@@ -3616,8 +4026,19 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "curriculum_imports": {
+        "old": null,
+        "new": {
+          "type": "has_many",
+          "foreign_table": "curriculum_imports",
+          "foreign_key": "curriculum_template_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "curriculum_executions",
@@ -3823,8 +4244,29 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "curriculum_item": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "curriculum_items",
+          "foreign_key": "curriculum_item_id",
+          "local_key": "id"
+        },
+        "delete": false
+      },
+      "class": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "classes",
+          "foreign_key": "class_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   },
   {
     "table": "curriculum_imports",
@@ -3964,7 +4406,18 @@
       }
     ],
     "fields": {},
-    "relations": {},
-    "timestamp": "2025-07-12T16:40:27.164Z"
+    "relations": {
+      "curriculum_template": {
+        "old": null,
+        "new": {
+          "type": "belongs_to",
+          "foreign_table": "curriculum_templates",
+          "foreign_key": "curriculum_template_id",
+          "local_key": "id"
+        },
+        "delete": false
+      }
+    },
+    "timestamp": "2025-07-12T18:36:15.885Z"
   }
 ]

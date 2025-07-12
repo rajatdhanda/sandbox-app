@@ -1,0 +1,1 @@
+"use strict";exports.id=7315,exports.ids=[7315],exports.modules={7315:(e,r,s)=>{s.r(r),s.d(r,{daily_logsClient:()=>o});var t=s(3939);let o=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,t.createClient)(e,r)})().from("daily_logs")}};

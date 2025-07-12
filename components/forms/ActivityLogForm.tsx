@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { DynamicSelect } from './DynamicSelect';
-import { supabase } from '@/lib/supabase/clients';
+
 import { Save, X } from 'lucide-react-native';
+import { dailyLogsClient } from '@/lib/supabase/compatibility';
+
 
 interface ActivityLogFormProps {
   childId: string;
@@ -43,8 +45,7 @@ export const ActivityLogForm: React.FC<ActivityLogFormProps> = ({
         duration_minutes: durationMinutes
       });
       
-      const { error } = await supabase
-        .from('daily_logs')
+      const { error } = await dailyLogsClient()
         .insert({
           child_id: childId,
           teacher_id: teacherId,

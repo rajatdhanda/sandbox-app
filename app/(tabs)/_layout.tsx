@@ -1,3 +1,4 @@
+import type { Users as UsersType, Classes, Photos as PhotosType, Messages as MessagesType, Reports as ReportsType, Attendance } from '@/lib/supabase/_generated/generated-types';
 import { Tabs } from 'expo-router';
 import { View, StyleSheet } from 'react-native';
 import { Users, Baby, Settings, Chrome as Home, Camera, MessageCircle, Calendar, ChartBar as BarChart3, UserCheck, FileText, FileSliders as Sliders } from 'lucide-react-native';

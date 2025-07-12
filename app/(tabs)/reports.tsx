@@ -1,3 +1,4 @@
+import type { Users as UsersType, Reports as ReportsType, Attendance } from '@/lib/supabase/_generated/generated-types';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ChartBar as BarChart3, TrendingUp, Download, Calendar, Users, Baby, Clock, FileText, ChartPie as PieChart } from 'lucide-react-native';

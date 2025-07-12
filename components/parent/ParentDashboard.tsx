@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import type { ChildrenWithRelations, Notifications, Events, Photos as PhotosType, DailyLog, Photo, QueryWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { childrenClient, classesClient, usersClient, parentChildRelationshipsClient, notificationsClient, eventsClient, photosClient, dailyLogsClient, milestonesClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAuth } from '../auth/AuthProvider';
-import { supabase } from '@/lib/supabase/clients';
-import { Child, DailyLog, Photo } from '@/lib/supabase/types';
+
 import { LogOut, Baby, Camera, FileText, MessageCircle, Calendar, Clock } from 'lucide-react-native';
+
 
 export const ParentDashboard: React.FC = () => {
   const { user, signOut } = useAuth();
-  const [children, setChildren] = useState<Child[]>([]);
-  const [selectedChild, setSelectedChild] = useState<Child | null>(null);
+  const [children, setChildren] = useState<ChildrenWithRelations[]>([]);
+  const [selectedChild, setSelectedChild] = useState<ChildrenWithRelations | null>(null);
   const [dailyLogs, setDailyLogs] = useState<DailyLog[]>([]);
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [milestones, setMilestones] = useState<any[]>([]);
@@ -31,8 +33,7 @@ export const ParentDashboard: React.FC = () => {
 
   const fetchChildren = async () => {
     try {
-      const { data, error } = await supabase
-        .from('parent_child_relationships')
+      const { data, error } = await parentChildRelationshipsClient()
         .select(`
           child:children(
             *,
@@ -60,8 +61,7 @@ export const ParentDashboard: React.FC = () => {
       console.log('🔄 Fetching data for child:', childId);
       
       // Fetch daily logs
-      const { data: logsData, error: logsError } = await supabase
-        .from('daily_logs')
+      const { data: logsData, error: logsError } = await dailyLogsClient()
         .select(`
           *,
           teacher:users(full_name)
@@ -75,8 +75,7 @@ export const ParentDashboard: React.FC = () => {
       setDailyLogs(logsData || []);
 
       // Fetch photos
-      const { data: photosData, error: photosError } = await supabase
-        .from('photos')
+      const { data: photosData, error: photosError } = await photosClient()
         .select('*')
         .eq('child_id', childId)
         .eq('is_shared_with_parents', true)
@@ -88,8 +87,7 @@ export const ParentDashboard: React.FC = () => {
       setPhotos(photosData || []);
       
       // Fetch milestones
-      const { data: milestonesData, error: milestonesError } = await supabase
-        .from('milestones')
+      const { data: milestonesData, error: milestonesError } = await milestonesClient()
         .select(`
           *,
           teacher:users(full_name)
@@ -104,8 +102,7 @@ export const ParentDashboard: React.FC = () => {
       setMilestones(milestonesData || []);
       
       // Fetch notifications
-      const { data: notificationsData, error: notificationsError } = await supabase
-        .from('notifications')
+      const { data: notificationsData, error: notificationsError } = await notificationsClient()
         .select('*')
         .eq('user_id', user!.id)
         .order('created_at', { ascending: false })
@@ -116,8 +113,7 @@ export const ParentDashboard: React.FC = () => {
       setNotifications(notificationsData || []);
       
       // Fetch upcoming events
-      const { data: eventsData, error: eventsError } = await supabase
-        .from('events')
+      const { data: eventsData, error: eventsError } = await eventsClient()
         .select('*')
         .gte('start_date', new Date().toISOString())
         .order('start_date', { ascending: true })
@@ -201,7 +197,7 @@ export const ParentDashboard: React.FC = () => {
                     {selectedChild.first_name} {selectedChild.last_name}
                   </Text>
                   <Text style={styles.childClass}>
-                    {selectedChild.class?.name || 'No class assigned'}
+                    {selectedChild.classes?.name || 'No class assigned'}
                   </Text>
                 </View>
 

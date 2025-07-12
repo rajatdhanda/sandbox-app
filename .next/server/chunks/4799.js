@@ -1,0 +1,1 @@
+"use strict";exports.id=4799,exports.ids=[4799],exports.modules={4799:(s,e,r)=>{r.r(e),r.d(e,{class_assignmentsClient:()=>i});var t=r(3939);let i=()=>(function(){let s=process.env.SUPABASE_URL,e=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!s||!e)throw Error("supabaseKey is required.");return(0,t.createClient)(s,e)})().from("class_assignments")}};

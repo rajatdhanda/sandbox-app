@@ -1,0 +1,1 @@
+"use strict";exports.id=7431,exports.ids=[7431],exports.modules={7431:(e,r,s)=>{s.r(r),s.d(r,{parent_child_relationshipsClient:()=>i});var t=s(3939);let i=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,t.createClient)(e,r)})().from("parent_child_relationships")}};

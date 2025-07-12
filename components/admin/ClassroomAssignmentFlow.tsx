@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import type { Classes, ChildrenWithRelations } from '@/lib/supabase/_generated/generated-types';
+import { classesClient, childrenClient, usersClient, classAssignmentsClient } from '@/lib/supabase/compatibility';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal, Alert, TextInput } from 'react-native';
-import { supabase } from '@/lib/supabase/clients';
+
 import { Users, Baby, BookOpen, Calendar, Plus, Check, X, ArrowRight, Settings, Target, Clock } from 'lucide-react-native';
 
 interface Student {
@@ -45,7 +47,7 @@ interface Class {
 export const ClassroomAssignmentFlow: React.FC = () => {
   const [students, setStudents] = useState<Student[]>([]);
   const [teachers, setTeachers] = useState<Teacher[]>([]);
-  const [classes, setClasses] = useState<Class[]>([]);
+  const [classes, setClasses] = useState<(Classes & { _count?: { students: number; teachers: number } })[]>([]);
   const [unassignedStudents, setUnassignedStudents] = useState<Student[]>([]);
   const [unassignedTeachers, setUnassignedTeachers] = useState<Teacher[]>([]);
   const [selectedClass, setSelectedClass] = useState<Class | null>(null);
@@ -63,8 +65,7 @@ export const ClassroomAssignmentFlow: React.FC = () => {
       console.log('🔄 Fetching classroom assignment data...');
       
       // Fetch students with class info
-      const { data: studentsData, error: studentsError } = await supabase
-        .from('children')
+      const { data: studentsData, error: studentsError } = await childrenClient()
         .select(`
           *,
           class:classes(name, color_code)
@@ -75,8 +76,7 @@ export const ClassroomAssignmentFlow: React.FC = () => {
       if (studentsError) throw studentsError;
 
       // Fetch teachers with class assignments
-      const { data: teachersData, error: teachersError } = await supabase
-        .from('users')
+      const { data: teachersData, error: teachersError } = await usersClient()
         .select(`
           *,
           class_assignments(
@@ -91,8 +91,7 @@ export const ClassroomAssignmentFlow: React.FC = () => {
       if (teachersError) throw teachersError;
 
       // Fetch classes with counts
-      const { data: classesData, error: classesError } = await supabase
-        .from('classes')
+      const { data: classesData, error: classesError } = await classesClient()
         .select('*')
         .eq('is_active', true)
         .order('name');
@@ -102,14 +101,12 @@ export const ClassroomAssignmentFlow: React.FC = () => {
       // Calculate counts for each class
       const classesWithCounts = await Promise.all(
         (classesData || []).map(async (classItem) => {
-          const { count: studentCount } = await supabase
-            .from('children')
+          const { count: studentCount } = await childrenClient()
             .select('*', { count: 'exact', head: true })
             .eq('class_id', classItem.id)
             .eq('is_active', true);
 
-          const { count: teacherCount } = await supabase
-            .from('class_assignments')
+          const { count: teacherCount } = await classAssignmentsClient()
             .select('*', { count: 'exact', head: true })
             .eq('class_id', classItem.id);
 
@@ -155,8 +152,7 @@ export const ClassroomAssignmentFlow: React.FC = () => {
 
       if (assignmentType === 'student') {
         // Assign students to class
-        const { error } = await supabase
-          .from('children')
+        const { error } = await childrenClient()
           .update({ class_id: selectedClass.id })
           .in('id', selectedItems);
 
@@ -169,8 +165,7 @@ export const ClassroomAssignmentFlow: React.FC = () => {
           is_primary: index === 0 // First teacher is primary
         }));
 
-        const { error } = await supabase
-          .from('class_assignments')
+        const { error } = await classAssignmentsClient()
           .insert(assignments);
 
         if (error) throw error;
@@ -188,15 +183,13 @@ export const ClassroomAssignmentFlow: React.FC = () => {
   const removeAssignment = async (itemId: string, type: 'student' | 'teacher') => {
     try {
       if (type === 'student') {
-        const { error } = await supabase
-          .from('children')
+        const { error } = await childrenClient()
           .update({ class_id: null })
           .eq('id', itemId);
 
         if (error) throw error;
       } else {
-        const { error } = await supabase
-          .from('class_assignments')
+        const { error } = await classAssignmentsClient()
           .delete()
           .eq('teacher_id', itemId);
 
@@ -342,7 +335,7 @@ export const ClassroomAssignmentFlow: React.FC = () => {
                 <Text style={styles.previewLabel}>Teachers:</Text>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   {teachers
-                    .filter(t => t.class_assignments?.some(ca => ca.class.id === classItem.id))
+                    .filter(t => t.class_assignments?.some(ca => ca.class?.id === classItem.id))
                     .map((teacher) => (
                       <View key={teacher.id} style={styles.previewItem}>
                         <Text style={styles.previewItemText}>{teacher.full_name}</Text>

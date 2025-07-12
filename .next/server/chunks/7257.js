@@ -1,0 +1,1 @@
+"use strict";exports.id=7257,exports.ids=[7257],exports.modules={7257:(e,r,s)=>{s.r(r),s.d(r,{student_progressClient:()=>o});var t=s(3939);let o=()=>(function(){let e=process.env.SUPABASE_URL,r=process.env.SUPABASE_SERVICE_ROLE_KEY;if(!e||!r)throw Error("supabaseKey is required.");return(0,t.createClient)(e,r)})().from("student_progress")}};
