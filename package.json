@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "EXPO_NO_TELEMETRY=1 expo start",
     "build:web": "expo export --platform web --output-dir dist",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "dev:next": "next dev"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -31,6 +32,7 @@
     "expo-web-browser": "~14.2.0",
     "express": "^5.1.0",
     "lucide-react-native": "^0.475.0",
+    "next": "^15.3.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.5",

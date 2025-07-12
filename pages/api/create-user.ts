@@ -1,6 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 
+export const config = {
+  api: {
+    bodyParser: true,
+  },
+};
+
 const supabase = createClient(
   process.env.SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
@@ -9,17 +15,35 @@ const supabase = createClient(
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method Not Allowed' });
 
-  const { email, full_name, role, phone, address, emergency_contact, emergency_phone } = req.body;
-  if (!email || !full_name || !role) {
+  const {
+    email,
+    password,
+    full_name,
+    role,
+    phone,
+    address,
+    emergency_contact,
+    emergency_phone
+  } = req.body;
+  console.log('BODY:', req.body);
+
+  if (!email || !password || !full_name || !role) {
     return res.status(422).json({ error: 'Missing required fields' });
   }
 
   try {
     const { data: authData, error: authError } = await supabase.auth.admin.createUser({
       email,
-      password: 'sandbox123',
+      password,
       email_confirm: true,
-      user_metadata: { full_name, role },
+      user_metadata: {
+        full_name,
+        role,
+        phone,
+        address,
+        emergency_contact,
+        emergency_phone
+      },
     });
 
     if (authError || !authData.user) throw authError;
@@ -43,3 +67,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(500).json({ error: err.message });
   }
 }
+
+console.log('ENV SUPABASE_URL:', process.env.SUPABASE_URL);
