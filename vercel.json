@@ -1,4 +1,5 @@
 {
+  "buildCommand": "npm run build:web",
   "builds": [
     {
       "src": "package.json",
@@ -8,7 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/api/index.js"
     }
   ]
 }
