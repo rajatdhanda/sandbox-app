@@ -2,9 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // This ensures API routes work properly
+  // Ensure API routes work properly
   experimental: {
     esmExternals: false,
+  },
+  // Handle TypeScript compilation
+  typescript: {
+    ignoreBuildErrors: false,
   },
 }
 

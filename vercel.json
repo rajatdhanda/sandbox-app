@@ -1,9 +1,8 @@
+
 {
-  "buildCommand": "npm run build:web",
-  "outputDirectory": "dist",
   "functions": {
     "pages/api/**/*.ts": {
-      "runtime": "nodejs18.x"
+      "runtime": "nodejs20.x"
     }
   }
 }
