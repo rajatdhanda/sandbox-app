@@ -137,12 +137,15 @@ export default function AdminConfigScreen() {
               Alert.alert('Success', 'Field deleted successfully');
             } catch (error) {
               console.error('💥 Error deleting field:', error);
-              console.error('💥 Error details:', {
-                message: error.message,
-                code: error.code,
-                details: error.details
-              });
-              Alert.alert('Error', `Failed to delete field: ${error.message || 'Unknown error'}`);
+              if (error instanceof Error) {
+                console.error('💥 Error details:', {
+                  message: error.message,
+                });
+                Alert.alert('Error', `Failed to delete field: ${error.message}`);
+              } else {
+                console.error('💥 Unknown error object:', error);
+                Alert.alert('Error', 'Failed to delete field: Unknown error');
+              }
             }
           }
         }
