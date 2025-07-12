@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const editsPath = path.resolve(__dirname, '../schema-edits.json');
-const queriesDir = path.resolve(__dirname, '../lib/supabase/_generated/queries');
+const queriesDir = path.resolve(__dirname, '../../lib/supabase/_generated/queries');
 
 async function ensureDir(dir: string) {
   try {

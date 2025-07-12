@@ -48,7 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (authError || !authData.user) throw authError;
 
-    const { error: profileError } = await supabase.from('users').insert({
+    const { error: profileError } = await usersClient().insert({
       id: authData.user.id,
       email,
       full_name,

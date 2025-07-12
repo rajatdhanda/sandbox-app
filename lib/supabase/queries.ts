@@ -1,21 +1,28 @@
 // lib/supabase/queries.ts
-import { supabase } from './client';
-import type {
-  ConfigField,
-  Notification,
-  Milestone,
-  Announcement,
-  Event,
-  StudentProgress,
-  Message,
-  User,
-  Child,
-  Attendance,
-  DailyLog,
-  Photo
-} from './types';
+import { 
+  usersClient, 
+  classesClient, 
+  childrenClient, 
+  announcementsClient, 
+  notificationsClient 
+} from './compatibility';
 
-// Examples
+import type {
+  Notifications,
+  Announcements,
+  Events,
+  Users,
+  Children
+} from './_generated/generated-types';
+
+// Use the compatibility layer types for parameters that haven't been migrated yet
+type ConfigField = any; // TODO: Replace with generated type
+type Milestone = any; // TODO: Replace with generated type  
+type StudentProgress = any; // TODO: Replace with generated type
+type Message = any; // TODO: Replace with generated type
+type Attendance = any; // TODO: Replace with generated type
+type DailyLog = any; // TODO: Replace with generated type
+type Photo = any; // TODO: Replace with generated type
 
 export const getConfigFields = async (category: string): Promise<ConfigField[]> => {
   const { data, error } = await supabase
@@ -29,9 +36,8 @@ export const getConfigFields = async (category: string): Promise<ConfigField[]> 
   return data || [];
 };
 
-export const getNotifications = async (userId: string, limit = 10): Promise<Notification[]> => {
-  const { data, error } = await supabase
-    .from('notifications')
+export const getNotifications = async (userId: string, limit = 10): Promise<Notifications[]> => {
+  const { data, error } = await notificationsClient()
     .select('*')
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
@@ -41,9 +47,8 @@ export const getNotifications = async (userId: string, limit = 10): Promise<Noti
   return data || [];
 };
 
-export const getAnnouncements = async (limit = 10): Promise<Announcement[]> => {
-  const { data, error } = await supabase
-    .from('announcements')
+export const getAnnouncements = async (limit = 10): Promise<Announcements[]> => {
+  const { data, error } = await announcementsClient()
     .select('*')
     .order('created_at', { ascending: false })
     .limit(limit);
@@ -52,16 +57,14 @@ export const getAnnouncements = async (limit = 10): Promise<Announcement[]> => {
   return data || [];
 };
 
-export const getUpcomingEvents = async (limit = 5): Promise<Event[]> => {
+export const getUpcomingEvents = async (limit = 5): Promise<Events[]> => {
   const { data, error } = await supabase
     .from('events')
     .select('*')
-    .gte('date', new Date().toISOString()) // assumes 'date' column
+    .gte('date', new Date().toISOString())
     .order('date', { ascending: true })
     .limit(limit);
 
   if (error) throw error;
   return data || [];
 };
-
-// Add remaining helper functions the same way...

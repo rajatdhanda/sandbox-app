@@ -227,14 +227,6 @@ var map = {
 		"(api-node)/./lib/supabase/_generated/clients/system_logs.ts",
 		"_api-node_lib_supabase__generated_clients_system_logs_ts"
 	],
-	"./test_notification": [
-		"(api-node)/./lib/supabase/_generated/clients/test_notification.ts",
-		"_api-node_lib_supabase__generated_clients_test_notification_ts"
-	],
-	"./test_notification.ts": [
-		"(api-node)/./lib/supabase/_generated/clients/test_notification.ts",
-		"_api-node_lib_supabase__generated_clients_test_notification_ts"
-	],
 	"./time_slots": [
 		"(api-node)/./lib/supabase/_generated/clients/time_slots.ts",
 		"_api-node_lib_supabase__generated_clients_time_slots_ts"
@@ -313,17 +305,6 @@ module.exports = require("@supabase/supabase-js");
 
 /***/ }),
 
-/***/ "expo-constants":
-/*!*********************************!*\
-  !*** external "expo-constants" ***!
-  \*********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("expo-constants");
-
-/***/ }),
-
 /***/ "next/dist/compiled/next-server/pages-api.runtime.dev.js":
 /*!**************************************************************************!*\
   !*** external "next/dist/compiled/next-server/pages-api.runtime.dev.js" ***!
@@ -343,17 +324,6 @@ module.exports = require("next/dist/compiled/next-server/pages-api.runtime.dev.j
 
 "use strict";
 module.exports = require("path");
-
-/***/ }),
-
-/***/ "react-native-url-polyfill/auto":
-/*!*************************************************!*\
-  !*** external "react-native-url-polyfill/auto" ***!
-  \*************************************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("react-native-url-polyfill/auto");
 
 /***/ })
 

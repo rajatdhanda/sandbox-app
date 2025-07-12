@@ -1,23 +1,15 @@
 // AUTO-GENERATED — DO NOT EDIT
 import { createClient } from '@supabase/supabase-js';
+import type { Database } from '../database.types';
 
-// Create the client directly here to avoid import issues
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false,
-    },
+function getSupabaseClient() {
+  const url = process.env.SUPABASE_URL!;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+  if (!url || !key) {
+    throw new Error('supabaseKey is required.');
   }
-);
+  return createClient<Database>(url, key);
+}
 
 export const announcementsClient = () =>
-  supabase.from('announcements');
-
-// Export typed operations
-export const getAnnouncements = () => announcementsClient().select('*');
-export const createAnnouncements = (data: any) => announcementsClient().insert(data);
-export const updateAnnouncements = (id: any, data: any) => announcementsClient().update(data).eq('id', id);
-export const deleteAnnouncements = (id: any) => announcementsClient().delete().eq('id', id);
+  getSupabaseClient().from<Database['public']['Tables']['announcements']['Row']>('announcements');

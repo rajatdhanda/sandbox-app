@@ -7,28 +7,40 @@ export type {
   Classes as Class,
   Children as Child,
   Announcements as Announcement,
-  Photos as Photo,
   Notifications as Notification,
+  Events as Event
 } from './_generated/generated-types';
 
 // Re-export all generated types with new names too
 export * from './_generated/generated-types';
 
-// Re-export generated clients
-export * from './_generated/clients/users';
-export * from './_generated/clients/classes';
-export * from './_generated/clients/children';
-export * from './_generated/clients/announcements';
-export * from './_generated/clients/photos';
-export * from './_generated/clients/notifications';
+// Import clients using direct imports to avoid circular dependencies
+import { createClient } from '@supabase/supabase-js';
 
-// Legacy compatibility - deprecated but helps during migration
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  }
+);
+
+// Export client functions directly
+export const usersClient = () => supabase.from('users');
+export const classesClient = () => supabase.from('classes');
+export const childrenClient = () => supabase.from('children');
+export const announcementsClient = () => supabase.from('announcements');
+export const notificationsClient = () => supabase.from('notifications');
+export const eventsClient = () => supabase.from('events');
+
+// Legacy helper functions
 export const getUsers = async () => {
-  const { usersClient } = await import('./_generated/clients/users');
   return usersClient().select('*');
 };
 
 export const getClasses = async () => {
-  const { classesClient } = await import('./_generated/clients/classes');
   return classesClient().select('*');
 };

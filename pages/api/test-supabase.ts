@@ -8,7 +8,7 @@ const supabase = createClient(
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const { data, error } = await supabase.from('users').select('*').limit(1);
+    const { data, error } = await usersClient().select('*').limit(1);
 
     if (error) {
       console.error('Supabase test error:', error);

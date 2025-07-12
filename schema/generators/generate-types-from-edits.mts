@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const editsPath = path.resolve(__dirname, '../schema-edits.json');
-const outputPath = path.resolve(__dirname, '../../lib/supabase/_generated/generated-types.ts');
+const outputPath = path.resolve(__dirname, '../../../lib/supabase/_generated/generated-types.ts');
 
 const sqlToTsType = (sqlType: string): string => {
   const map: Record<string, string> = {

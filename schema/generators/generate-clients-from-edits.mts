@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const editsPath = path.resolve(__dirname, '../schema-edits.json');
-const clientsDir = path.resolve(__dirname, '../lib/supabase/_generated/clients');
+const clientsDir = path.resolve(__dirname, '../../lib/supabase/_generated/clients');
 
 async function ensureDir(dir: string) {
   try {
@@ -28,43 +28,37 @@ async function generateClients() {
     const tables = JSON.parse(data);
     await ensureDir(clientsDir);
 
-    for (const table of tables) {
-      if (!table.name) continue;
+    const activeTables = tables.filter(
+      (table: any) => table.delete !== true && typeof table.name === 'string'
+    );
 
-      const typeName = toPascalCase(table.name);
-      const filePath = path.join(clientsDir, `${table.name}.ts`);
+    for (const table of activeTables) {
+      const tableName = table.name;
+      const typeName = toPascalCase(tableName);
+      const filePath = path.join(clientsDir, `${tableName}.ts`);
 
-      // Fixed version - creates client directly, no imports
-      const content = `// AUTO-GENERATED — DO NOT EDIT
+    const content = `// AUTO-GENERATED — DO NOT EDIT
 import { createClient } from '@supabase/supabase-js';
+import type { Database } from '../database.types';
 
-// Create the client directly here to avoid import issues
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false,
-    },
+function getSupabaseClient() {
+  const url = process.env.SUPABASE_URL!;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+  if (!url || !key) {
+    throw new Error('supabaseKey is required.');
   }
-);
+  return createClient<Database>(url, key);
+}
 
-export const ${table.name}Client = () =>
-  supabase.from('${table.name}');
-
-// Export typed operations
-export const get${typeName} = () => ${table.name}Client().select('*');
-export const create${typeName} = (data: any) => ${table.name}Client().insert(data);
-export const update${typeName} = (id: any, data: any) => ${table.name}Client().update(data).eq('id', id);
-export const delete${typeName} = (id: any) => ${table.name}Client().delete().eq('id', id);
+export const ${tableName}Client = () =>
+  getSupabaseClient().from<Database['public']['Tables']['${tableName}']['Row']>('${tableName}');
 `;
 
       await writeFile(filePath, content, 'utf-8');
       console.log(`✅ Generated client file: ${filePath}`);
     }
 
-    console.log(`🎉 Generated clients for ${tables.length} tables`);
+    console.log(`🎉 Generated clients for ${activeTables.length} tables`);
   } catch (err) {
     console.error('❌ Failed to generate clients:', err instanceof Error ? err.message : err);
   }
