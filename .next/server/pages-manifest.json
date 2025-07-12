@@ -2,7 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/debug-migration": "pages/api/debug-migration.js",
-  "/api/test-generated-clients-final": "pages/api/test-generated-clients-final.js",
-  "/api/hello": "pages/api/hello.js"
+  "/api/_dev/debug-migration": "pages/api/_dev/debug-migration.js",
+  "/api/create-user": "pages/api/create-user.js",
+  "/api/hello": "pages/api/hello.js",
+  "/api/_dev/test-generated-clients-final": "pages/api/_dev/test-generated-clients-final.js",
+  "/api/_dev/test-schema-robust": "pages/api/_dev/test-schema-robust.js"
 }

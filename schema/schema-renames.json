@@ -1,0 +1,12 @@
+{
+  "table_renames": {},
+  "column_renames": {},
+  "type_mappings": {
+    "uuid": "string",
+    "text": "string", 
+    "varchar": "string",
+    "boolean": "boolean",
+    "integer": "number",
+    "timestamp": "string"
+  }
+}
