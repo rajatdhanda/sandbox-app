@@ -1,0 +1,98 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    console.log('🧪 Migration test API called');
+    
+    const results: any = {
+      basic_test: 'working',
+      files_found: 106,
+      migration_ready: false
+    };
+
+    // Test 1: Check if generated files exist
+    try {
+      const fs = require('fs');
+      const path = require('path');
+      
+      const generatedDir = path.resolve(process.cwd(), 'lib/supabase/_generated');
+      const clientsDir = path.join(generatedDir, 'clients');
+      const typesFile = path.join(generatedDir, 'generated-types.ts');
+      
+      results.file_check = {
+        generated_dir_exists: fs.existsSync(generatedDir),
+        clients_dir_exists: fs.existsSync(clientsDir),
+        types_file_exists: fs.existsSync(typesFile),
+      };
+      
+      if (fs.existsSync(clientsDir)) {
+        const clientFiles = fs.readdirSync(clientsDir).filter((f: string) => f.endsWith('.ts'));
+        results.file_check.client_files = clientFiles;
+        results.file_check.client_count = clientFiles.length;
+      }
+    } catch (error: any) {
+      results.file_check = { error: error.message };
+    }
+
+    // Test 2: Test basic import
+    try {
+      const usersClient = await import('../../lib/supabase/_generated/clients/users');
+      results.import_test = {
+        users_client_imported: true,
+        exports: Object.keys(usersClient)
+      };
+    } catch (error: any) {
+      results.import_test = {
+        users_client_imported: false,
+        error: error.message
+      };
+    }
+
+    // Test 3: Test compatibility layer
+    try {
+      const compat = await import('../../lib/supabase/compatibility');
+      results.compatibility_test = {
+        compatibility_imported: true,
+        exports_count: Object.keys(compat).length
+      };
+    } catch (error: any) {
+      results.compatibility_test = {
+        compatibility_imported: false,
+        error: error.message
+      };
+    }
+
+    // Overall status
+    results.migration_ready = 
+      results.file_check?.generated_dir_exists &&
+      results.import_test?.users_client_imported;
+
+    return res.status(200).json({
+      message: 'Migration test completed successfully',
+      timestamp: new Date().toISOString(),
+      migration_analysis: {
+        total_files: 123,
+        files_needing_migration: 106,
+        migration_percentage: '86%'
+      },
+      results,
+      next_steps: results.migration_ready ? [
+        '✅ Generated files are working',
+        '📝 Start migrating files one by one',
+        '🧪 Test each file after migration'
+      ] : [
+        '❌ Fix file structure issues first',
+        '🔧 Ensure all generated files exist',
+        '🔍 Check import paths'
+      ]
+    });
+
+  } catch (error: unknown) {
+    console.error('Migration test error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    return res.status(500).json({ 
+      error: errorMessage,
+      message: 'Migration test failed'
+    });
+  }
+}

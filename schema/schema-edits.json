@@ -1,0 +1,3970 @@
+[
+  {
+    "table": "notifications",
+    "name": "notifications",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "title",
+          "type": "text"
+        },
+        "new": {
+          "name": "title",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "message",
+          "type": "text"
+        },
+        "new": {
+          "name": "message",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "type",
+          "type": "text"
+        },
+        "new": {
+          "name": "type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_read",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_read",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "action_url",
+          "type": "text"
+        },
+        "new": {
+          "name": "action_url",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "related_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "related_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "related_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "related_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "expires_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "expires_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "photos",
+    "name": "photos",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "image_url",
+          "type": "text"
+        },
+        "new": {
+          "name": "image_url",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "caption",
+          "type": "text"
+        },
+        "new": {
+          "name": "caption",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "activity_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "activity_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "photo_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "photo_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_shared_with_parents",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_shared_with_parents",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "album_name",
+          "type": "text"
+        },
+        "new": {
+          "name": "album_name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "album_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "album_id",
+          "type": "uuid"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "classes",
+    "name": "classes",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "name",
+          "type": "text"
+        },
+        "new": {
+          "name": "name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "age_group",
+          "type": "text"
+        },
+        "new": {
+          "name": "age_group",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "capacity",
+          "type": "integer"
+        },
+        "new": {
+          "name": "capacity",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "schedule_start",
+          "type": "time without time zone"
+        },
+        "new": {
+          "name": "schedule_start",
+          "type": "time without time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "schedule_end",
+          "type": "time without time zone"
+        },
+        "new": {
+          "name": "schedule_end",
+          "type": "time without time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "color_code",
+          "type": "text"
+        },
+        "new": {
+          "name": "color_code",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "children",
+    "name": "children",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "first_name",
+          "type": "text"
+        },
+        "new": {
+          "name": "first_name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "last_name",
+          "type": "text"
+        },
+        "new": {
+          "name": "last_name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "date_of_birth",
+          "type": "date"
+        },
+        "new": {
+          "name": "date_of_birth",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "medical_notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "medical_notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "allergies",
+          "type": "text"
+        },
+        "new": {
+          "name": "allergies",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "emergency_contact",
+          "type": "text"
+        },
+        "new": {
+          "name": "emergency_contact",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "emergency_phone",
+          "type": "text"
+        },
+        "new": {
+          "name": "emergency_phone",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "pickup_authorized_users",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "pickup_authorized_users",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "enrollment_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "enrollment_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "parent_child_relationships",
+    "name": "parent_child_relationships",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "parent_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "parent_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "relationship_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "relationship_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_primary",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_primary",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "class_assignments",
+    "name": "class_assignments",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_primary",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_primary",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "assigned_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "assigned_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "config_fields",
+    "name": "config_fields",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "category",
+          "type": "text"
+        },
+        "new": {
+          "name": "category",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "label",
+          "type": "text"
+        },
+        "new": {
+          "name": "label",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "value",
+          "type": "text"
+        },
+        "new": {
+          "name": "value",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "sort_order",
+          "type": "integer"
+        },
+        "new": {
+          "name": "sort_order",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "daily_logs",
+    "name": "daily_logs",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "log_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "log_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "activity_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "activity_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "mood",
+          "type": "text"
+        },
+        "new": {
+          "name": "mood",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "skill_tags",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "skill_tags",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "duration_minutes",
+          "type": "integer"
+        },
+        "new": {
+          "name": "duration_minutes",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "worksheets",
+    "name": "worksheets",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "title",
+          "type": "text"
+        },
+        "new": {
+          "name": "title",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "worksheet_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "worksheet_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "skill_areas",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "skill_areas",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "completion_status",
+          "type": "text"
+        },
+        "new": {
+          "name": "completion_status",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "score",
+          "type": "integer"
+        },
+        "new": {
+          "name": "score",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "max_score",
+          "type": "integer"
+        },
+        "new": {
+          "name": "max_score",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "due_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "due_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "completed_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "completed_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "file_url",
+          "type": "text"
+        },
+        "new": {
+          "name": "file_url",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "users",
+    "name": "users",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "email",
+          "type": "text"
+        },
+        "new": {
+          "name": "email",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "full_name",
+          "type": "text"
+        },
+        "new": {
+          "name": "full_name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "role",
+          "type": "text"
+        },
+        "new": {
+          "name": "role",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "phone",
+          "type": "text"
+        },
+        "new": {
+          "name": "phone",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "address",
+          "type": "text"
+        },
+        "new": {
+          "name": "address",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "emergency_contact",
+          "type": "text"
+        },
+        "new": {
+          "name": "emergency_contact",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "emergency_phone",
+          "type": "text"
+        },
+        "new": {
+          "name": "emergency_phone",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "attendance",
+    "name": "attendance",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "attendance_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "attendance_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "check_in_time",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "check_in_time",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "check_out_time",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "check_out_time",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "checked_in_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "checked_in_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "checked_out_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "checked_out_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "status",
+          "type": "text"
+        },
+        "new": {
+          "name": "status",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "milestones",
+    "name": "milestones",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "title",
+          "type": "text"
+        },
+        "new": {
+          "name": "title",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "category",
+          "type": "text"
+        },
+        "new": {
+          "name": "category",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "achievement_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "achievement_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_shared_with_parents",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_shared_with_parents",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "photos",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "photos",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "announcements",
+    "name": "announcements",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "author_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "author_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "title",
+          "type": "text"
+        },
+        "new": {
+          "name": "title",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "content",
+          "type": "text"
+        },
+        "new": {
+          "name": "content",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "type",
+          "type": "text"
+        },
+        "new": {
+          "name": "type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "target_audience",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "target_audience",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_published",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_published",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "publish_date",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "publish_date",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "expires_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "expires_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "attachments",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "attachments",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "events",
+    "name": "events",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "title",
+          "type": "text"
+        },
+        "new": {
+          "name": "title",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "event_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "event_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "start_date",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "start_date",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "end_date",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "end_date",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "location",
+          "type": "text"
+        },
+        "new": {
+          "name": "location",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "organizer_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "organizer_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "class_ids",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "class_ids",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_all_classes",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_all_classes",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "requires_permission",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "requires_permission",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "max_participants",
+          "type": "integer"
+        },
+        "new": {
+          "name": "max_participants",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "current_participants",
+          "type": "integer"
+        },
+        "new": {
+          "name": "current_participants",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "status",
+          "type": "text"
+        },
+        "new": {
+          "name": "status",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "messages",
+    "name": "messages",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "sender_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "sender_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "recipient_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "recipient_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "subject",
+          "type": "text"
+        },
+        "new": {
+          "name": "subject",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "content",
+          "type": "text"
+        },
+        "new": {
+          "name": "content",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "message_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "message_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_read",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_read",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "parent_message_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "parent_message_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "thread_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "thread_id",
+          "type": "uuid"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "message_threads",
+    "name": "message_threads",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "subject",
+          "type": "text"
+        },
+        "new": {
+          "name": "subject",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "participants",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "participants",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "last_message_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "last_message_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_archived",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_archived",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "thread_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "thread_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "photo_albums",
+    "name": "photo_albums",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "name",
+          "type": "text"
+        },
+        "new": {
+          "name": "name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "cover_photo_url",
+          "type": "text"
+        },
+        "new": {
+          "name": "cover_photo_url",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_shared_with_parents",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_shared_with_parents",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "student_progress",
+    "name": "student_progress",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "subject_area",
+          "type": "text"
+        },
+        "new": {
+          "name": "subject_area",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "skill_name",
+          "type": "text"
+        },
+        "new": {
+          "name": "skill_name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "current_level",
+          "type": "text"
+        },
+        "new": {
+          "name": "current_level",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "target_level",
+          "type": "text"
+        },
+        "new": {
+          "name": "target_level",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "progress_percentage",
+          "type": "integer"
+        },
+        "new": {
+          "name": "progress_percentage",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "assessment_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "assessment_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "next_steps",
+          "type": "text"
+        },
+        "new": {
+          "name": "next_steps",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "curriculum",
+    "name": "curriculum",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "name",
+          "type": "text"
+        },
+        "new": {
+          "name": "name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "age_group",
+          "type": "text"
+        },
+        "new": {
+          "name": "age_group",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "subject_area",
+          "type": "text"
+        },
+        "new": {
+          "name": "subject_area",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "difficulty_level",
+          "type": "text"
+        },
+        "new": {
+          "name": "difficulty_level",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "duration_weeks",
+          "type": "integer"
+        },
+        "new": {
+          "name": "duration_weeks",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "learning_objectives",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "learning_objectives",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "created_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "photo_tags",
+    "name": "photo_tags",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "photo_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "photo_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "tag_name",
+          "type": "text"
+        },
+        "new": {
+          "name": "tag_name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "tag_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "tag_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "created_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "system_logs",
+    "name": "system_logs",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "action",
+          "type": "text"
+        },
+        "new": {
+          "name": "action",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "table_name",
+          "type": "text"
+        },
+        "new": {
+          "name": "table_name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "record_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "record_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "old_values",
+          "type": "jsonb"
+        },
+        "new": {
+          "name": "old_values",
+          "type": "jsonb"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "new_values",
+          "type": "jsonb"
+        },
+        "new": {
+          "name": "new_values",
+          "type": "jsonb"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "ip_address",
+          "type": "text"
+        },
+        "new": {
+          "name": "ip_address",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "user_agent",
+          "type": "text"
+        },
+        "new": {
+          "name": "user_agent",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "severity",
+          "type": "text"
+        },
+        "new": {
+          "name": "severity",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "attendance_records",
+    "name": "attendance_records",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "child_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "attendance_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "attendance_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "check_in_time",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "check_in_time",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "check_out_time",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "check_out_time",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "status",
+          "type": "text"
+        },
+        "new": {
+          "name": "status",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "checked_in_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "checked_in_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "checked_out_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "checked_out_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "parent_notified",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "parent_notified",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "reports",
+    "name": "reports",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "title",
+          "type": "text"
+        },
+        "new": {
+          "name": "title",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "report_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "report_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "parameters",
+          "type": "jsonb"
+        },
+        "new": {
+          "name": "parameters",
+          "type": "jsonb"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "generated_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "generated_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "file_url",
+          "type": "text"
+        },
+        "new": {
+          "name": "file_url",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "status",
+          "type": "text"
+        },
+        "new": {
+          "name": "status",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "date_range_start",
+          "type": "date"
+        },
+        "new": {
+          "name": "date_range_start",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "date_range_end",
+          "type": "date"
+        },
+        "new": {
+          "name": "date_range_end",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "completed_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "completed_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "curriculum_assignments",
+    "name": "curriculum_assignments",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "curriculum_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "curriculum_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "assigned_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "assigned_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "start_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "start_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "end_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "end_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "curriculum_items",
+    "name": "curriculum_items",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "curriculum_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "curriculum_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "title",
+          "type": "text"
+        },
+        "new": {
+          "name": "title",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "activity_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "activity_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "materials_needed",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "materials_needed",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "instructions",
+          "type": "text"
+        },
+        "new": {
+          "name": "instructions",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "learning_goals",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "learning_goals",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "assessment_criteria",
+          "type": "text"
+        },
+        "new": {
+          "name": "assessment_criteria",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "week_number",
+          "type": "integer"
+        },
+        "new": {
+          "name": "week_number",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "day_number",
+          "type": "integer"
+        },
+        "new": {
+          "name": "day_number",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "time_slot_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "time_slot_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "estimated_duration",
+          "type": "integer"
+        },
+        "new": {
+          "name": "estimated_duration",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "difficulty_level",
+          "type": "text"
+        },
+        "new": {
+          "name": "difficulty_level",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "skills_developed",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "skills_developed",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "preparation_notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "preparation_notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "time_slots",
+    "name": "time_slots",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "name",
+          "type": "text"
+        },
+        "new": {
+          "name": "name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "start_time",
+          "type": "time without time zone"
+        },
+        "new": {
+          "name": "start_time",
+          "type": "time without time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "end_time",
+          "type": "time without time zone"
+        },
+        "new": {
+          "name": "end_time",
+          "type": "time without time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "duration_minutes",
+          "type": "integer"
+        },
+        "new": {
+          "name": "duration_minutes",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "sort_order",
+          "type": "integer"
+        },
+        "new": {
+          "name": "sort_order",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "curriculum_templates",
+    "name": "curriculum_templates",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "name",
+          "type": "text"
+        },
+        "new": {
+          "name": "name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "description",
+          "type": "text"
+        },
+        "new": {
+          "name": "description",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "age_group",
+          "type": "text"
+        },
+        "new": {
+          "name": "age_group",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "subject_area",
+          "type": "text"
+        },
+        "new": {
+          "name": "subject_area",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "difficulty_level",
+          "type": "text"
+        },
+        "new": {
+          "name": "difficulty_level",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "total_weeks",
+          "type": "integer"
+        },
+        "new": {
+          "name": "total_weeks",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "learning_objectives",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "learning_objectives",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "materials_list",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "materials_list",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "assessment_criteria",
+          "type": "text"
+        },
+        "new": {
+          "name": "assessment_criteria",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "created_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "import_source",
+          "type": "text"
+        },
+        "new": {
+          "name": "import_source",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "import_reference",
+          "type": "text"
+        },
+        "new": {
+          "name": "import_reference",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_template",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_template",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "new": {
+          "name": "is_active",
+          "type": "boolean"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "curriculum_executions",
+    "name": "curriculum_executions",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "curriculum_item_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "curriculum_item_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "class_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "teacher_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "execution_date",
+          "type": "date"
+        },
+        "new": {
+          "name": "execution_date",
+          "type": "date"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "actual_start_time",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "actual_start_time",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "actual_end_time",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "actual_end_time",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "actual_duration",
+          "type": "integer"
+        },
+        "new": {
+          "name": "actual_duration",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "completion_status",
+          "type": "text"
+        },
+        "new": {
+          "name": "completion_status",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "modifications_made",
+          "type": "text"
+        },
+        "new": {
+          "name": "modifications_made",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "student_engagement",
+          "type": "text"
+        },
+        "new": {
+          "name": "student_engagement",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "materials_used",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "materials_used",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "challenges_faced",
+          "type": "text"
+        },
+        "new": {
+          "name": "challenges_faced",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "notes",
+          "type": "text"
+        },
+        "new": {
+          "name": "notes",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "photos",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "photos",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "next_steps",
+          "type": "text"
+        },
+        "new": {
+          "name": "next_steps",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "updated_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  },
+  {
+    "table": "curriculum_imports",
+    "name": "curriculum_imports",
+    "columns": [
+      {
+        "old": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "import_type",
+          "type": "text"
+        },
+        "new": {
+          "name": "import_type",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "source_url",
+          "type": "text"
+        },
+        "new": {
+          "name": "source_url",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "source_name",
+          "type": "text"
+        },
+        "new": {
+          "name": "source_name",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "imported_by",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "imported_by",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "curriculum_template_id",
+          "type": "uuid"
+        },
+        "new": {
+          "name": "curriculum_template_id",
+          "type": "uuid"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "import_status",
+          "type": "text"
+        },
+        "new": {
+          "name": "import_status",
+          "type": "text"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "records_imported",
+          "type": "integer"
+        },
+        "new": {
+          "name": "records_imported",
+          "type": "integer"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "errors_encountered",
+          "type": "ARRAY"
+        },
+        "new": {
+          "name": "errors_encountered",
+          "type": "ARRAY"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "import_log",
+          "type": "jsonb"
+        },
+        "new": {
+          "name": "import_log",
+          "type": "jsonb"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "created_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      },
+      {
+        "old": {
+          "name": "completed_at",
+          "type": "timestamp with time zone"
+        },
+        "new": {
+          "name": "completed_at",
+          "type": "timestamp with time zone"
+        },
+        "delete": false
+      }
+    ],
+    "fields": {},
+    "relations": {},
+    "timestamp": "2025-07-12T13:10:31.823Z"
+  }
+]

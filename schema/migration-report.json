@@ -1,0 +1,1233 @@
+{
+  "summary": {
+    "totalFiles": 123,
+    "filesToMigrate": 106,
+    "migrationNeeded": true
+  },
+  "files": [
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/_layout.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/activities.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/admin-config.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/attendance.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/classes.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/index.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/messages.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Announcement\" - might need to update to \"Announcements\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/photos.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/reports.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/schedule.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/settings.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"Database\" - might need to update to \"Database\"",
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/user-management-page.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '../../lib/supabase'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/app/(tabs)/users.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/RoleRouter.tsx",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/AdminDashboard.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'",
+        "import { getNotifications, getAnnouncements, getUpcomingEvents } from '@/lib/supabase/queries'",
+        "import type { Notification, Announcement, Event } from '@/lib/supabase/types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Database\" - might need to update to \"Database\"",
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Announcement\" - might need to update to \"Announcements\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses type \"CurriculumAssignment\" - might need to update to \"CurriculumAssignments\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/AttendanceManagement.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/ChildrenManagement.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'",
+        "import { Child, Class, User } from '@/lib/supabase/types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/ClassManagement.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/ClassroomAssignmentFlow.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/CurriculumAssignmentFlow.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"CurriculumAssignment\" - might need to update to \"CurriculumAssignments\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/CurriculumManagement.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"CurriculumAssignment\" - might need to update to \"CurriculumAssignments\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/PhotoManagement.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/SystemLogs.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/admin/UserManagement.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'",
+        "import { User } from '@/lib/supabase/types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/auth/AuthProvider.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'",
+        "import type { User } from '@/lib/supabase/types'",
+        "import { Session } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/auth/LoginScreen.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '../../lib/supabase'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/forms/ActivityLogForm.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/parent/ParentDashboard.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'",
+        "import { Child, DailyLog, Photo } from '@/lib/supabase/types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/teacher/CurriculumExecution.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/teacher/TeacherCurriculumExecution.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/components/teacher/TeacherDashboard.tsx",
+      "hasOldImports": true,
+      "oldImports": [
+        "import type { Child, Class } from '@/lib/supabase/types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/announcements.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Announcement\" - might need to update to \"Announcements\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/attendance.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/attendance_records.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/children.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/class_assignments.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/classes.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/config_fields.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/curriculum.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/curriculum_assignments.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"CurriculumAssignment\" - might need to update to \"CurriculumAssignments\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/curriculum_executions.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/curriculum_imports.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/curriculum_items.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/curriculum_templates.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/daily_logs.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/events.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/message_threads.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/messages.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/milestones.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/notifications.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/parent_child_relationships.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/photo_albums.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/photo_tags.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/photos.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/reports.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/student_progress.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/system_logs.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/test_notification.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase/clients'",
+        "import { Database } from '@/lib/supabase/types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Database\" - might need to update to \"Database\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/time_slots.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/users.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/clients/worksheets.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/generated-types.ts",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Announcement\" - might need to update to \"Announcements\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses type \"CurriculumAssignment\" - might need to update to \"CurriculumAssignments\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/index.ts",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Announcement\" - might need to update to \"Announcements\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses type \"CurriculumAssignment\" - might need to update to \"CurriculumAssignments\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/announcements.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Announcement\" - might need to update to \"Announcements\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/attendance.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/attendance_records.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/children.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/class_assignments.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/classes.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/config_fields.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/curriculum.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/curriculum_assignments.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"CurriculumAssignment\" - might need to update to \"CurriculumAssignments\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/curriculum_executions.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/curriculum_imports.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/curriculum_items.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/curriculum_templates.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/daily_logs.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/events.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/message_threads.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/messages.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/milestones.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/notifications.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/parent_child_relationships.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/photo_albums.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/photo_tags.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/photos.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/reports.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/student_progress.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/system_logs.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/time_slots.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/users.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/_generated/queries/worksheets.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/clients.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/compatibility.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'",
+        "import { usersClient } from '@/lib/supabase/_generated/clients/users'",
+        "import { classesClient } from '@/lib/supabase/_generated/clients/classes'"
+      ],
+      "potentialIssues": [],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/queries.ts",
+      "hasOldImports": false,
+      "oldImports": [],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Announcement\" - might need to update to \"Announcements\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/server-clients.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'",
+        "import type { Database } from './types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Database\" - might need to update to \"Database\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase/types.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import type { Class } from './types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Database\" - might need to update to \"Database\"",
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Announcement\" - might need to update to \"Announcements\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\"",
+        "Uses type \"CurriculumAssignment\" - might need to update to \"CurriculumAssignments\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase-server.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'",
+        "import type { Database } from './types'"
+      ],
+      "potentialIssues": [
+        "Uses type \"Database\" - might need to update to \"Database\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/lib/supabase.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses type \"Class\" - might need to update to \"Classes\"",
+        "Uses type \"Child\" - might need to update to \"Children\"",
+        "Uses type \"Announcement\" - might need to update to \"Announcements\"",
+        "Uses type \"Photo\" - might need to update to \"Photos\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/pages/api/create-user.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\"",
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/pages/api/test-auth.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase'"
+      ],
+      "potentialIssues": [
+        "Uses type \"User\" - might need to update to \"Users\""
+      ],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/pages/api/test-db.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { supabase } from '@/lib/supabase-server'"
+      ],
+      "potentialIssues": [],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/pages/api/test-notifications.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/pages/api/test-schema-pipeline.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/pages/api/test-schema-robust.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [],
+      "suggestions": []
+    },
+    {
+      "file": "/Users/rajatdhanda/sandbox/sandbox-app/sandbox-app-1/pages/api/test-supabase.ts",
+      "hasOldImports": true,
+      "oldImports": [
+        "import { createClient } from '@supabase/supabase-js'"
+      ],
+      "potentialIssues": [
+        "Uses direct supabase.from() - consider using generated clients"
+      ],
+      "suggestions": []
+    }
+  ],
+  "recommendations": [
+    "1. Update import paths to use @/lib/supabase/_generated/*",
+    "2. Update type names from singular to plural (User -> Users)",
+    "3. Replace direct supabase.from() calls with generated clients",
+    "4. Test each migrated component thoroughly",
+    "5. Use the generated clients for type safety"
+  ]
+}

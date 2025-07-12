@@ -1,0 +1,1466 @@
+{
+  "notifications": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "message",
+        "type": "text"
+      },
+      {
+        "name": "type",
+        "type": "text"
+      },
+      {
+        "name": "is_read",
+        "type": "boolean"
+      },
+      {
+        "name": "action_url",
+        "type": "text"
+      },
+      {
+        "name": "related_id",
+        "type": "uuid"
+      },
+      {
+        "name": "related_type",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "photos": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "teacher_id",
+        "type": "uuid"
+      },
+      {
+        "name": "image_url",
+        "type": "text"
+      },
+      {
+        "name": "caption",
+        "type": "text"
+      },
+      {
+        "name": "activity_type",
+        "type": "text"
+      },
+      {
+        "name": "photo_date",
+        "type": "date"
+      },
+      {
+        "name": "is_shared_with_parents",
+        "type": "boolean"
+      },
+      {
+        "name": "album_name",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "album_id",
+        "type": "uuid"
+      }
+    ]
+  },
+  "classes": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "age_group",
+        "type": "text"
+      },
+      {
+        "name": "capacity",
+        "type": "integer"
+      },
+      {
+        "name": "schedule_start",
+        "type": "time without time zone"
+      },
+      {
+        "name": "schedule_end",
+        "type": "time without time zone"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "color_code",
+        "type": "text"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "children": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "first_name",
+        "type": "text"
+      },
+      {
+        "name": "last_name",
+        "type": "text"
+      },
+      {
+        "name": "date_of_birth",
+        "type": "date"
+      },
+      {
+        "name": "class_id",
+        "type": "uuid"
+      },
+      {
+        "name": "medical_notes",
+        "type": "text"
+      },
+      {
+        "name": "allergies",
+        "type": "text"
+      },
+      {
+        "name": "emergency_contact",
+        "type": "text"
+      },
+      {
+        "name": "emergency_phone",
+        "type": "text"
+      },
+      {
+        "name": "pickup_authorized_users",
+        "type": "ARRAY"
+      },
+      {
+        "name": "enrollment_date",
+        "type": "date"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "parent_child_relationships": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "parent_id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "relationship_type",
+        "type": "text"
+      },
+      {
+        "name": "is_primary",
+        "type": "boolean"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "class_assignments": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "teacher_id",
+        "type": "uuid"
+      },
+      {
+        "name": "class_id",
+        "type": "uuid"
+      },
+      {
+        "name": "is_primary",
+        "type": "boolean"
+      },
+      {
+        "name": "assigned_date",
+        "type": "date"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "config_fields": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "category",
+        "type": "text"
+      },
+      {
+        "name": "label",
+        "type": "text"
+      },
+      {
+        "name": "value",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "sort_order",
+        "type": "integer"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "daily_logs": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "teacher_id",
+        "type": "uuid"
+      },
+      {
+        "name": "log_date",
+        "type": "date"
+      },
+      {
+        "name": "activity_type",
+        "type": "text"
+      },
+      {
+        "name": "mood",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "skill_tags",
+        "type": "ARRAY"
+      },
+      {
+        "name": "duration_minutes",
+        "type": "integer"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "worksheets": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "teacher_id",
+        "type": "uuid"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "worksheet_type",
+        "type": "text"
+      },
+      {
+        "name": "skill_areas",
+        "type": "ARRAY"
+      },
+      {
+        "name": "completion_status",
+        "type": "text"
+      },
+      {
+        "name": "score",
+        "type": "integer"
+      },
+      {
+        "name": "max_score",
+        "type": "integer"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "due_date",
+        "type": "date"
+      },
+      {
+        "name": "completed_date",
+        "type": "date"
+      },
+      {
+        "name": "file_url",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "users": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "email",
+        "type": "text"
+      },
+      {
+        "name": "full_name",
+        "type": "text"
+      },
+      {
+        "name": "role",
+        "type": "text"
+      },
+      {
+        "name": "phone",
+        "type": "text"
+      },
+      {
+        "name": "address",
+        "type": "text"
+      },
+      {
+        "name": "emergency_contact",
+        "type": "text"
+      },
+      {
+        "name": "emergency_phone",
+        "type": "text"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "attendance": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "attendance_date",
+        "type": "date"
+      },
+      {
+        "name": "check_in_time",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "check_out_time",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "checked_in_by",
+        "type": "uuid"
+      },
+      {
+        "name": "checked_out_by",
+        "type": "uuid"
+      },
+      {
+        "name": "status",
+        "type": "text"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "milestones": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "teacher_id",
+        "type": "uuid"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "category",
+        "type": "text"
+      },
+      {
+        "name": "achievement_date",
+        "type": "date"
+      },
+      {
+        "name": "is_shared_with_parents",
+        "type": "boolean"
+      },
+      {
+        "name": "photos",
+        "type": "ARRAY"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "announcements": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "author_id",
+        "type": "uuid"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "content",
+        "type": "text"
+      },
+      {
+        "name": "type",
+        "type": "text"
+      },
+      {
+        "name": "target_audience",
+        "type": "ARRAY"
+      },
+      {
+        "name": "is_published",
+        "type": "boolean"
+      },
+      {
+        "name": "publish_date",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "expires_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "attachments",
+        "type": "ARRAY"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "events": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "event_type",
+        "type": "text"
+      },
+      {
+        "name": "start_date",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "end_date",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "location",
+        "type": "text"
+      },
+      {
+        "name": "organizer_id",
+        "type": "uuid"
+      },
+      {
+        "name": "class_ids",
+        "type": "ARRAY"
+      },
+      {
+        "name": "is_all_classes",
+        "type": "boolean"
+      },
+      {
+        "name": "requires_permission",
+        "type": "boolean"
+      },
+      {
+        "name": "max_participants",
+        "type": "integer"
+      },
+      {
+        "name": "current_participants",
+        "type": "integer"
+      },
+      {
+        "name": "status",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "messages": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "sender_id",
+        "type": "uuid"
+      },
+      {
+        "name": "recipient_id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "subject",
+        "type": "text"
+      },
+      {
+        "name": "content",
+        "type": "text"
+      },
+      {
+        "name": "message_type",
+        "type": "text"
+      },
+      {
+        "name": "is_read",
+        "type": "boolean"
+      },
+      {
+        "name": "parent_message_id",
+        "type": "uuid"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "thread_id",
+        "type": "uuid"
+      }
+    ]
+  },
+  "message_threads": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "subject",
+        "type": "text"
+      },
+      {
+        "name": "participants",
+        "type": "ARRAY"
+      },
+      {
+        "name": "last_message_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "is_archived",
+        "type": "boolean"
+      },
+      {
+        "name": "thread_type",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "photo_albums": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "class_id",
+        "type": "uuid"
+      },
+      {
+        "name": "teacher_id",
+        "type": "uuid"
+      },
+      {
+        "name": "cover_photo_url",
+        "type": "text"
+      },
+      {
+        "name": "is_shared_with_parents",
+        "type": "boolean"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "student_progress": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "teacher_id",
+        "type": "uuid"
+      },
+      {
+        "name": "subject_area",
+        "type": "text"
+      },
+      {
+        "name": "skill_name",
+        "type": "text"
+      },
+      {
+        "name": "current_level",
+        "type": "text"
+      },
+      {
+        "name": "target_level",
+        "type": "text"
+      },
+      {
+        "name": "progress_percentage",
+        "type": "integer"
+      },
+      {
+        "name": "assessment_date",
+        "type": "date"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "next_steps",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "curriculum": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "age_group",
+        "type": "text"
+      },
+      {
+        "name": "subject_area",
+        "type": "text"
+      },
+      {
+        "name": "difficulty_level",
+        "type": "text"
+      },
+      {
+        "name": "duration_weeks",
+        "type": "integer"
+      },
+      {
+        "name": "learning_objectives",
+        "type": "ARRAY"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "created_by",
+        "type": "uuid"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "photo_tags": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "photo_id",
+        "type": "uuid"
+      },
+      {
+        "name": "tag_name",
+        "type": "text"
+      },
+      {
+        "name": "tag_type",
+        "type": "text"
+      },
+      {
+        "name": "created_by",
+        "type": "uuid"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "system_logs": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "user_id",
+        "type": "uuid"
+      },
+      {
+        "name": "action",
+        "type": "text"
+      },
+      {
+        "name": "table_name",
+        "type": "text"
+      },
+      {
+        "name": "record_id",
+        "type": "uuid"
+      },
+      {
+        "name": "old_values",
+        "type": "jsonb"
+      },
+      {
+        "name": "new_values",
+        "type": "jsonb"
+      },
+      {
+        "name": "ip_address",
+        "type": "text"
+      },
+      {
+        "name": "user_agent",
+        "type": "text"
+      },
+      {
+        "name": "severity",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "attendance_records": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "child_id",
+        "type": "uuid"
+      },
+      {
+        "name": "class_id",
+        "type": "uuid"
+      },
+      {
+        "name": "attendance_date",
+        "type": "date"
+      },
+      {
+        "name": "check_in_time",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "check_out_time",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "status",
+        "type": "text"
+      },
+      {
+        "name": "checked_in_by",
+        "type": "uuid"
+      },
+      {
+        "name": "checked_out_by",
+        "type": "uuid"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "parent_notified",
+        "type": "boolean"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "reports": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "report_type",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "parameters",
+        "type": "jsonb"
+      },
+      {
+        "name": "generated_by",
+        "type": "uuid"
+      },
+      {
+        "name": "file_url",
+        "type": "text"
+      },
+      {
+        "name": "status",
+        "type": "text"
+      },
+      {
+        "name": "date_range_start",
+        "type": "date"
+      },
+      {
+        "name": "date_range_end",
+        "type": "date"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "completed_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "curriculum_assignments": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "curriculum_id",
+        "type": "uuid"
+      },
+      {
+        "name": "class_id",
+        "type": "uuid"
+      },
+      {
+        "name": "assigned_by",
+        "type": "uuid"
+      },
+      {
+        "name": "start_date",
+        "type": "date"
+      },
+      {
+        "name": "end_date",
+        "type": "date"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "curriculum_items": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "curriculum_id",
+        "type": "uuid"
+      },
+      {
+        "name": "title",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "activity_type",
+        "type": "text"
+      },
+      {
+        "name": "materials_needed",
+        "type": "ARRAY"
+      },
+      {
+        "name": "instructions",
+        "type": "text"
+      },
+      {
+        "name": "learning_goals",
+        "type": "ARRAY"
+      },
+      {
+        "name": "assessment_criteria",
+        "type": "text"
+      },
+      {
+        "name": "week_number",
+        "type": "integer"
+      },
+      {
+        "name": "day_number",
+        "type": "integer"
+      },
+      {
+        "name": "time_slot_id",
+        "type": "uuid"
+      },
+      {
+        "name": "estimated_duration",
+        "type": "integer"
+      },
+      {
+        "name": "difficulty_level",
+        "type": "text"
+      },
+      {
+        "name": "skills_developed",
+        "type": "ARRAY"
+      },
+      {
+        "name": "preparation_notes",
+        "type": "text"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "time_slots": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "start_time",
+        "type": "time without time zone"
+      },
+      {
+        "name": "end_time",
+        "type": "time without time zone"
+      },
+      {
+        "name": "duration_minutes",
+        "type": "integer"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "sort_order",
+        "type": "integer"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "curriculum_templates": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "name",
+        "type": "text"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "name": "age_group",
+        "type": "text"
+      },
+      {
+        "name": "subject_area",
+        "type": "text"
+      },
+      {
+        "name": "difficulty_level",
+        "type": "text"
+      },
+      {
+        "name": "total_weeks",
+        "type": "integer"
+      },
+      {
+        "name": "learning_objectives",
+        "type": "ARRAY"
+      },
+      {
+        "name": "materials_list",
+        "type": "ARRAY"
+      },
+      {
+        "name": "assessment_criteria",
+        "type": "text"
+      },
+      {
+        "name": "created_by",
+        "type": "uuid"
+      },
+      {
+        "name": "import_source",
+        "type": "text"
+      },
+      {
+        "name": "import_reference",
+        "type": "text"
+      },
+      {
+        "name": "is_template",
+        "type": "boolean"
+      },
+      {
+        "name": "is_active",
+        "type": "boolean"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "curriculum_executions": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "curriculum_item_id",
+        "type": "uuid"
+      },
+      {
+        "name": "class_id",
+        "type": "uuid"
+      },
+      {
+        "name": "teacher_id",
+        "type": "uuid"
+      },
+      {
+        "name": "execution_date",
+        "type": "date"
+      },
+      {
+        "name": "actual_start_time",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "actual_end_time",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "actual_duration",
+        "type": "integer"
+      },
+      {
+        "name": "completion_status",
+        "type": "text"
+      },
+      {
+        "name": "modifications_made",
+        "type": "text"
+      },
+      {
+        "name": "student_engagement",
+        "type": "text"
+      },
+      {
+        "name": "materials_used",
+        "type": "ARRAY"
+      },
+      {
+        "name": "challenges_faced",
+        "type": "text"
+      },
+      {
+        "name": "notes",
+        "type": "text"
+      },
+      {
+        "name": "photos",
+        "type": "ARRAY"
+      },
+      {
+        "name": "next_steps",
+        "type": "text"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "updated_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  },
+  "curriculum_imports": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "uuid"
+      },
+      {
+        "name": "import_type",
+        "type": "text"
+      },
+      {
+        "name": "source_url",
+        "type": "text"
+      },
+      {
+        "name": "source_name",
+        "type": "text"
+      },
+      {
+        "name": "imported_by",
+        "type": "uuid"
+      },
+      {
+        "name": "curriculum_template_id",
+        "type": "uuid"
+      },
+      {
+        "name": "import_status",
+        "type": "text"
+      },
+      {
+        "name": "records_imported",
+        "type": "integer"
+      },
+      {
+        "name": "errors_encountered",
+        "type": "ARRAY"
+      },
+      {
+        "name": "import_log",
+        "type": "jsonb"
+      },
+      {
+        "name": "created_at",
+        "type": "timestamp with time zone"
+      },
+      {
+        "name": "completed_at",
+        "type": "timestamp with time zone"
+      }
+    ]
+  }
+}

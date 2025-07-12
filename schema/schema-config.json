@@ -1,0 +1,19 @@
+{
+  "curriculum_assignments": {
+    "description": "Stores curriculum activity assignments for each class",
+    "fields": {
+      "id": "uuid",
+      "class_id": "uuid",
+      "activity_id": "uuid",
+      "start_date": "date",
+      "end_date": "date",
+      "status": "text",
+      "created_at": "timestamp",
+      "updated_at": "timestamp"
+    },
+    "relations": {
+      "class_id": "classes.id",
+      "activity_id": "activities.id"
+    }
+  }
+}

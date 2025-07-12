@@ -1,0 +1,25 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+exports.id = "_api-node_lib_supabase__generated_clients_photos_ts";
+exports.ids = ["_api-node_lib_supabase__generated_clients_photos_ts"];
+exports.modules = {
+
+/***/ "(api-node)/./lib/supabase/_generated/clients/photos.ts":
+/*!***************************************************!*\
+  !*** ./lib/supabase/_generated/clients/photos.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createPhotos: () => (/* binding */ createPhotos),\n/* harmony export */   deletePhotos: () => (/* binding */ deletePhotos),\n/* harmony export */   getPhotos: () => (/* binding */ getPhotos),\n/* harmony export */   photosClient: () => (/* binding */ photosClient),\n/* harmony export */   updatePhotos: () => (/* binding */ updatePhotos)\n/* harmony export */ });\n/* harmony import */ var _supabase_supabase_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @supabase/supabase-js */ \"@supabase/supabase-js\");\n/* harmony import */ var _supabase_supabase_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_supabase_supabase_js__WEBPACK_IMPORTED_MODULE_0__);\n// AUTO-GENERATED — DO NOT EDIT\n\n// Create the client directly here to avoid import issues\nconst supabase = (0,_supabase_supabase_js__WEBPACK_IMPORTED_MODULE_0__.createClient)(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {\n    auth: {\n        autoRefreshToken: false,\n        persistSession: false\n    }\n});\nconst photosClient = ()=>supabase.from('photos');\n// Export typed operations\nconst getPhotos = ()=>photosClient().select('*');\nconst createPhotos = (data)=>photosClient().insert(data);\nconst updatePhotos = (id, data)=>photosClient().update(data).eq('id', id);\nconst deletePhotos = (id)=>photosClient().delete().eq('id', id);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaS1ub2RlKS8uL2xpYi9zdXBhYmFzZS9fZ2VuZXJhdGVkL2NsaWVudHMvcGhvdG9zLnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFBQSwrQkFBK0I7QUFDc0I7QUFFckQseURBQXlEO0FBQ3pELE1BQU1DLFdBQVdELG1FQUFZQSxDQUMzQkUsUUFBUUMsR0FBRyxDQUFDQyxZQUFZLEVBQ3hCRixRQUFRQyxHQUFHLENBQUNFLHlCQUF5QixFQUNyQztJQUNFQyxNQUFNO1FBQ0pDLGtCQUFrQjtRQUNsQkMsZ0JBQWdCO0lBQ2xCO0FBQ0Y7QUFHSyxNQUFNQyxlQUFlLElBQzFCUixTQUFTUyxJQUFJLENBQUMsVUFBVTtBQUUxQiwwQkFBMEI7QUFDbkIsTUFBTUMsWUFBWSxJQUFNRixlQUFlRyxNQUFNLENBQUMsS0FBSztBQUNuRCxNQUFNQyxlQUFlLENBQUNDLE9BQWNMLGVBQWVNLE1BQU0sQ0FBQ0QsTUFBTTtBQUNoRSxNQUFNRSxlQUFlLENBQUNDLElBQVNILE9BQWNMLGVBQWVTLE1BQU0sQ0FBQ0osTUFBTUssRUFBRSxDQUFDLE1BQU1GLElBQUk7QUFDdEYsTUFBTUcsZUFBZSxDQUFDSCxLQUFZUixlQUFlWSxNQUFNLEdBQUdGLEVBQUUsQ0FBQyxNQUFNRixJQUFJIiwic291cmNlcyI6WyIvVXNlcnMvcmFqYXRkaGFuZGEvc2FuZGJveC9zYW5kYm94LWFwcC9zYW5kYm94LWFwcC0xL2xpYi9zdXBhYmFzZS9fZ2VuZXJhdGVkL2NsaWVudHMvcGhvdG9zLnRzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIEFVVE8tR0VORVJBVEVEIOKAlCBETyBOT1QgRURJVFxuaW1wb3J0IHsgY3JlYXRlQ2xpZW50IH0gZnJvbSAnQHN1cGFiYXNlL3N1cGFiYXNlLWpzJztcblxuLy8gQ3JlYXRlIHRoZSBjbGllbnQgZGlyZWN0bHkgaGVyZSB0byBhdm9pZCBpbXBvcnQgaXNzdWVzXG5jb25zdCBzdXBhYmFzZSA9IGNyZWF0ZUNsaWVudChcbiAgcHJvY2Vzcy5lbnYuU1VQQUJBU0VfVVJMISxcbiAgcHJvY2Vzcy5lbnYuU1VQQUJBU0VfU0VSVklDRV9ST0xFX0tFWSEsXG4gIHtcbiAgICBhdXRoOiB7XG4gICAgICBhdXRvUmVmcmVzaFRva2VuOiBmYWxzZSxcbiAgICAgIHBlcnNpc3RTZXNzaW9uOiBmYWxzZSxcbiAgICB9LFxuICB9XG4pO1xuXG5leHBvcnQgY29uc3QgcGhvdG9zQ2xpZW50ID0gKCkgPT5cbiAgc3VwYWJhc2UuZnJvbSgncGhvdG9zJyk7XG5cbi8vIEV4cG9ydCB0eXBlZCBvcGVyYXRpb25zXG5leHBvcnQgY29uc3QgZ2V0UGhvdG9zID0gKCkgPT4gcGhvdG9zQ2xpZW50KCkuc2VsZWN0KCcqJyk7XG5leHBvcnQgY29uc3QgY3JlYXRlUGhvdG9zID0gKGRhdGE6IGFueSkgPT4gcGhvdG9zQ2xpZW50KCkuaW5zZXJ0KGRhdGEpO1xuZXhwb3J0IGNvbnN0IHVwZGF0ZVBob3RvcyA9IChpZDogYW55LCBkYXRhOiBhbnkpID0+IHBob3Rvc0NsaWVudCgpLnVwZGF0ZShkYXRhKS5lcSgnaWQnLCBpZCk7XG5leHBvcnQgY29uc3QgZGVsZXRlUGhvdG9zID0gKGlkOiBhbnkpID0+IHBob3Rvc0NsaWVudCgpLmRlbGV0ZSgpLmVxKCdpZCcsIGlkKTtcbiJdLCJuYW1lcyI6WyJjcmVhdGVDbGllbnQiLCJzdXBhYmFzZSIsInByb2Nlc3MiLCJlbnYiLCJTVVBBQkFTRV9VUkwiLCJTVVBBQkFTRV9TRVJWSUNFX1JPTEVfS0VZIiwiYXV0aCIsImF1dG9SZWZyZXNoVG9rZW4iLCJwZXJzaXN0U2Vzc2lvbiIsInBob3Rvc0NsaWVudCIsImZyb20iLCJnZXRQaG90b3MiLCJzZWxlY3QiLCJjcmVhdGVQaG90b3MiLCJkYXRhIiwiaW5zZXJ0IiwidXBkYXRlUGhvdG9zIiwiaWQiLCJ1cGRhdGUiLCJlcSIsImRlbGV0ZVBob3RvcyIsImRlbGV0ZSJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(api-node)/./lib/supabase/_generated/clients/photos.ts\n");
+
+/***/ })
+
+};
+;

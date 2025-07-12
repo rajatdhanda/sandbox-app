@@ -9,7 +9,8 @@
     "start": "next start",
     "build:web": "expo export --platform web --output-dir dist",
     "lint": "expo lint",
-    "dev:next": "next dev"
+    "dev:next": "next dev",
+    "sync:schema": "node --loader ts-node/esm schema/schema-sync.mts"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
@@ -51,6 +52,8 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
+    "supabase": "^2.30.4",
+    "ts-node": "^10.9.2",
     "typescript": "~5.8.3"
   }
 }

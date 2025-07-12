@@ -41,4 +41,27 @@ export const getNotifications = async (userId: string, limit = 10): Promise<Noti
   return data || [];
 };
 
+export const getAnnouncements = async (limit = 10): Promise<Announcement[]> => {
+  const { data, error } = await supabase
+    .from('announcements')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(limit);
+
+  if (error) throw new Error(`Failed to fetch announcements: ${error.message}`);
+  return data || [];
+};
+
+export const getUpcomingEvents = async (limit = 5): Promise<Event[]> => {
+  const { data, error } = await supabase
+    .from('events')
+    .select('*')
+    .gte('date', new Date().toISOString()) // assumes 'date' column
+    .order('date', { ascending: true })
+    .limit(limit);
+
+  if (error) throw error;
+  return data || [];
+};
+
 // Add remaining helper functions the same way...

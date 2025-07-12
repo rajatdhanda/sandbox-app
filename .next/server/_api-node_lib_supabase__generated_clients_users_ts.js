@@ -1,0 +1,25 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+exports.id = "_api-node_lib_supabase__generated_clients_users_ts";
+exports.ids = ["_api-node_lib_supabase__generated_clients_users_ts"];
+exports.modules = {
+
+/***/ "(api-node)/./lib/supabase/_generated/clients/users.ts":
+/*!**************************************************!*\
+  !*** ./lib/supabase/_generated/clients/users.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createUsers: () => (/* binding */ createUsers),\n/* harmony export */   deleteUsers: () => (/* binding */ deleteUsers),\n/* harmony export */   getUsers: () => (/* binding */ getUsers),\n/* harmony export */   updateUsers: () => (/* binding */ updateUsers),\n/* harmony export */   usersClient: () => (/* binding */ usersClient)\n/* harmony export */ });\n/* harmony import */ var _supabase_supabase_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @supabase/supabase-js */ \"@supabase/supabase-js\");\n/* harmony import */ var _supabase_supabase_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_supabase_supabase_js__WEBPACK_IMPORTED_MODULE_0__);\n// AUTO-GENERATED — DO NOT EDIT\n\n// Create the client directly here to avoid import issues\nconst supabase = (0,_supabase_supabase_js__WEBPACK_IMPORTED_MODULE_0__.createClient)(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {\n    auth: {\n        autoRefreshToken: false,\n        persistSession: false\n    }\n});\nconst usersClient = ()=>supabase.from('users');\n// Export typed operations\nconst getUsers = ()=>usersClient().select('*');\nconst createUsers = (data)=>usersClient().insert(data);\nconst updateUsers = (id, data)=>usersClient().update(data).eq('id', id);\nconst deleteUsers = (id)=>usersClient().delete().eq('id', id);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaS1ub2RlKS8uL2xpYi9zdXBhYmFzZS9fZ2VuZXJhdGVkL2NsaWVudHMvdXNlcnMudHMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUFBLCtCQUErQjtBQUNzQjtBQUVyRCx5REFBeUQ7QUFDekQsTUFBTUMsV0FBV0QsbUVBQVlBLENBQzNCRSxRQUFRQyxHQUFHLENBQUNDLFlBQVksRUFDeEJGLFFBQVFDLEdBQUcsQ0FBQ0UseUJBQXlCLEVBQ3JDO0lBQ0VDLE1BQU07UUFDSkMsa0JBQWtCO1FBQ2xCQyxnQkFBZ0I7SUFDbEI7QUFDRjtBQUdLLE1BQU1DLGNBQWMsSUFDekJSLFNBQVNTLElBQUksQ0FBQyxTQUFTO0FBRXpCLDBCQUEwQjtBQUNuQixNQUFNQyxXQUFXLElBQU1GLGNBQWNHLE1BQU0sQ0FBQyxLQUFLO0FBQ2pELE1BQU1DLGNBQWMsQ0FBQ0MsT0FBY0wsY0FBY00sTUFBTSxDQUFDRCxNQUFNO0FBQzlELE1BQU1FLGNBQWMsQ0FBQ0MsSUFBU0gsT0FBY0wsY0FBY1MsTUFBTSxDQUFDSixNQUFNSyxFQUFFLENBQUMsTUFBTUYsSUFBSTtBQUNwRixNQUFNRyxjQUFjLENBQUNILEtBQVlSLGNBQWNZLE1BQU0sR0FBR0YsRUFBRSxDQUFDLE1BQU1GLElBQUkiLCJzb3VyY2VzIjpbIi9Vc2Vycy9yYWphdGRoYW5kYS9zYW5kYm94L3NhbmRib3gtYXBwL3NhbmRib3gtYXBwLTEvbGliL3N1cGFiYXNlL19nZW5lcmF0ZWQvY2xpZW50cy91c2Vycy50cyJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBBVVRPLUdFTkVSQVRFRCDigJQgRE8gTk9UIEVESVRcbmltcG9ydCB7IGNyZWF0ZUNsaWVudCB9IGZyb20gJ0BzdXBhYmFzZS9zdXBhYmFzZS1qcyc7XG5cbi8vIENyZWF0ZSB0aGUgY2xpZW50IGRpcmVjdGx5IGhlcmUgdG8gYXZvaWQgaW1wb3J0IGlzc3Vlc1xuY29uc3Qgc3VwYWJhc2UgPSBjcmVhdGVDbGllbnQoXG4gIHByb2Nlc3MuZW52LlNVUEFCQVNFX1VSTCEsXG4gIHByb2Nlc3MuZW52LlNVUEFCQVNFX1NFUlZJQ0VfUk9MRV9LRVkhLFxuICB7XG4gICAgYXV0aDoge1xuICAgICAgYXV0b1JlZnJlc2hUb2tlbjogZmFsc2UsXG4gICAgICBwZXJzaXN0U2Vzc2lvbjogZmFsc2UsXG4gICAgfSxcbiAgfVxuKTtcblxuZXhwb3J0IGNvbnN0IHVzZXJzQ2xpZW50ID0gKCkgPT5cbiAgc3VwYWJhc2UuZnJvbSgndXNlcnMnKTtcblxuLy8gRXhwb3J0IHR5cGVkIG9wZXJhdGlvbnNcbmV4cG9ydCBjb25zdCBnZXRVc2VycyA9ICgpID0+IHVzZXJzQ2xpZW50KCkuc2VsZWN0KCcqJyk7XG5leHBvcnQgY29uc3QgY3JlYXRlVXNlcnMgPSAoZGF0YTogYW55KSA9PiB1c2Vyc0NsaWVudCgpLmluc2VydChkYXRhKTtcbmV4cG9ydCBjb25zdCB1cGRhdGVVc2VycyA9IChpZDogYW55LCBkYXRhOiBhbnkpID0+IHVzZXJzQ2xpZW50KCkudXBkYXRlKGRhdGEpLmVxKCdpZCcsIGlkKTtcbmV4cG9ydCBjb25zdCBkZWxldGVVc2VycyA9IChpZDogYW55KSA9PiB1c2Vyc0NsaWVudCgpLmRlbGV0ZSgpLmVxKCdpZCcsIGlkKTtcbiJdLCJuYW1lcyI6WyJjcmVhdGVDbGllbnQiLCJzdXBhYmFzZSIsInByb2Nlc3MiLCJlbnYiLCJTVVBBQkFTRV9VUkwiLCJTVVBBQkFTRV9TRVJWSUNFX1JPTEVfS0VZIiwiYXV0aCIsImF1dG9SZWZyZXNoVG9rZW4iLCJwZXJzaXN0U2Vzc2lvbiIsInVzZXJzQ2xpZW50IiwiZnJvbSIsImdldFVzZXJzIiwic2VsZWN0IiwiY3JlYXRlVXNlcnMiLCJkYXRhIiwiaW5zZXJ0IiwidXBkYXRlVXNlcnMiLCJpZCIsInVwZGF0ZSIsImVxIiwiZGVsZXRlVXNlcnMiLCJkZWxldGUiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api-node)/./lib/supabase/_generated/clients/users.ts\n");
+
+/***/ })
+
+};
+;

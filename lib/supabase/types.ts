@@ -1,5 +1,15 @@
 // lib/supabase/types.ts
 
+
+import type { Database } from './generated-types';
+import type { Class } from './types';
+
+export type CurriculumAssignmentRow = Database['public']['Tables']['curriculum_assignments']['Row'];
+
+export interface CurriculumAssignmentWithClass extends CurriculumAssignmentRow {
+  class?: Class;
+}
+
 export interface User {
   id: string;
   email: string;
@@ -30,6 +40,7 @@ export interface Child {
   created_at: string;
   updated_at: string;
   class?: Class;
+  parent_child_relationships?: ParentChildRelationship[];
 }
 
 export interface Class {
@@ -45,5 +56,36 @@ export interface Class {
   created_at: string;
   updated_at: string;
 }
+
+export type Notification = {
+  id: string;
+  user_id: string;
+  message: string;
+  title: string;
+  body: string;
+  type: 'info' | 'warning' | 'success' | 'error';
+  read: boolean;
+  created_at: string;
+  is_read: boolean;
+};
+
+export type Announcement = {
+  id: string;
+  title: string;
+  content: string;
+  type: 'event' | 'general' | 'success' | 'error';
+  publish_date: string;
+};
+
+export type Event = {
+  id: string;
+  title: string;
+  description?: string;
+  date: string;
+  start_date: string;
+  end_date: string;
+  location: string;
+};
+
 
 // Export other interfaces (DailyLog, Photo, etc.) in the same way...
