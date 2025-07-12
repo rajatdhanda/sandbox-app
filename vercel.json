@@ -1,15 +1,4 @@
 {
   "buildCommand": "npm run build:web",
-  "outputDirectory": "dist",
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "dist/**"
-    }
-  },
-  "routes": [
-    {
-      "src": "^/(?!api).*",       
-      "dest": "/api/index.js"
-    }
-  ]
+  "outputDirectory": "dist"
 }
