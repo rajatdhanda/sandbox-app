@@ -128,7 +128,8 @@ export default function UsersScreen() {
     }
   };
 
-  if (loading) {
+  console.log('Rendering UsersScreen...');
+  if (loading === true) {
     return (
       <View style={styles.centerContainer}>
         <ActivityIndicator size="large" color="#3498db" />
